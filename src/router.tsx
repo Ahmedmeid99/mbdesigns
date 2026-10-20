@@ -6,6 +6,7 @@ export function getRouter() {
     routeTree,
     scrollRestoration: true,
     defaultPreload: 'intent',
+    defaultNotFoundComponent: () => <main className="not-found">Page not found.</main>,
   })
 }
 
