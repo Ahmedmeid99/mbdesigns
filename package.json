@@ -1,0 +1,27 @@
+{
+  "name": "mb-designs",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js dev",
+    "build": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js build && node scripts/prepare-site-build.mjs && tsc --noEmit",
+    "start": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js preview",
+    "preview": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js preview"
+  },
+  "dependencies": {
+    "@tanstack/react-router": "latest",
+    "@tanstack/react-start": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@cloudflare/vite-plugin": "latest",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-dom": "latest",
+    "@vitejs/plugin-react": "latest",
+    "typescript": "latest",
+    "vite": "latest",
+    "wrangler": "latest"
+  }
+}
