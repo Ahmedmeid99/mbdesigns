@@ -99,7 +99,7 @@ function AwardsPage() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="/about">ABOUT</a>
           <a className="is-current" href="/awards">AWARDS</a>
-          <a href="/#projects">PROJECTS</a>
+          <a href="/projects">PROJECTS</a>
           <a href="/" className="brand" aria-label="MB Designs home">
             <span className="wordmark" aria-hidden="true">
               <b>MB | DESIGNS</b>
@@ -128,7 +128,7 @@ function AwardsPage() {
         <div id="awards-mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
           <a href="/about" onClick={() => setMenuOpen(false)}>ABOUT</a>
           <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
-          <a href="/#projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
+          <a href="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
           <a href="/#studio" onClick={() => setMenuOpen(false)}>TEAM</a>
           <a href="/#awards" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>CAREER</a>

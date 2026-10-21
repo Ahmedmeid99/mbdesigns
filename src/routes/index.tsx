@@ -100,7 +100,7 @@ function HomePage() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a href="/about">ABOUT</a>
           <a href="/awards">AWARDS</a>
-          <a href="#projects">PROJECTS</a>
+          <a href="/projects">PROJECTS</a>
           <a href="#top" className="brand" aria-label="MB Designs home">
             <span className="wordmark" aria-hidden="true">
               <b>MB | DESIGNS</b>
@@ -128,7 +128,7 @@ function HomePage() {
         </button>
         <div id="mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
           {['ABOUT', 'AWARDS', 'PROJECTS', 'TEAM', 'EVENTS/PRESS', 'CAREER'].map((item) => (
-            <a key={item} href={item === 'ABOUT' ? '/about' : item === 'AWARDS' ? '/awards' : item === 'CAREER' ? '#contact' : '#awards'} onClick={() => setMenuOpen(false)}>
+            <a key={item} href={item === 'ABOUT' ? '/about' : item === 'AWARDS' ? '/awards' : item === 'PROJECTS' ? '/projects' : item === 'CAREER' ? '#contact' : '#awards'} onClick={() => setMenuOpen(false)}>
               {item}
             </a>
           ))}
