@@ -15,6 +15,8 @@ import { Route as AwardsRouteImport } from './routes/awards'
 import { Route as ProjectsRouteImport } from './routes/projects'
 import { Route as ProjectsIndexRouteImport } from './routes/projects.index'
 import { Route as ProjectsCategoryRouteImport } from './routes/projects.$category'
+import { Route as ProjectsCategoryIndexRouteImport } from './routes/projects.$category.index'
+import { Route as ProjectsCategoryProjectRouteImport } from './routes/projects.$category.$project'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -46,21 +48,34 @@ const ProjectsCategoryRoute = ProjectsCategoryRouteImport.update({
   path: '/$category',
   getParentRoute: () => ProjectsRoute,
 } as any)
+const ProjectsCategoryIndexRoute = ProjectsCategoryIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ProjectsCategoryRoute,
+} as any)
+const ProjectsCategoryProjectRoute = ProjectsCategoryProjectRouteImport.update({
+  id: '/$project',
+  path: '/$project',
+  getParentRoute: () => ProjectsCategoryRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/awards': typeof AwardsRoute
   '/projects': typeof ProjectsRouteWithChildren
-  '/projects/$category': typeof ProjectsCategoryRoute
+  '/projects/$category': typeof ProjectsCategoryRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
+  '/projects/$category/$project': typeof ProjectsCategoryProjectRoute
+  '/projects/$category/': typeof ProjectsCategoryIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/awards': typeof AwardsRoute
-  '/projects/$category': typeof ProjectsCategoryRoute
   '/projects': typeof ProjectsIndexRoute
+  '/projects/$category/$project': typeof ProjectsCategoryProjectRoute
+  '/projects/$category': typeof ProjectsCategoryIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -68,8 +83,10 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/awards': typeof AwardsRoute
   '/projects': typeof ProjectsRouteWithChildren
-  '/projects/$category': typeof ProjectsCategoryRoute
+  '/projects/$category': typeof ProjectsCategoryRouteWithChildren
   '/projects/': typeof ProjectsIndexRoute
+  '/projects/$category/$project': typeof ProjectsCategoryProjectRoute
+  '/projects/$category/': typeof ProjectsCategoryIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -80,8 +97,16 @@ export interface FileRouteTypes {
     | '/projects'
     | '/projects/$category'
     | '/projects/'
+    | '/projects/$category/$project'
+    | '/projects/$category/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/awards' | '/projects/$category' | '/projects'
+  to:
+    | '/'
+    | '/about'
+    | '/awards'
+    | '/projects'
+    | '/projects/$category/$project'
+    | '/projects/$category'
   id:
     | '__root__'
     | '/'
@@ -90,6 +115,8 @@ export interface FileRouteTypes {
     | '/projects'
     | '/projects/$category'
     | '/projects/'
+    | '/projects/$category/$project'
+    | '/projects/$category/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -143,16 +170,43 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ProjectsCategoryRouteImport
       parentRoute: typeof ProjectsRoute
     }
+    '/projects/$category/': {
+      id: '/projects/$category/'
+      path: '/'
+      fullPath: '/projects/$category/'
+      preLoaderRoute: typeof ProjectsCategoryIndexRouteImport
+      parentRoute: typeof ProjectsCategoryRoute
+    }
+    '/projects/$category/$project': {
+      id: '/projects/$category/$project'
+      path: '/$project'
+      fullPath: '/projects/$category/$project'
+      preLoaderRoute: typeof ProjectsCategoryProjectRouteImport
+      parentRoute: typeof ProjectsCategoryRoute
+    }
   }
 }
 
+interface ProjectsCategoryRouteChildren {
+  ProjectsCategoryProjectRoute: typeof ProjectsCategoryProjectRoute
+  ProjectsCategoryIndexRoute: typeof ProjectsCategoryIndexRoute
+}
+
+const ProjectsCategoryRouteChildren: ProjectsCategoryRouteChildren = {
+  ProjectsCategoryProjectRoute: ProjectsCategoryProjectRoute,
+  ProjectsCategoryIndexRoute: ProjectsCategoryIndexRoute,
+}
+
+const ProjectsCategoryRouteWithChildren =
+  ProjectsCategoryRoute._addFileChildren(ProjectsCategoryRouteChildren)
+
 interface ProjectsRouteChildren {
-  ProjectsCategoryRoute: typeof ProjectsCategoryRoute
+  ProjectsCategoryRoute: typeof ProjectsCategoryRouteWithChildren
   ProjectsIndexRoute: typeof ProjectsIndexRoute
 }
 
 const ProjectsRouteChildren: ProjectsRouteChildren = {
-  ProjectsCategoryRoute: ProjectsCategoryRoute,
+  ProjectsCategoryRoute: ProjectsCategoryRouteWithChildren,
   ProjectsIndexRoute: ProjectsIndexRoute,
 }
 

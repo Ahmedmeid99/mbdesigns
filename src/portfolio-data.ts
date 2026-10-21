@@ -2,6 +2,7 @@ type ProjectCard = {
   name: string
   image: string
   shape: 'portrait' | 'wide' | 'medium'
+  slug?: string
 }
 
 type CategoryDetail = {
@@ -13,7 +14,19 @@ type CategoryDetail = {
   projects: readonly ProjectCard[]
 }
 
-const card = (name: string, image: string, shape: ProjectCard['shape'] = 'medium'): ProjectCard => ({ name, image, shape })
+const projectSlug = (name: string) => name === 'PROJECT NAME' ? undefined : name
+  .toLowerCase()
+  .replace(/[–—]/g, '-')
+  .replace(/&/g, 'and')
+  .replace(/[^a-z0-9]+/g, '-')
+  .replace(/^-|-$/g, '')
+
+const card = (name: string, image: string, shape: ProjectCard['shape'] = 'medium'): ProjectCard => ({
+  name,
+  image,
+  shape,
+  slug: projectSlug(name),
+})
 
 export const architectureProjects = [
   card('CHESS FIELD', '/assets/images/architecture-chess.webp', 'portrait'),
