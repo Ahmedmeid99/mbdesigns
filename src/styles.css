@@ -1586,7 +1586,7 @@ video {
 
 .project-detail-gallery {
   position: relative;
-  min-height: 215svh;
+  min-height: 1540px;
   padding: 58px clamp(24px, 7.7vw, 99px) 30px;
   background: #fff;
 }
@@ -1611,6 +1611,44 @@ video {
   column-gap: 25px;
   row-gap: 61px;
   margin: 0 auto;
+}
+
+.detail-layout-three-compact {
+  min-height: 2190px;
+}
+
+.detail-layout-three-compact .detail-project-grid {
+  row-gap: 61px;
+}
+
+.detail-layout-three-compact .detail-project > div {
+  height: 294px;
+}
+
+.project-detail-food-and-beverage .project-detail-gallery {
+  min-height: 3040px;
+}
+
+.detail-layout-two-tall {
+  min-height: auto;
+}
+
+.detail-layout-two-tall .detail-project-grid {
+  grid-template-columns: 0.62fr 1.05fr;
+  column-gap: 30px;
+  row-gap: 46px;
+}
+
+.detail-layout-two-tall .detail-project > div {
+  height: 518px;
+}
+
+.project-detail-retail-and-commercial .detail-arrows {
+  margin-top: 205px;
+}
+
+.project-detail-hospitality .detail-arrows {
+  margin-top: 205px;
 }
 
 .detail-project > div {
@@ -1650,6 +1688,8 @@ video {
   .project-detail-gallery { min-height: auto; }
   .detail-project-grid { column-gap: 14px; }
   .detail-project > div { height: 300px; }
+  .detail-layout-three-compact .detail-project > div,
+  .detail-layout-two-tall .detail-project > div { height: 300px; }
 }
 
 @media (max-width: 640px) {
@@ -1662,11 +1702,19 @@ video {
   .projects-arrows { margin-top: 80px; }
   .project-detail-hero { min-height: 102svh; }
   .project-detail-hero-copy h1 { font-size: clamp(2.7rem, 12vw, 4.1rem); }
+  .project-detail-corporate .project-detail-hero-copy h1,
+  .project-detail-retail-and-commercial .project-detail-hero-copy h1,
+  .project-detail-hospitality .project-detail-hero-copy h1 {
+    font-size: clamp(2rem, 8.8vw, 3.25rem);
+    line-height: 0.9;
+  }
   .project-detail-hero-copy p { font-size: 0.72rem; }
   .project-detail-gallery { padding-top: 64px; }
   .project-detail-gallery > h2 { margin-bottom: 22px; font-size: 12vw; }
   .detail-project-grid { grid-template-columns: 1fr; row-gap: 48px; }
   .detail-project > div { height: auto; aspect-ratio: 1.22; }
+  .detail-layout-three-compact .detail-project > div,
+  .detail-layout-two-tall .detail-project > div { height: auto; }
   .detail-project h3 { margin-top: 14px; }
   .detail-arrows { margin-top: 100px; }
 }
