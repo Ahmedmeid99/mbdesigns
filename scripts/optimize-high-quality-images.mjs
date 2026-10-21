@@ -14,6 +14,10 @@ const jobs = [
   ['award-studio-alt-source.jpg', 'award-studio.webp', 1600, 1013],
   ['contact-source.jpg', 'contact.webp', 1600, 608],
   ['about-founder-source.png', 'about-founder.webp', 1133, 1388],
+  ['awards-hero-source.jpg', 'awards-hero.webp', 1920, 1145],
+  ['awards-2021-source.jpg', 'awards-2021.webp', 2400, 1217],
+  ['awards-2022-source.jpg', 'awards-2022.webp', 2400, 1396],
+  ['awards-purpose-source.jpg', 'awards-purpose.webp', 1472, 1840],
 ]
 
 for (const [inputName, outputName, width, height] of jobs) {

@@ -52,7 +52,7 @@ function AboutPage() {
       <header className="site-header about-header">
         <nav className="desktop-nav" aria-label="Primary navigation">
           <a className="is-current" href="/about">ABOUT</a>
-          <a href="/#awards">AWARDS</a>
+          <a href="/awards">AWARDS</a>
           <a href="/#projects">PROJECTS</a>
           <a href="/" className="brand" aria-label="MB Designs home">
             <span className="wordmark" aria-hidden="true">
@@ -81,7 +81,7 @@ function AboutPage() {
         </button>
         <div id="about-mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
           <a href="/about" onClick={() => setMenuOpen(false)}>ABOUT</a>
-          <a href="/#awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
+          <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
           <a href="/#projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
           <a href="/#studio" onClick={() => setMenuOpen(false)}>TEAM</a>
           <a href="/#awards" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
