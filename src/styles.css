@@ -813,3 +813,215 @@ video {
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
   [data-reveal] { opacity: 1; transform: none; }
 }
+
+/* About page */
+.about-site {
+  overflow: clip;
+  background: #fff;
+}
+
+.about-header .desktop-nav > a.is-current {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.about-hero {
+  position: relative;
+  min-height: 134svh;
+  overflow: hidden;
+  background: #57171a;
+  color: #fff;
+}
+
+.about-founder {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  object-fit: cover;
+  object-position: 60% 2%;
+  transform: scale(1.01);
+  opacity: 0;
+  transition: opacity 0.8s ease, transform 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.about-site.is-ready .about-founder {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.about-hero-copy {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
+  top: 76svh;
+  width: min(1120px, 94vw);
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.about-hero-copy h1 {
+  margin: 0 0 18px;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: clamp(3rem, 4.8vw, 4.8rem);
+  font-weight: 900;
+  line-height: 0.83;
+  letter-spacing: -0.075em;
+  white-space: nowrap;
+}
+
+.about-hero-copy p {
+  margin: 0 auto;
+  font-size: clamp(0.62rem, 0.84vw, 0.82rem);
+  font-weight: 700;
+  line-height: 1.65;
+}
+
+.about-legacy {
+  position: absolute;
+  z-index: 2;
+  inset: auto 3.8vw 26px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.about-legacy span:nth-child(2) { text-align: center; }
+.about-legacy span:last-child { text-align: right; }
+
+.about-section {
+  padding: clamp(90px, 13vw, 180px) clamp(24px, 4.6vw, 72px);
+}
+
+.about-story {
+  min-height: 92svh;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(420px, 1.35fr);
+  gap: 8vw;
+  align-items: start;
+}
+
+.about-story h2,
+.about-philosophy h2,
+.about-value h2 {
+  margin: 0;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: clamp(3.5rem, 6.6vw, 7.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+}
+
+.about-copy {
+  padding-top: 12px;
+  font-size: clamp(0.92rem, 1.34vw, 1.4rem);
+  line-height: 1.36;
+}
+
+.about-copy > p:not(.about-kicker),
+.about-value div > p:not(.about-kicker) {
+  max-width: 760px;
+  margin: 0 0 1.35em;
+}
+
+.about-kicker {
+  margin: 0 0 clamp(56px, 9vw, 112px);
+  font-size: clamp(0.9rem, 1.45vw, 1.45rem);
+  font-weight: 500;
+}
+
+.about-philosophy {
+  position: relative;
+  min-height: 105svh;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 8vw;
+  align-items: center;
+  padding: clamp(100px, 12vw, 180px) clamp(24px, 4.6vw, 72px);
+  color: #fff;
+  background: #37352f url('/assets/images/contact.webp') center / cover no-repeat;
+}
+
+.about-philosophy-shade {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, rgba(0,0,0,0.64), rgba(0,0,0,0.34));
+  backdrop-filter: blur(3px);
+}
+
+.about-philosophy h2,
+.about-philosophy > p {
+  position: relative;
+  z-index: 1;
+}
+
+.about-philosophy > p {
+  margin: 0;
+  font-size: clamp(1.05rem, 1.8vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.35;
+}
+
+.about-values {
+  position: relative;
+  padding-bottom: 80px;
+}
+
+.about-value {
+  min-height: 75svh;
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(420px, 1.35fr);
+  gap: 8vw;
+  align-items: start;
+}
+
+.about-value div {
+  padding-top: 12px;
+  font-size: clamp(0.92rem, 1.34vw, 1.4rem);
+  line-height: 1.36;
+}
+
+.about-value-vision {
+  direction: rtl;
+}
+
+.about-value-vision > * {
+  direction: ltr;
+}
+
+.about-arrows {
+  display: flex;
+  justify-content: space-between;
+  padding: 40px 10vw 0;
+  font-size: 2.5rem;
+}
+
+.about-footer {
+  min-height: 70svh;
+}
+
+@media (max-width: 760px) {
+  .about-hero { min-height: 116svh; }
+  .about-founder { object-position: 54% center; }
+  .about-hero-copy { top: 70svh; width: calc(100% - 32px); }
+  .about-hero-copy h1 { font-size: clamp(2.6rem, 13vw, 4.4rem); white-space: normal; }
+  .about-hero-copy p { font-size: 0.58rem; line-height: 1.45; }
+  .desktop-break { display: none; }
+  .about-legacy { inset-inline: 18px; font-size: 0.63rem; }
+  .about-story,
+  .about-philosophy,
+  .about-value {
+    grid-template-columns: 1fr;
+    gap: 54px;
+    min-height: auto;
+  }
+  .about-story h2,
+  .about-philosophy h2,
+  .about-value h2 { font-size: clamp(3.3rem, 16vw, 5.4rem); }
+  .about-kicker { margin-bottom: 48px; }
+  .about-philosophy { min-height: 92svh; align-content: center; }
+  .about-value { margin-bottom: 120px; }
+  .about-value-vision { direction: ltr; }
+  .about-arrows { padding-inline: 0; }
+}

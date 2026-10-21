@@ -98,7 +98,7 @@ function HomePage() {
 
       <header className="site-header">
         <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="#about">ABOUT</a>
+          <a href="/about">ABOUT</a>
           <a href="#awards">AWARDS</a>
           <a href="#projects">PROJECTS</a>
           <a href="#top" className="brand" aria-label="MB Designs home">
@@ -128,7 +128,7 @@ function HomePage() {
         </button>
         <div id="mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
           {['ABOUT', 'AWARDS', 'PROJECTS', 'TEAM', 'EVENTS/PRESS', 'CAREER'].map((item) => (
-            <a key={item} href={item === 'ABOUT' ? '#about' : item === 'CAREER' ? '#contact' : '#awards'} onClick={() => setMenuOpen(false)}>
+            <a key={item} href={item === 'ABOUT' ? '/about' : item === 'CAREER' ? '#contact' : '#awards'} onClick={() => setMenuOpen(false)}>
               {item}
             </a>
           ))}
@@ -210,7 +210,7 @@ function HomePage() {
             <p>
               WITH EXPERTISE ACROSS CORPORATE, HOSPITALITY, RETAIL, AND RESIDENTIAL SECTORS, WE DESIGN SPACES THAT INSPIRE, PERFORM, AND ENDURE. GUIDED BY CREATIVITY, TECHNICAL PRECISION, AND METICULOUS ATTENTION TO DETAIL, EVERY PROJECT IS CRAFTED TO REFLECT ITS PURPOSE WHILE LEAVING A LASTING IMPRESSION.
             </p>
-            <a className="pill" href="#studio">EXPLORE</a>
+            <a className="pill" href="/about">EXPLORE</a>
           </div>
         </section>
 
