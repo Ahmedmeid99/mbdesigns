@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 
 export const Route = createFileRoute('/awards')({
   head: () => ({
@@ -136,31 +137,31 @@ function AwardsPage() {
       </header>
 
       <main>
-        <section id="top" className="awards-hero">
+        <Container as="section" id="top" className="awards-hero">
           <img src="/assets/images/awards-hero.webp" alt="Abstract amber architectural light" width="1920" height="1145" fetchPriority="high" />
           <div className="awards-hero-shade" />
           <div className="awards-hero-copy">
             <h1>WHERE VISION<br />EARNS RECOGNITION</h1>
             <p>HONORING A TRADITION OF TIMELESS<br />DESIGN AND ARCHITECTURAL EXCELLENCE.</p>
           </div>
-        </section>
+        </Container>
 
-        <section className="certificate-section">
+        <Container as="section" className="certificate-section">
           <h2 data-reveal>AWARDS</h2>
           <CertificateRow year="2021" image="/assets/images/awards-2021.webp" width={2400} height={1217} />
           <CertificateRow year="2022" image="/assets/images/awards-2022.webp" width={2400} height={1396} />
-        </section>
+        </Container>
 
-        <section className="awards-purpose">
+        <Container as="section" className="awards-purpose">
           <img src="/assets/images/awards-purpose.webp" alt="Contemporary residence in warm evening light" width="1472" height="1840" loading="lazy" decoding="async" />
           <div className="awards-purpose-shade" />
           <div data-reveal>
             <h2>DESIGN<br />WITH PURPOSE</h2>
             <p>EACH AWARD REFLECTS OUR PASSION FOR<br className="desktop-break" /> CREATING TIMELESS SPACES WITH PURPOSE, PRECISION,<br className="desktop-break" /> AND LASTING IMPACT.</p>
           </div>
-        </section>
+        </Container>
 
-        <section className="award-editorial">
+        <Container as="section" className="award-editorial">
           <header className="award-family" data-reveal>
             <div>
               <h2>INTERNATIONAL AWARDS</h2>
@@ -183,7 +184,7 @@ function AwardsPage() {
           {luxuryEntries.map((entry) => <EditorialAward key={entry.name} entry={entry} />)}
 
           <div className="awards-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
-        </section>
+        </Container>
       </main>
 
       <footer id="contact" className="footer awards-footer">

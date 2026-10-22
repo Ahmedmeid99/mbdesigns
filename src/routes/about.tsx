@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 
 export const Route = createFileRoute('/about')({
   head: () => ({
@@ -90,7 +91,7 @@ function AboutPage() {
       </header>
 
       <main>
-        <section className="about-hero" id="top">
+        <Container as="section" className="about-hero" id="top">
           <img
             className="about-founder"
             src="/assets/images/about-founder.webp"
@@ -114,26 +115,26 @@ function AboutPage() {
             <span>LASTING</span>
             <span>LEGACIES</span>
           </div>
-        </section>
+        </Container>
 
-        <section className="about-story about-section">
+        <Container as="section" className="about-story about-section">
           <h2 data-reveal>OUR STORY</h2>
           <div className="about-copy" data-reveal>
             <p className="about-kicker">/ WHERE OUR JOURNEY BEGAN</p>
             <p>FOUNDED IN 1995, MB DESIGNS HAS GROWN INTO A MULTIDISCIPLINARY DESIGN STUDIO RECOGNIZED FOR DELIVERING EXCEPTIONAL ARCHITECTURE AND INTERIOR SOLUTIONS ACROSS CORPORATE, HOSPITALITY, RETAIL, AND RESIDENTIAL SECTORS.</p>
             <p>EVERY PROJECT IS GUIDED BY COLLABORATION, CREATIVITY, AND A DEDICATION TO ARCHITECTURAL EXCELLENCE. TODAY, WE CONTINUE TO BUILD UPON OUR LEGACY BY DESIGNING SPACES THAT ENHANCE EXPERIENCES AND ENRICH THE WAY PEOPLE LIVE, WORK, AND CONNECT.</p>
           </div>
-        </section>
+        </Container>
 
-        <section className="about-philosophy">
+        <Container as="section" className="about-philosophy">
           <div className="about-philosophy-shade" />
           <h2 data-reveal>OUR PHILOSOPHY</h2>
           <p data-reveal>
             WE BELIEVE THAT EXCEPTIONAL DESIGN EXTENDS BEYOND AESTHETICS. EVERY SPACE SHOULD INSPIRE, FUNCTION EFFORTLESSLY, AND REFLECT THE IDENTITY OF THOSE WHO EXPERIENCE IT. OUR WORK BALANCES ELEGANCE, INNOVATION, CRAFTSMANSHIP, AND TECHNICAL EXPERTISE TO CREATE ENVIRONMENTS THAT IMPROVE EVERYDAY LIFE WHILE STANDING THE TEST OF TIME.
           </p>
-        </section>
+        </Container>
 
-        <section className="about-values about-section">
+        <Container as="section" className="about-values about-section">
           <article className="about-value" data-reveal>
             <h2>OUR MISSION</h2>
             <div>
@@ -150,7 +151,7 @@ function AboutPage() {
             </div>
           </article>
           <div className="about-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
-        </section>
+        </Container>
       </main>
 
       <footer id="contact" className="footer about-footer">

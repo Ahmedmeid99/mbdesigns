@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
 import { projectCategories } from '../portfolio-data'
 
@@ -38,13 +39,13 @@ function ProjectsPage() {
     <div ref={pageRef} className={ready ? 'projects-site is-ready' : 'projects-site'}>
       <PortfolioHeader />
       <main>
-        <section id="top" className="projects-hero">
+        <Container as="section" id="top" className="projects-hero">
           <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
           <div className="projects-hero-shade" />
           <h1>WE PURSUE<br />EXCELLENCE IN EVERY DETAIL</h1>
-        </section>
+        </Container>
 
-        <section className="projects-index">
+        <Container as="section" className="projects-index">
           <h2 data-reveal>OUR PROJECTS</h2>
           <div className="projects-category-grid">
             {projectCategories.map((category, index) => (
@@ -63,7 +64,7 @@ function ProjectsPage() {
             ))}
           </div>
           <div className="projects-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
-        </section>
+        </Container>
       </main>
       <PortfolioFooter />
     </div>

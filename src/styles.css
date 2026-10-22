@@ -28,6 +28,10 @@
   --paper: #f5f4f1;
   --ink: #050505;
   --line: rgba(5, 5, 5, 0.18);
+  --container-max: 1600px;
+  --container-content: 1320px;
+  --container-narrow: 960px;
+  --container-gutter: clamp(24px, 5vw, 80px);
 }
 
 * {
@@ -68,6 +72,20 @@ video {
   overflow: clip;
 }
 
+.layout-container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+}
+
+.layout-container-content {
+  max-width: var(--container-content);
+}
+
+.layout-container-narrow {
+  max-width: var(--container-narrow);
+}
+
 .intro-curtain {
   position: fixed;
   inset: 0;
@@ -94,7 +112,7 @@ video {
   position: absolute;
   inset: 0 0 auto;
   z-index: 20;
-  padding: 20px 3.6vw;
+  padding: 20px var(--container-gutter);
   color: #fff;
 }
 
@@ -201,7 +219,7 @@ video {
 .hero-locations {
   position: absolute;
   z-index: 2;
-  left: 3.6vw;
+  left: var(--container-gutter);
   bottom: 4.7vh;
   display: flex;
   gap: 38px;
@@ -212,7 +230,7 @@ video {
 .scroll-cue {
   position: absolute;
   z-index: 2;
-  right: 3.6vw;
+  right: var(--container-gutter);
   bottom: 4.5vh;
   display: flex;
   align-items: center;
@@ -235,7 +253,7 @@ video {
 }
 
 .section-pad {
-  padding-inline: clamp(24px, 5vw, 78px);
+  padding-inline: var(--container-gutter);
 }
 
 [data-reveal] {
@@ -706,7 +724,7 @@ video {
 .footer-content {
   position: relative;
   z-index: 1;
-  padding: 60px clamp(24px, 5vw, 78px) 110px;
+  padding: 60px var(--container-gutter) 110px;
 }
 
 .footer h2 {
@@ -749,7 +767,7 @@ video {
   inset: auto 0 0;
   display: flex;
   justify-content: space-between;
-  padding: 18px clamp(24px, 5vw, 78px);
+  padding: 18px var(--container-gutter);
   border-top: 1px solid rgba(255,255,255,0.45);
   font-size: 0.68rem;
 }
@@ -974,7 +992,7 @@ video {
 .career-opportunities {
   position: relative;
   height: 2171px;
-  padding: 96px 6.15vw 0;
+  padding: 96px var(--container-gutter) 0;
   background: #fff;
 }
 
@@ -1080,7 +1098,7 @@ video {
 }
 .career-footer > img { max-width: none; object-fit: cover; }
 .career-footer-shade { background: rgba(0,0,0,.15); }
-.career-footer-content { position: relative; z-index: 1; padding: 84px 4.55vw 0; }
+.career-footer-content { position: relative; z-index: 1; width: 100%; max-width: var(--container-max); margin-inline: auto; padding: 84px var(--container-gutter) 0; }
 .career-footer-content h2 { margin: 0; font-size: 2.2rem; line-height: 1.2; }
 .career-footer-grid {
   display: grid;
@@ -1264,7 +1282,7 @@ video {
 .about-legacy span:last-child { text-align: right; }
 
 .about-section {
-  padding: clamp(90px, 13vw, 180px) clamp(24px, 4.6vw, 72px);
+  padding: clamp(90px, 13vw, 180px) var(--container-gutter);
 }
 
 .about-story {
@@ -1310,7 +1328,7 @@ video {
   grid-template-columns: 0.8fr 1.2fr;
   gap: 8vw;
   align-items: center;
-  padding: clamp(100px, 12vw, 180px) clamp(24px, 4.6vw, 72px);
+  padding: clamp(100px, 12vw, 180px) var(--container-gutter);
   color: #fff;
   background: #37352f url('/assets/images/contact.webp') center / cover no-repeat;
 }
@@ -1477,7 +1495,7 @@ video {
 
 .certificate-section {
   min-height: 210svh;
-  padding: 72px clamp(24px, 6.8vw, 108px) 55px;
+  padding: 72px var(--container-gutter) 55px;
   background: #fff;
 }
 
@@ -1560,7 +1578,7 @@ video {
 }
 
 .award-editorial {
-  padding: 15px clamp(24px, 7vw, 112px) 34px;
+  padding: 15px var(--container-gutter) 34px;
   background: #fff;
 }
 
@@ -1825,7 +1843,7 @@ video {
 
 .projects-index {
   min-height: 218svh;
-  padding: 94px clamp(24px, 7.3vw, 94px) 48px;
+  padding: 94px var(--container-gutter) 48px;
   background: #fff;
 }
 
@@ -1959,7 +1977,7 @@ video {
 .project-detail-gallery {
   position: relative;
   min-height: 1540px;
-  padding: 58px clamp(24px, 7.7vw, 99px) 30px;
+  padding: 58px var(--container-gutter) 30px;
   background: #fff;
 }
 
@@ -2126,7 +2144,7 @@ video {
 
 .single-project-main {
   min-height: 1250px;
-  padding: 162px clamp(28px, 2.6vw, 42px) 90px;
+  padding: 162px var(--container-gutter) 90px;
   background: #fff;
 }
 
@@ -2479,7 +2497,7 @@ video {
 }
 
 .team-roster {
-  padding: 62px 3.05vw 132px;
+  padding: 62px var(--container-gutter) 132px;
   background: #fff;
 }
 
@@ -2687,7 +2705,7 @@ video {
   display: grid;
   grid-template-columns: 42% 58%;
   min-height: 760px;
-  padding: 125px 5.7vw 105px;
+  padding: 125px var(--container-gutter) 105px;
   background: #fff;
 }
 
@@ -2759,7 +2777,7 @@ video {
 }
 
 .event-gallery {
-  padding: 36px 5.7vw 85px;
+  padding: 36px var(--container-gutter) 85px;
   background: #fff;
 }
 
@@ -2827,7 +2845,7 @@ video {
   display: grid;
   grid-template-columns: 42% 58%;
   gap: 20px;
-  padding: 115px 5.7vw 120px;
+  padding: 115px var(--container-gutter) 120px;
   background: #fff;
 }
 
@@ -2848,7 +2866,7 @@ video {
 }
 
 .events-video-section {
-  padding: 150px 7.5vw 110px;
+  padding: 150px var(--container-gutter) 110px;
   background: #fff;
 }
 
@@ -2880,7 +2898,7 @@ video {
   align-items: center;
   gap: 40px;
   min-height: 500px;
-  padding: 95px 8vw 70px;
+  padding: 95px var(--container-gutter) 70px;
   background: #fff;
 }
 
@@ -2946,7 +2964,7 @@ video {
 }
 
 .press-releases {
-  padding: 70px 8vw 55px;
+  padding: 70px var(--container-gutter) 55px;
   background: #fff;
   text-align: center;
 }
@@ -3224,8 +3242,8 @@ video {
 }
 
 .event-gallery {
-  padding-right: max(5.7vw, calc((100vw - 1120px) / 2));
-  padding-left: max(5.7vw, calc((100vw - 1120px) / 2));
+  padding-right: var(--container-gutter);
+  padding-left: var(--container-gutter);
 }
 
 .event-gallery-grid {
@@ -3370,7 +3388,7 @@ video {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 64px 7vw;
+  padding: 64px var(--container-gutter);
 }
 
 .events-footer-top p,
@@ -3390,7 +3408,7 @@ video {
   display: flex;
   align-items: center;
   gap: 32px;
-  padding: 27px 5.7vw;
+  padding: 27px var(--container-gutter);
   border-top: 1px solid rgba(255,255,255,.28);
   font-size: .68rem;
 }

@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 import { getProjectDetail } from '../project-details.generated'
@@ -47,10 +48,10 @@ function SingleProjectPage() {
     return (
       <div className="single-project-site">
         <PortfolioHeader />
-        <main className="single-project-missing">
+        <Container as="main" className="single-project-missing">
           <h1>PROJECT NOT FOUND</h1>
           <Link to="/projects/$category" params={{ category: categorySlug }}>BACK TO PROJECTS</Link>
-        </main>
+        </Container>
       </div>
     )
   }
@@ -58,7 +59,7 @@ function SingleProjectPage() {
   return (
     <div ref={pageRef} className={ready ? 'single-project-site is-ready' : 'single-project-site'}>
       <PortfolioHeader />
-      <main id="top" className="single-project-main">
+      <Container as="main" id="top" className="single-project-main">
         <header className="single-project-heading">
           <h1>{detail.title}</h1>
           <p>{detail.location}</p>
@@ -82,7 +83,7 @@ function SingleProjectPage() {
             <Link className="single-project-back" to="/projects/$category" params={{ category: categorySlug }}>Back To Projects</Link>
           </aside>
 
-          <section className="single-project-visuals" aria-label={`${detail.title} gallery`}>
+          <Container as="section" className="single-project-visuals" aria-label={`${detail.title} gallery`}>
             <img className="single-project-cover" src={cover.image} alt={`${detail.title} by MB Designs`} width="1600" height="900" fetchPriority="high" />
             <div className="single-project-gallery">
               {detail.gallery.map((image, index) => (
@@ -91,9 +92,9 @@ function SingleProjectPage() {
                 </a>
               ))}
             </div>
-          </section>
+          </Container>
         </div>
-      </main>
+      </Container>
       <PortfolioFooter />
     </div>
   )

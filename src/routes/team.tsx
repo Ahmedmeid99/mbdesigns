@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
 
 const heroImage = '/assets/images/team/hero.webp'
@@ -67,12 +68,12 @@ function TeamPage() {
     <div ref={pageRef} className={ready ? 'team-site is-ready' : 'team-site'}>
       <PortfolioHeader current="team" className="team-header" />
       <main id="top">
-        <section className="team-hero" aria-label="MB Designs team">
+        <Container as="section" className="team-hero" aria-label="MB Designs team">
           <img src={heroImage} alt="MB Designs team in motion" width="2400" height="1200" fetchPriority="high" />
           <h1>BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</h1>
-        </section>
+        </Container>
 
-        <section className="team-roster" aria-labelledby="team-roster-title">
+        <Container as="section" className="team-roster" aria-labelledby="team-roster-title">
           <h2 id="team-roster-title" data-reveal>MEET THE TEAM</h2>
           <div className="team-grid">
             {teamMembers.map((member, index) => (
@@ -97,7 +98,7 @@ function TeamPage() {
               </article>
             ))}
           </div>
-        </section>
+        </Container>
       </main>
       <PortfolioFooter />
     </div>

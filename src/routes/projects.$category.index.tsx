@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 
@@ -45,16 +46,16 @@ function ProjectCategoryPage() {
     <div ref={pageRef} className={ready ? `project-detail-site project-detail-${slug} is-ready` : `project-detail-site project-detail-${slug}`}>
       <PortfolioHeader />
       <main>
-        <section id="top" className="project-detail-hero">
+        <Container as="section" id="top" className="project-detail-hero">
           <img src={detail.hero} alt={`${category.name} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
           <div className="project-detail-shade" />
           <div className="project-detail-hero-copy">
             <h1>{detail.heroLines[0]}<br />{detail.heroLines[1]}</h1>
             <p>{detail.subtitle}</p>
           </div>
-        </section>
+        </Container>
 
-        <section className={`project-detail-gallery detail-layout-${detail.layout}`}>
+        <Container as="section" className={`project-detail-gallery detail-layout-${detail.layout}`}>
           <h2 data-reveal>{detail.galleryTitle}</h2>
           <div className="detail-project-grid">
             {projects.map((project, index) => {
@@ -79,7 +80,7 @@ function ProjectCategoryPage() {
             })}
           </div>
           <div className="projects-arrows detail-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
-        </section>
+        </Container>
       </main>
       <PortfolioFooter />
     </div>

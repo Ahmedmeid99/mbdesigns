@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { FormEvent, useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 import { PortfolioHeader } from '../components/PortfolioChrome'
 
 const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height: number) => `/assets/images/career/${id}.webp`
@@ -54,23 +55,23 @@ function CareerPage() {
     <div ref={rootRef} className={ready ? 'career-site is-ready' : 'career-site'}>
       <PortfolioHeader current="career" className="career-header" logoImage={headerLogo} />
       <main id="top">
-        <section className="career-hero">
+        <Container as="section" className="career-hero">
           <img src={heroImage} alt="MB Designs creative studio in motion" width="2400" height="1450" fetchPriority="high" />
           <div className="career-hero-overlay" />
           <div className="career-hero-copy">
             <h1>THE FUTURE IS DESIGNED BY THOSE<br />WHO DARE TO CREATE</h1>
             <p>AT MB DESIGNS, WE TURN BOLD IDEAS INTO LASTING IMPACT</p>
           </div>
-        </section>
+        </Container>
 
-        <section className="career-statement" aria-label="Join the MB Designs team">
+        <Container as="section" className="career-statement" aria-label="Join the MB Designs team">
           <div className="career-statement-line career-statement-line-a" aria-hidden="true">READY TO SHAPE&nbsp;&nbsp;&nbsp; THE FUTURE OF DESIGN?</div>
           <div className="career-statement-line career-statement-line-b" aria-hidden="true">LOOKING FOR YOU&nbsp;&nbsp;&nbsp; TO JOIN</div>
           <img src={statementLogo} alt="MB Designs team" width="1200" height="364" loading="eager" />
           <h2><span>READY TO SHAPE</span><span>THE FUTURE OF DESIGN?</span><span>LOOKING FOR YOU</span><span>TO JOIN</span><strong>TEAM</strong></h2>
-        </section>
+        </Container>
 
-        <section className="career-opportunities" aria-labelledby="career-title">
+        <Container as="section" className="career-opportunities" aria-labelledby="career-title">
           <header data-reveal>
             <h2 id="career-title">BE PART OF THE TEAM</h2>
             <span>INTERNS/SUPPLIERS</span>
@@ -90,7 +91,7 @@ function CareerPage() {
             onClick={() => setApplication('supplier')}
           />
           <div className="career-scroll-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
-        </section>
+        </Container>
       </main>
       <CareerFooter />
       {application && <ApplicationDialog kind={application} onClose={() => setApplication(null)} />}
@@ -121,7 +122,7 @@ function ApplicationDialog({ kind, onClose }: { kind: ApplicationKind; onClose: 
   }
   return (
     <div className="career-dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
-      <section className="career-dialog" role="dialog" aria-modal="true" aria-labelledby="career-dialog-title">
+      <Container as="section" size="narrow" className="career-dialog" role="dialog" aria-modal="true" aria-labelledby="career-dialog-title">
         <button className="career-dialog-close" type="button" onClick={onClose} aria-label="Close application form">×</button>
         <p>{isInternship ? 'INTERNSHIPS' : 'SUPPLIERS'}</p>
         <h2 id="career-dialog-title">{isInternship ? 'START YOUR JOURNEY' : 'WORK WITH MB DESIGNS'}</h2>
@@ -131,7 +132,7 @@ function ApplicationDialog({ kind, onClose }: { kind: ApplicationKind; onClose: 
           <label>{isInternship ? 'CV / PORTFOLIO LINK' : 'PROFILE / CATALOGUE LINK'}<input name="link" type="url" placeholder="https://" required /></label>
           <button type="submit">CONTINUE BY EMAIL ↗</button>
         </form>
-      </section>
+      </Container>
     </div>
   )
 }

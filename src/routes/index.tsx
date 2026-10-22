@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { Container } from '../components/Container'
 
 export const Route = createFileRoute('/')({
   component: HomePage,
@@ -136,7 +137,7 @@ function HomePage() {
       </header>
 
       <main>
-        <section id="top" className="hero">
+        <Container as="section" id="top" className="hero">
           <video
             className="hero-video"
             poster="/assets/images/hero.webp"
@@ -163,9 +164,9 @@ function HomePage() {
             <span>SCROLL</span>
             <i />
           </a>
-        </section>
+        </Container>
 
-        <section id="statement" className="statement section-pad">
+        <Container as="section" id="statement" className="statement section-pad">
           <p className="eyebrow" data-reveal>WE REDEFINE</p>
           <h2 data-reveal>
             WE REDEFINE TIMELESS
@@ -176,9 +177,9 @@ function HomePage() {
             <span>EST. 1994</span>
             <span>CAIRO / DUBAI</span>
           </div>
-        </section>
+        </Container>
 
-        <section id="about" className="about-collage section-pad">
+        <Container as="section" id="about" className="about-collage section-pad">
           <div className="about-heading" data-reveal>
             <span>01</span>
             <h2>CRAFTING<br />TIMELESS SPACES</h2>
@@ -212,9 +213,9 @@ function HomePage() {
             </p>
             <a className="pill" href="/about">EXPLORE</a>
           </div>
-        </section>
+        </Container>
 
-        <section className="partners section-pad" aria-labelledby="partners-title">
+        <Container as="section" className="partners section-pad" aria-labelledby="partners-title">
           <p className="eyebrow" data-reveal>OUR VALUED PARTNERS</p>
           <h2 id="partners-title" data-reveal>SERVING INDUSTRY PARTNERS</h2>
           <div className="partner-row" data-reveal>
@@ -241,9 +242,9 @@ function HomePage() {
               </div>
             </div>
           </div>
-        </section>
+        </Container>
 
-        <section id="projects" className="manifesto">
+        <Container as="section" id="projects" className="manifesto">
           <video autoPlay muted loop playsInline preload="none" poster="/assets/images/hero.webp" aria-label="MB Designs project showcase">
             <source src="/assets/video/manifesto.mp4" type="video/mp4" />
           </video>
@@ -255,9 +256,9 @@ function HomePage() {
             <br />
             DESIGNED TO INSPIRE
           </h2>
-        </section>
+        </Container>
 
-        <section id="studio" className="services section-pad">
+        <Container as="section" id="studio" className="services section-pad">
           <div className="services-word" aria-hidden="true">WE</div>
           <div className="services-content" data-reveal>
             <p>WE COVER</p>
@@ -270,9 +271,9 @@ function HomePage() {
               <li>SITE SUPERVISION</li>
             </ul>
           </div>
-        </section>
+        </Container>
 
-        <section className="territories section-pad" aria-labelledby="territories-title">
+        <Container as="section" className="territories section-pad" aria-labelledby="territories-title">
           <h2 id="territories-title" data-reveal>WHERE WE DESIGN</h2>
           <div className="territory-grid">
             {[
@@ -289,9 +290,9 @@ function HomePage() {
               </article>
             ))}
           </div>
-        </section>
+        </Container>
 
-        <section id="awards" className="awards section-pad">
+        <Container as="section" id="awards" className="awards section-pad">
           <div className="awards-intro" data-reveal>
             <p>INTERNATIONAL AWARDS</p>
             <h2>THE ARABIAN-AFRICAN INTERNATIONAL<br />PROPERTY AWARDS 2020–2021</h2>
@@ -308,7 +309,7 @@ function HomePage() {
           <div className="award-grid">
             {luxuryAwards.map((award, index) => <AwardCard key={award.name} award={award} delay={index * 100} />)}
           </div>
-        </section>
+        </Container>
       </main>
 
       <footer id="contact" className="footer">
