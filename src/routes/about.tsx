@@ -61,7 +61,7 @@ function AboutPage() {
             </span>
           </a>
           <a href="/team">TEAM</a>
-          <a href="/#awards">EVENTS/PRESS</a>
+          <a href="/events-press">EVENTS/PRESS</a>
           <a href="#contact">CAREER</a>
         </nav>
         <a href="/" className="mobile-brand" aria-label="MB Designs home">
@@ -84,7 +84,7 @@ function AboutPage() {
           <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
           <a href="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
           <a href="/team" onClick={() => setMenuOpen(false)}>TEAM</a>
-          <a href="/#awards" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
+          <a href="/events-press" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>CAREER</a>
         </div>
       </header>

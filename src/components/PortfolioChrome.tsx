@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-type PortfolioPage = 'projects' | 'team'
+type PortfolioPage = 'projects' | 'team' | 'events'
 
 export function PortfolioHeader({ current = 'projects', className = '' }: { current?: PortfolioPage; className?: string }) {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -18,7 +18,7 @@ export function PortfolioHeader({ current = 'projects', className = '' }: { curr
           </span>
         </a>
         <a className={current === 'team' ? 'is-current' : undefined} href="/team">TEAM</a>
-        <a href="/#awards">EVENTS/PRESS</a>
+        <a className={current === 'events' ? 'is-current' : undefined} href="/events-press">EVENTS/PRESS</a>
         <a href="#contact">CAREER</a>
       </nav>
       <a href="/" className="mobile-brand" aria-label="MB Designs home">
@@ -41,7 +41,7 @@ export function PortfolioHeader({ current = 'projects', className = '' }: { curr
         <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
         <a href="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
         <a href="/team" onClick={() => setMenuOpen(false)}>TEAM</a>
-        <a href="/#awards" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
+        <a href="/events-press" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
         <a href="#contact" onClick={() => setMenuOpen(false)}>CAREER</a>
       </div>
     </header>

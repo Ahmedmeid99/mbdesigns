@@ -108,7 +108,7 @@ function HomePage() {
             </span>
           </a>
           <a href="/team">TEAM</a>
-          <a href="#awards">EVENTS/PRESS</a>
+          <a href="/events-press">EVENTS/PRESS</a>
           <a href="#contact">CAREER</a>
         </nav>
         <a href="#top" className="mobile-brand" aria-label="MB Designs home">
@@ -128,7 +128,7 @@ function HomePage() {
         </button>
         <div id="mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
           {['ABOUT', 'AWARDS', 'PROJECTS', 'TEAM', 'EVENTS/PRESS', 'CAREER'].map((item) => (
-            <a key={item} href={item === 'ABOUT' ? '/about' : item === 'AWARDS' ? '/awards' : item === 'PROJECTS' ? '/projects' : item === 'TEAM' ? '/team' : item === 'CAREER' ? '#contact' : '#awards'} onClick={() => setMenuOpen(false)}>
+            <a key={item} href={item === 'ABOUT' ? '/about' : item === 'AWARDS' ? '/awards' : item === 'PROJECTS' ? '/projects' : item === 'TEAM' ? '/team' : item === 'EVENTS/PRESS' ? '/events-press' : '#contact'} onClick={() => setMenuOpen(false)}>
               {item}
             </a>
           ))}
