@@ -21,6 +21,7 @@ function SingleProjectPage() {
   const { category: categorySlug, project: projectSlug } = Route.useParams()
   const category = getCategory(categorySlug)
   const categoryProjects = getCategoryProjects(categorySlug).filter((project) => project.slug)
+  const relatedProjects = categoryProjects.filter((project) => project.slug !== projectSlug)
   const detail = getProjectDetail(projectSlug)
   const cover = categoryProjects.find((project) => project.slug === projectSlug)
   const [ready, setReady] = useState(false)
@@ -66,9 +67,8 @@ function SingleProjectPage() {
         <div className="single-project-layout">
           <aside className="single-project-rail" aria-label={`${category.name} projects`}>
             <div className="single-project-thumbs">
-              {categoryProjects.map((project) => (
+              {relatedProjects.map((project) => (
                 <Link
-                  className={project.slug === projectSlug ? 'is-current' : ''}
                   to="/projects/$category/$project"
                   params={{ category: categorySlug, project: project.slug! }}
                   key={project.slug}
@@ -85,7 +85,7 @@ function SingleProjectPage() {
             <img className="single-project-cover" src={cover.image} alt={`${detail.title} by MB Designs`} width="1600" height="900" fetchPriority="high" />
             <div className="single-project-gallery">
               {detail.gallery.map((image, index) => (
-                <a href={image.src} target="_blank" rel="noreferrer" data-reveal key={image.src} aria-label={`Open ${detail.title} image ${index + 1}`}>
+                <a href={image.src} target="_blank" rel="noreferrer" data-reveal key={`${image.src}-${index}`} aria-label={`Open ${detail.title} image ${index + 1}`}>
                   <img src={image.src} alt={`${detail.title} project view ${index + 1}`} width={image.width} height={image.height} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
                 </a>
               ))}
