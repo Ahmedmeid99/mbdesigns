@@ -2,10 +2,9 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
 
-const heroImage = 'https://static.wixstatic.com/media/beb217_ed3530eff66346efbc2129d28e5b639d~mv2.jpg/v1/fill/w_2400,h_1200,al_c,q_90,enc_auto/team-hero.webp'
+const heroImage = '/assets/images/team/hero.webp'
 
-const portrait = (source: string, extension: 'jpg' | 'png', focalPoint = '0.50_0.50') =>
-  `https://static.wixstatic.com/media/${source}~mv2.${extension}/v1/fill/w_900,h_1040,fp_${focalPoint},q_90,enc_auto/team.webp`
+const portrait = (source: string, _extension: 'jpg' | 'png', _focalPoint = '0.50_0.50') => `/assets/images/team/${source}.webp`
 
 const teamMembers = [
   { name: 'MOHAMED BADR', role: 'FOUNDER & CHIEF DESIGNER', image: portrait('beb217_a18c866788764b2aa7716b963dc5dba0', 'png', '0.48_0.26') },

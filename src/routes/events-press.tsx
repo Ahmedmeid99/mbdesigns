@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { PortfolioHeader } from '../components/PortfolioChrome'
 
 type ImageSource = readonly [string, 'jpg' | 'jpeg' | 'png']
-const wixImage = (id: string, extension: ImageSource[1], width = 1800, height = 1200) => `https://static.wixstatic.com/media/${id}~mv2.${extension}/v1/fill/w_${width},h_${height},al_c,q_90,enc_auto/events.webp`
+const wixImage = (id: string, _extension: ImageSource[1], _width = 1800, _height = 1200) => `/assets/images/events/${id}.webp`
 const heroImage = wixImage('beb217_a1ad0c8b264f477b9b0456fc974ad4bf', 'jpg', 2400, 1450)
 const headerLogo = wixImage('beb217_7045e1c98fe7473e9c71b4cf8a4e6050', 'png', 600, 180)
 const eventLogo = wixImage('beb217_f05ef094d6db4bbcb6bdb74b21cd6c81', 'png', 700, 260)
