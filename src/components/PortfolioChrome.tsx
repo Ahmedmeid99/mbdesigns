@@ -1,21 +1,23 @@
 import { useState } from 'react'
 
-export function PortfolioHeader() {
+type PortfolioPage = 'projects' | 'team'
+
+export function PortfolioHeader({ current = 'projects', className = '' }: { current?: PortfolioPage; className?: string }) {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="site-header projects-header">
+    <header className={`site-header projects-header ${className}`.trim()}>
       <nav className="desktop-nav" aria-label="Primary navigation">
         <a href="/about">ABOUT</a>
         <a href="/awards">AWARDS</a>
-        <a className="is-current" href="/projects">PROJECTS</a>
+        <a className={current === 'projects' ? 'is-current' : undefined} href="/projects">PROJECTS</a>
         <a href="/" className="brand" aria-label="MB Designs home">
           <span className="wordmark" aria-hidden="true">
             <b>MB | DESIGNS</b>
             <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
           </span>
         </a>
-        <a href="/#studio">TEAM</a>
+        <a className={current === 'team' ? 'is-current' : undefined} href="/team">TEAM</a>
         <a href="/#awards">EVENTS/PRESS</a>
         <a href="#contact">CAREER</a>
       </nav>
@@ -38,7 +40,7 @@ export function PortfolioHeader() {
         <a href="/about" onClick={() => setMenuOpen(false)}>ABOUT</a>
         <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
         <a href="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
-        <a href="/#studio" onClick={() => setMenuOpen(false)}>TEAM</a>
+        <a href="/team" onClick={() => setMenuOpen(false)}>TEAM</a>
         <a href="/#awards" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
         <a href="#contact" onClick={() => setMenuOpen(false)}>CAREER</a>
       </div>

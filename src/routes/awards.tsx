@@ -106,7 +106,7 @@ function AwardsPage() {
               <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
             </span>
           </a>
-          <a href="/#studio">TEAM</a>
+          <a href="/team">TEAM</a>
           <a href="/#awards">EVENTS/PRESS</a>
           <a href="#contact">CAREER</a>
         </nav>
@@ -129,7 +129,7 @@ function AwardsPage() {
           <a href="/about" onClick={() => setMenuOpen(false)}>ABOUT</a>
           <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
           <a href="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
-          <a href="/#studio" onClick={() => setMenuOpen(false)}>TEAM</a>
+          <a href="/team" onClick={() => setMenuOpen(false)}>TEAM</a>
           <a href="/#awards" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
           <a href="#contact" onClick={() => setMenuOpen(false)}>CAREER</a>
         </div>
