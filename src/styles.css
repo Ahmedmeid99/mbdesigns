@@ -1807,12 +1807,14 @@ video {
   content: '';
   position: absolute;
   inset: 0;
+  z-index: 3;
+  pointer-events: none;
   border: 0 solid #050505;
   transition: border-width 0.25s ease, background 0.25s ease;
 }
 
 .single-project-thumbs a:hover::after,
-.single-project-thumbs a.is-current::after {
+.single-project-thumbs a:focus-visible::after {
   border-width: 3px;
 }
 
@@ -1826,6 +1828,51 @@ video {
 
 .single-project-thumbs a:hover img {
   transform: scale(1.04);
+}
+
+.single-project-thumbs a > span {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.68);
+  font-size: 0.76rem;
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: 0.045em;
+  text-align: center;
+  text-transform: uppercase;
+  opacity: 0;
+  transform: translateY(5px);
+  transition: opacity 0.25s ease, transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.single-project-thumbs a:hover > span,
+.single-project-thumbs a:focus-visible > span {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.single-project-thumbs a:focus-visible img {
+  transform: scale(1.04);
+}
+
+@media (hover: none) {
+  .single-project-thumbs a > span {
+    inset: auto 0 0;
+    min-height: 30px;
+    padding: 6px 7px;
+    justify-content: flex-start;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.78));
+    font-size: 0.62rem;
+    text-align: left;
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .single-project-back {

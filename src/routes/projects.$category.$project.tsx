@@ -75,6 +75,7 @@ function SingleProjectPage() {
                   aria-label={`View ${project.name}`}
                 >
                   <img src={project.image} alt="" width="360" height="224" loading="lazy" decoding="async" />
+                  <span>{project.name}</span>
                 </Link>
               ))}
             </div>
