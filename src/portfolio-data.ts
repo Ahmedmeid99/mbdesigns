@@ -2,19 +2,18 @@ type ProjectCard = {
   name: string
   image: string
   shape: 'portrait' | 'wide' | 'medium'
-  slug?: string
+  slug: string
 }
 
 type CategoryDetail = {
   hero: string
   heroLines: readonly [string, string]
   subtitle: string
-  galleryTitle: string
   layout: 'three-standard' | 'three-compact' | 'two-tall'
   projects: readonly ProjectCard[]
 }
 
-const projectSlug = (name: string) => name === 'PROJECT NAME' ? undefined : name
+const projectSlug = (name: string) => name
   .toLowerCase()
   .replace(/[–—]/g, '-')
   .replace(/&/g, 'and')
@@ -33,8 +32,6 @@ export const architectureProjects = [
   card('COMMERCIAL COMPLEX', '/assets/images/architecture-commercial.webp', 'wide'),
   card('MIVIDA', '/assets/images/architecture-mivida.webp'),
   card('SHERATON BUILDING', '/assets/images/architecture-sheraton.webp', 'portrait'),
-  card('PROJECT NAME', '/assets/images/architecture-placeholder-one.webp', 'wide'),
-  card('PROJECT NAME', '/assets/images/architecture-placeholder-two.webp'),
 ] as const
 
 export const projectCategories = [
@@ -42,7 +39,7 @@ export const projectCategories = [
     slug: 'architecture', name: 'ARCHITECTURE', image: '/assets/images/projects-architecture.webp',
     detail: {
       hero: '/assets/images/architecture-hero.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
-      subtitle: 'VISION, FUNCTION, AND TIMELESS DESIGN', galleryTitle: 'ARCHITECTURE PROJECTS', layout: 'three-standard',
+      subtitle: 'VISION, FUNCTION, AND TIMELESS DESIGN', layout: 'three-standard',
       projects: architectureProjects,
     },
   },
@@ -50,7 +47,7 @@ export const projectCategories = [
     slug: 'corporate', name: 'CORPORATE', image: '/assets/images/projects-corporate.webp',
     detail: {
       hero: '/assets/images/projects-corporate.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
-      subtitle: 'PRODUCTIVITY, COLLABORATION, AND INNOVATION', galleryTitle: 'CORPORATE PROJECTS', layout: 'three-standard',
+      subtitle: 'PRODUCTIVITY, COLLABORATION, AND INNOVATION', layout: 'three-standard',
       projects: [
         card('HALWANI GROUP', '/assets/images/corporate-01.webp', 'portrait'),
         card('ARCADE', '/assets/images/corporate-02.webp', 'wide'),
@@ -60,7 +57,6 @@ export const projectCategories = [
         card('ECOLAB', '/assets/images/corporate-06.webp'),
         card('ALSHAYA GROUP', '/assets/images/corporate-07.webp', 'portrait'),
         card('PROPERTY FINDER', '/assets/images/corporate-08.webp', 'wide'),
-        card('PROJECT NAME', '/assets/images/architecture-placeholder-one.webp'),
       ],
     },
   },
@@ -68,7 +64,7 @@ export const projectCategories = [
     slug: 'residential', name: 'RESIDENTIAL', image: '/assets/images/projects-residential.webp',
     detail: {
       hero: '/assets/images/residential-hero.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
-      subtitle: 'COMFORT, ELEGANCE, AND LASTING MEMORIES', galleryTitle: 'RESIDENTIAL PROJECTS', layout: 'three-compact',
+      subtitle: 'COMFORT, ELEGANCE, AND LASTING MEMORIES', layout: 'three-compact',
       projects: [
         card('VILLA – ALLEGRIA', '/assets/images/residential-01.webp', 'portrait'),
         card('SWANLAKE RESIDENCE 135', '/assets/images/residential-06.webp', 'wide'),
@@ -84,7 +80,6 @@ export const projectCategories = [
         card('ZAMALEK VILLA', '/assets/images/residential-14.webp'),
         card('GRAND RESIDENCE', '/assets/images/residential-05.webp', 'portrait'),
         card('EAST TOWN DUPLEX', '/assets/images/residential-10.webp', 'wide'),
-        card('PROJECT NAME', '/assets/images/architecture-placeholder-one.webp'),
       ],
     },
   },
@@ -92,7 +87,7 @@ export const projectCategories = [
     slug: 'food-and-beverage', name: 'FOOD & BEVERAGE', image: '/assets/images/projects-fnb.webp',
     detail: {
       hero: '/assets/images/projects-fnb.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
-      subtitle: 'THAT ELEVATE EVERY CULINARY EXPERIENCE', galleryTitle: 'FOOD & BEVERAGE PROJECTS', layout: 'three-compact',
+      subtitle: 'THAT ELEVATE EVERY CULINARY EXPERIENCE', layout: 'three-compact',
       projects: [
         card('AL DAHAN', '/assets/images/fnb-01.webp', 'portrait'),
         card('TEDS', '/assets/images/fnb-04.webp', 'wide'),
@@ -102,7 +97,6 @@ export const projectCategories = [
         card('ONE OAK', '/assets/images/fnb-08.webp'),
         card('CARLOS', '/assets/images/fnb-03.webp', 'portrait'),
         card('MORI SUSHI', '/assets/images/fnb-06.webp', 'wide'),
-        card('PROJECT NAME', '/assets/images/architecture-placeholder-one.webp'),
       ],
     },
   },
@@ -110,7 +104,7 @@ export const projectCategories = [
     slug: 'retail-and-commercial', name: 'RETAIL & COMMERCIAL', image: '/assets/images/projects-retail.webp',
     detail: {
       hero: '/assets/images/retail-hero.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
-      subtitle: 'BRANDS AND CONNECT WITH CUSTOMERS', galleryTitle: 'RETAIL & COMMERCIAL PROJECTS', layout: 'two-tall',
+      subtitle: 'BRANDS AND CONNECT WITH CUSTOMERS', layout: 'two-tall',
       projects: [
         card('RAVIN', '/assets/images/retail-01.webp', 'portrait'),
         card('IQOS', '/assets/images/retail-05.webp', 'wide'),
@@ -127,7 +121,7 @@ export const projectCategories = [
     slug: 'hospitality', name: 'HOSPITALITY', image: '/assets/images/projects-hospitality.webp',
     detail: {
       hero: '/assets/images/hospitality-hero.webp', heroLines: ['CREATING', 'WELCOMING DESTINATIONS'],
-      subtitle: 'WHERE EVERY DETAIL ENHANCES THE GUEST EXPERIENCE.', galleryTitle: 'ARCHITECTURE PROJECTS', layout: 'two-tall',
+      subtitle: 'WHERE EVERY DETAIL ENHANCES THE GUEST EXPERIENCE.', layout: 'two-tall',
       projects: [
         card('JAZZY', '/assets/images/hospitality-01.webp', 'portrait'),
         card('COURTYARD BY MARRIOTT', '/assets/images/hospitality-02.webp', 'wide'),

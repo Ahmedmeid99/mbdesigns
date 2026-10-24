@@ -8,6 +8,7 @@ import {
 import { SiteHeader } from '../components/SiteHeader'
 import { SiteFooter } from '../components/SiteFooter'
 import stylesHref from '../styles.css?url'
+import designSystemHref from '../design-system.css?url'
 
 export const Route = createRootRoute({
   head: () => ({
@@ -23,6 +24,7 @@ export const Route = createRootRoute({
     ],
     links: [
       { rel: 'stylesheet', href: stylesHref },
+      { rel: 'stylesheet', href: designSystemHref },
       { rel: 'preload', as: 'image', href: '/assets/images/hero.webp' },
     ],
   }),

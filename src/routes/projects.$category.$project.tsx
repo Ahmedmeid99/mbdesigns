@@ -20,7 +20,7 @@ export const Route = createFileRoute('/projects/$category/$project')({
 function SingleProjectPage() {
   const { category: categorySlug, project: projectSlug } = Route.useParams()
   const category = getCategory(categorySlug)
-  const categoryProjects = getCategoryProjects(categorySlug).filter((project) => project.slug)
+  const categoryProjects = getCategoryProjects(categorySlug)
   const relatedProjects = categoryProjects.filter((project) => project.slug !== projectSlug)
   const detail = getProjectDetail(projectSlug)
   const cover = categoryProjects.find((project) => project.slug === projectSlug)
@@ -68,7 +68,7 @@ function SingleProjectPage() {
               {relatedProjects.map((project) => (
                 <Link
                   to="/projects/$category/$project"
-                  params={{ category: categorySlug, project: project.slug! }}
+                  params={{ category: categorySlug, project: project.slug }}
                   key={project.slug}
                   aria-label={`View ${project.name}`}
                 >

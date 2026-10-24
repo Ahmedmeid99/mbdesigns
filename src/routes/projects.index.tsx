@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { SectionHeading } from '../components/SectionHeading'
 import { projectCategories } from '../portfolio-data'
 
 export const Route = createFileRoute('/projects/')({
@@ -40,11 +41,16 @@ function ProjectsPage() {
         <Container as="section" id="top" className="projects-hero" fluid>
           <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
           <div className="projects-hero-shade" />
-          <h1>WE PURSUE<br />EXCELLENCE IN EVERY DETAIL</h1>
+          <h1 className="display-title">WE PURSUE<br />EXCELLENCE IN EVERY DETAIL</h1>
         </Container>
 
-        <Container as="section" className="projects-index">
-          <h2 data-reveal>OUR PROJECTS</h2>
+        <Container as="section" className="projects-index" aria-labelledby="projects-index-title">
+          <SectionHeading
+            id="projects-index-title"
+            eyebrow="PORTFOLIO"
+            title={<>OUR<br />PROJECTS</>}
+            description="EXPLORE OUR WORK ACROSS ARCHITECTURE, INTERIORS AND HOSPITALITY."
+          />
           <div className="projects-category-grid">
             {projectCategories.map((category, index) => (
               <a
@@ -61,7 +67,6 @@ function ProjectsPage() {
               </a>
             ))}
           </div>
-          <div className="projects-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
         </Container>
       </main>
     </div>

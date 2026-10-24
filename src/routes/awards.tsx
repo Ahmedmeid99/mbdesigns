@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { SectionHeading } from '../components/SectionHeading'
 
 export const Route = createFileRoute('/awards')({
   head: () => ({
@@ -100,13 +101,18 @@ function AwardsPage() {
           <img src="/assets/images/awards-hero.webp" alt="Abstract amber architectural light" width="1920" height="1145" fetchPriority="high" />
           <div className="awards-hero-shade" />
           <div className="awards-hero-copy">
-            <h1>WHERE VISION<br />EARNS RECOGNITION</h1>
+            <h1 className="display-title">WHERE VISION<br />EARNS RECOGNITION</h1>
             <p>HONORING A TRADITION OF TIMELESS<br />DESIGN AND ARCHITECTURAL EXCELLENCE.</p>
           </div>
         </Container>
 
-        <Container as="section" className="certificate-section">
-          <h2 data-reveal>AWARDS</h2>
+        <Container as="section" className="certificate-section" aria-labelledby="awards-certificate-title">
+          <SectionHeading
+            id="awards-certificate-title"
+            eyebrow="RECOGNITION"
+            title="AWARDS"
+            description="A selection of international distinctions honoring our architectural and interior design work."
+          />
           <CertificateRow year="2021" image="/assets/images/awards-2021.webp" width={2400} height={1217} />
           <CertificateRow year="2022" image="/assets/images/awards-2022.webp" width={2400} height={1396} />
         </Container>
@@ -115,34 +121,32 @@ function AwardsPage() {
           <img src="/assets/images/awards-purpose.webp" alt="Contemporary residence in warm evening light" width="1472" height="1840" loading="lazy" decoding="async" />
           <div className="awards-purpose-shade" />
           <div data-reveal>
-            <h2>DESIGN<br />WITH PURPOSE</h2>
+            <h2 className="display-title">DESIGN<br />WITH PURPOSE</h2>
             <p>EACH AWARD REFLECTS OUR PASSION FOR<br className="desktop-break" /> CREATING TIMELESS SPACES WITH PURPOSE, PRECISION,<br className="desktop-break" /> AND LASTING IMPACT.</p>
           </div>
         </Container>
 
-        <Container as="section" className="award-editorial">
-          <header className="award-family" data-reveal>
-            <div>
-              <h2>INTERNATIONAL AWARDS</h2>
-              <p>THE ARABIAN-AFRICAN INTERNATIONAL PROPERTY AWARDS<br />2020–2021</p>
-            </div>
-            <div className="property-flags" aria-label="Arabian Property Awards winner 2020–2021">
-              <span>ARABIAN<br />PROPERTY<br />AWARDS<br /><b>AWARD<br />WINNER</b><small>2020–2021</small></span>
-              <span>ARABIAN<br />PROPERTY<br />AWARDS<br /><b>AWARD<br />WINNER</b><small>2020–2021</small></span>
-            </div>
-          </header>
-          {awardEntries.map((entry) => <EditorialAward key={entry.name} entry={entry} />)}
+        <Container as="section" className="award-editorial" aria-label="Award-winning projects">
+          <AwardFamilyHeader
+            eyebrow="2020–2021"
+            title={<>INTERNATIONAL<br />AWARDS</>}
+            description="THE ARABIAN-AFRICAN INTERNATIONAL PROPERTY AWARDS"
+            variant="property"
+          />
+          {awardEntries.map((entry, index) => (
+            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} />
+          ))}
 
-          <header className="award-family luxury-family" data-reveal>
-            <h2>LUXURY LIFESTYLE AWARDS 2021–2022</h2>
-            <div className="luxury-wins" aria-label="Luxury Lifestyle Awards winners 2021 and 2022">
-              <span>LUXURY <b>WINNER<br />2021</b></span>
-              <span>LUXURY <b>WINNER<br />2022</b></span>
-            </div>
-          </header>
-          {luxuryEntries.map((entry) => <EditorialAward key={entry.name} entry={entry} />)}
+          <AwardFamilyHeader
+            eyebrow="2021–2022"
+            title={<>LUXURY LIFESTYLE<br />AWARDS</>}
+            description="INTERNATIONAL RECOGNITION FOR RESIDENTIAL DESIGN AND STUDIO EXCELLENCE"
+            variant="luxury"
+          />
+          {luxuryEntries.map((entry, index) => (
+            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} />
+          ))}
 
-          <div className="awards-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
         </Container>
       </main>
     </div>
@@ -160,11 +164,49 @@ function CertificateRow({ year, image, width, height }: { year: string; image: s
 
 type AwardEntry = (typeof awardEntries)[number] | (typeof luxuryEntries)[number]
 
-function EditorialAward({ entry }: { entry: AwardEntry }) {
+function AwardFamilyHeader({
+  eyebrow,
+  title,
+  description,
+  variant,
+}: {
+  eyebrow: string
+  title: React.ReactNode
+  description: string
+  variant: 'property' | 'luxury'
+}) {
   return (
-    <article className="editorial-award" data-reveal>
+    <div className={`award-family award-family--${variant}`} data-reveal>
+      <SectionHeading
+        eyebrow={eyebrow}
+        title={title}
+        description={description}
+        align="start"
+        reveal={false}
+        className="award-family-heading"
+      />
+      {variant === 'property' ? (
+        <div className="property-flags" role="img" aria-label="Arabian Property Awards winner 2020–2021">
+          <span aria-hidden="true">ARABIAN<br />PROPERTY<br />AWARDS<br /><b>AWARD<br />WINNER</b><small>2020–2021</small></span>
+          <span aria-hidden="true">ARABIAN<br />PROPERTY<br />AWARDS<br /><b>AWARD<br />WINNER</b><small>2020–2021</small></span>
+        </div>
+      ) : (
+        <div className="luxury-wins" role="img" aria-label="Luxury Lifestyle Awards winners 2021 and 2022">
+          <span aria-hidden="true">LUXURY <b>WINNER<br />2021</b></span>
+          <span aria-hidden="true">LUXURY <b>WINNER<br />2022</b></span>
+        </div>
+      )}
+    </div>
+  )
+}
+
+function EditorialAward({ entry, reverse = false }: { entry: AwardEntry; reverse?: boolean }) {
+  const headingId = `award-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`
+
+  return (
+    <article className={`editorial-award${reverse ? ' editorial-award--reverse' : ''}`} aria-labelledby={headingId} data-reveal>
       <div className="editorial-copy">
-        <div className="editorial-title"><span>{entry.number}</span><h3>{entry.name}</h3></div>
+        <div className="editorial-title"><span>{entry.number}</span><h3 id={headingId}>{entry.name}</h3></div>
         {entry.category && <h4>{entry.category}</h4>}
         {entry.copy.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       </div>

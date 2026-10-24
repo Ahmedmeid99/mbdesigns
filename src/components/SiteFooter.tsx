@@ -1,5 +1,6 @@
 import { Link } from '@tanstack/react-router'
 import { Container } from './Container'
+import { ArrowIcon } from './Icon'
 
 const footerImage = '/assets/images/events/beb217_c8d6b2aff1e04d3aaefbe1525d64f982.webp'
 const footerLogo = '/assets/images/events/beb217_7045e1c98fe7473e9c71b4cf8a4e6050.webp'
@@ -29,7 +30,7 @@ export function SiteFooter() {
             <h2 id="site-footer-title">LET’S TURN<br />IDEAS INTO<br /><em>PLACES.</em></h2>
             <a className="site-footer-project" href="mailto:info@mbdesigns.design">
               <span>START A PROJECT</span>
-              <i aria-hidden="true">↗</i>
+              <ArrowIcon />
             </a>
           </div>
         </Container>
@@ -77,7 +78,7 @@ export function SiteFooter() {
           <div className="site-footer-bottom">
             <span>© {new Date().getFullYear()} MB DESIGNS. ALL RIGHTS RESERVED.</span>
             <span>DESIGNED BETWEEN CAIRO AND DUBAI</span>
-            <a href="#top">BACK TO TOP <i aria-hidden="true">↑</i></a>
+            <a href="#top">BACK TO TOP <ArrowIcon direction="up" /></a>
           </div>
         </Container>
       </section>

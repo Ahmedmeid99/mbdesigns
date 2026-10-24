@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { ArrowIcon } from '../components/Icon'
 
 type ImageSource = readonly [string, 'jpg' | 'jpeg' | 'png']
 type EventYear = '2026' | '2025' | '2023' | '2019' | '2018'
@@ -176,7 +177,7 @@ function EventsPressPage() {
               <h1>EVENTS<br />&amp; PRESS</h1>
               <span>EXHIBITIONS, COLLABORATIONS, CONVERSATIONS AND STORIES FROM OUR STUDIO.</span>
             </div>
-            <a className="events-hub-scroll" href="#events-browser">EXPLORE <i>↓</i></a>
+            <a className="events-hub-scroll" href="#events-browser">EXPLORE <ArrowIcon direction="down" /></a>
           </Container>
         </Container>
 
@@ -214,7 +215,7 @@ function EventsPressPage() {
                       <span className="event-card-content">
                         <small>{item.year} · {item.partner}</small>
                         <strong>{item.title}</strong>
-                        <em>VIEW EVENT <i>↗</i></em>
+                        <em>VIEW EVENT <ArrowIcon /></em>
                       </span>
                     </button>
                   </article>

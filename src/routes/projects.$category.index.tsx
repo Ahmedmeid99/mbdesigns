@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { SectionHeading } from '../components/SectionHeading'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 
 export const Route = createFileRoute('/projects/$category/')({
@@ -48,13 +49,18 @@ function ProjectCategoryPage() {
           <img src={detail.hero} alt={`${category.name} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
           <div className="project-detail-shade" />
           <div className="project-detail-hero-copy">
-            <h1>{detail.heroLines[0]}<br />{detail.heroLines[1]}</h1>
+            <h1 className="display-title">{detail.heroLines[0]}<br />{detail.heroLines[1]}</h1>
             <p>{detail.subtitle}</p>
           </div>
         </Container>
 
-        <Container as="section" className={`project-detail-gallery detail-layout-${detail.layout}`}>
-          <h2 data-reveal>{detail.galleryTitle}</h2>
+        <Container as="section" className={`project-detail-gallery detail-layout-${detail.layout}`} aria-labelledby="project-gallery-title">
+          <SectionHeading
+            id="project-gallery-title"
+            eyebrow={category.name}
+            title={<>{category.name}<br />PROJECTS</>}
+            description={`${projects.length} SELECTED PROJECTS`}
+          />
           <div className="detail-project-grid">
             {projects.map((project, index) => {
               const card = (
@@ -64,7 +70,7 @@ function ProjectCategoryPage() {
                 </article>
               )
 
-              return project.slug ? (
+              return (
                 <Link
                   className="detail-project-link"
                   to="/projects/$category/$project"
@@ -74,10 +80,9 @@ function ProjectCategoryPage() {
                 >
                   {card}
                 </Link>
-              ) : <div key={`${project.name}-${index}`}>{card}</div>
+              )
             })}
           </div>
-          <div className="projects-arrows detail-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
         </Container>
       </main>
     </div>

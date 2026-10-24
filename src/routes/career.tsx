@@ -42,9 +42,14 @@ function CareerPage() {
 
   useEffect(() => {
     if (!application) return
+    const previousOverflow = document.body.style.overflow
     const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') setApplication(null) }
+    document.body.style.overflow = 'hidden'
     document.addEventListener('keydown', onKeyDown)
-    return () => document.removeEventListener('keydown', onKeyDown)
+    return () => {
+      document.body.style.overflow = previousOverflow
+      document.removeEventListener('keydown', onKeyDown)
+    }
   }, [application])
 
   return (
@@ -116,9 +121,10 @@ function ApplicationDialog({ kind, onClose }: { kind: ApplicationKind; onClose: 
     event.preventDefault()
     const form = new FormData(event.currentTarget)
     const name = String(form.get('name') || '')
+    const email = String(form.get('email') || '')
     const link = String(form.get('link') || '')
     const subject = isInternship ? 'Internship application' : 'Supplier profile'
-    const body = `${subject} from ${name}\n\nPortfolio / profile: ${link}`
+    const body = `${subject} from ${name}\nEmail: ${email}\n\nPortfolio / profile: ${link}`
     window.location.href = `mailto:info@mbdesigns.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
   }
   return (
