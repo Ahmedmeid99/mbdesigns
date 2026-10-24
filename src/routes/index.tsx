@@ -165,7 +165,13 @@ function HomePage() {
             <i />
           </a>
         </Container>
-
+        <Container as="section" id="statement" className="statement">
+          <h2 data-reveal>
+            WE REDEFINE TIMELESS
+            <br />
+            ARCHITECTURE &amp; INTERIOR DESIGN
+          </h2>
+        </Container>
         <Container as="section" id="about" className="home-crafting">
           <div className="home-crafting-copy" data-reveal>
             <h2>CRAFTING<br />TIMELESS SPACES</h2>
@@ -201,14 +207,6 @@ function HomePage() {
             </p>
             <a className="pill" href="/about">EXPLORE</a>
           </div>
-        </Container>
-
-        <Container as="section" id="statement" className="statement">
-          <h2 data-reveal>
-            WE REDEFINE TIMELESS
-            <br />
-            ARCHITECTURE &amp; INTERIOR DESIGN
-          </h2>
         </Container>
 
         <Container as="section" className="partners section-pad" aria-labelledby="partners-title">
@@ -288,23 +286,39 @@ function HomePage() {
           </div>
         </Container>
 
-        <Container as="section" id="awards" className="awards section-pad">
-          <div className="awards-intro" data-reveal>
-            <p>INTERNATIONAL AWARDS</p>
-            <h2>THE ARABIAN-AFRICAN INTERNATIONAL<br />PROPERTY AWARDS 2020–2021</h2>
+        <Container as="section" id="awards" className="home-awards-hero" fluid>
+          <img
+            src="/assets/images/awards-hero.webp"
+            alt="Abstract amber light introducing the international awards"
+            width="1920"
+            height="1080"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="home-awards-hero-shade" />
+          <h2 data-reveal>INTERNATIONAL AWARDS</h2>
+        </Container>
+
+        <Container as="section" className="awards section-pad">
+          <div className="awards-heading awards-heading--property" data-reveal>
+            <AwardMarks variant="property" />
+            <h2>THE ARABIAN-AFRICAN INTERNATIONAL</h2>
+            <p>PROPERTY AWARDS 2020–2021</p>
           </div>
           <div className="award-grid">
             {awards.map((award, index) => <AwardCard key={award.name} award={award} delay={index * 100} />)}
           </div>
-          <a className="pill awards-pill" href="#contact">EXPLORE</a>
+          <a className="pill awards-pill" href="/awards">EXPLORE</a>
 
-          <div className="luxury-heading" data-reveal>
-            <div className="winner-badge">WINNER<br /><b>2021 / 2022</b></div>
+          <div className="awards-heading awards-heading--luxury" data-reveal>
+            <AwardMarks variant="luxury" />
             <h2>LUXURY LIFESTYLE AWARDS</h2>
+            <p>2021–2022</p>
           </div>
           <div className="award-grid">
             {luxuryAwards.map((award, index) => <AwardCard key={award.name} award={award} delay={index * 100} />)}
           </div>
+          <a className="pill awards-pill awards-pill--last" href="/awards">EXPLORE</a>
         </Container>
       </main>
 
@@ -354,9 +368,38 @@ function AwardCard({
         <h3>{award.name}</h3>
       </div>
       <p>{award.category}</p>
-      <div className="award-image">
+      <div className={award.name === 'EASTOWN DUPLEX' ? 'award-image award-image--eastown' : 'award-image'}>
         <img src={award.image} alt={award.name} width="478" height="303" loading="lazy" decoding="async" />
       </div>
     </article>
+  )
+}
+
+function AwardMarks({ variant }: { variant: 'property' | 'luxury' }) {
+  if (variant === 'property') {
+    return (
+      <div className="property-marks" aria-label="Arabian Property Awards award winner 2020–2021">
+        {[0, 1].map((mark) => (
+          <div className="property-mark" aria-hidden="true" key={mark}>
+            <span className="property-mark-crest">♜</span>
+            <b>ARABIAN<br />PROPERTY<br />AWARDS</b>
+            <strong>AWARD<br />WINNER</strong>
+            <small>2020–2021</small>
+          </div>
+        ))}
+      </div>
+    )
+  }
+
+  return (
+    <div className="luxury-marks" aria-label="Luxury Lifestyle Awards winners 2021 and 2022">
+      {['2021', '2022'].map((year) => (
+        <div className="luxury-mark" aria-hidden="true" key={year}>
+          <em>Luxury</em>
+          <span />
+          <b>WINNER<br />{year}</b>
+        </div>
+      ))}
+    </div>
   )
 }
