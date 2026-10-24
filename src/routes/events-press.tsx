@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioHeader } from '../components/PortfolioChrome'
 
 type ImageSource = readonly [string, 'jpg' | 'jpeg' | 'png']
 type EventYear = '2026' | '2025' | '2023' | '2019' | '2018'
@@ -11,7 +10,6 @@ const eventImage = (id: string) => `/assets/images/events/${id}.webp`
 const image = ([id]: ImageSource) => eventImage(id)
 
 const heroImage = eventImage('beb217_a1ad0c8b264f477b9b0456fc974ad4bf')
-const headerLogo = eventImage('beb217_7045e1c98fe7473e9c71b4cf8a4e6050')
 const pressHero = eventImage('beb217_f6d401a6b8744e12b88e9b766c9c4247')
 
 const design2026 = [
@@ -168,7 +166,6 @@ function EventsPressPage() {
 
   return (
     <div ref={pageRef} className={ready ? 'events-site events-hub-site is-ready' : 'events-site events-hub-site'}>
-      <PortfolioHeader current="events" className="events-header" logoImage={headerLogo} />
       <main id="top">
         <Container as="section" className="events-hero" fluid>
           <img src={heroImage} alt="MB Designs event gathering" width="2400" height="1450" fetchPriority="high" />

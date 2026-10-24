@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioHeader } from '../components/PortfolioChrome'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 
 export const Route = createFileRoute('/projects/$category/')({
@@ -44,7 +43,6 @@ function ProjectCategoryPage() {
 
   return (
     <div ref={pageRef} className={ready ? `project-detail-site project-detail-${slug} is-ready` : `project-detail-site project-detail-${slug}`}>
-      <PortfolioHeader />
       <main>
         <Container as="section" id="top" className="project-detail-hero" fluid>
           <img src={detail.hero} alt={`${category.name} by MB Designs`} width="1920" height="1080" fetchPriority="high" />

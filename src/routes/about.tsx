@@ -19,7 +19,6 @@ export const Route = createFileRoute('/about')({
 })
 
 function AboutPage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [ready, setReady] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
 
@@ -50,46 +49,6 @@ function AboutPage() {
 
   return (
     <div ref={pageRef} className={ready ? 'about-site is-ready' : 'about-site'}>
-      <header className="site-header about-header">
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a className="is-current" href="/about">ABOUT</a>
-          <a href="/awards">AWARDS</a>
-          <a href="/projects">PROJECTS</a>
-          <a href="/" className="brand" aria-label="MB Designs home">
-            <span className="wordmark" aria-hidden="true">
-              <b>MB | DESIGNS</b>
-              <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
-            </span>
-          </a>
-          <a href="/team">TEAM</a>
-          <a href="/events-press">EVENTS/PRESS</a>
-          <a href="#contact">CAREER</a>
-        </nav>
-        <a href="/" className="mobile-brand" aria-label="MB Designs home">
-          <span className="wordmark" aria-hidden="true">
-            <b>MB | DESIGNS</b>
-            <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
-          </span>
-        </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="about-mobile-menu"
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          {menuOpen ? 'CLOSE' : 'MENU'}
-        </button>
-        <div id="about-mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
-          <a href="/about" onClick={() => setMenuOpen(false)}>ABOUT</a>
-          <a href="/awards" onClick={() => setMenuOpen(false)}>AWARDS</a>
-          <a href="/projects" onClick={() => setMenuOpen(false)}>PROJECTS</a>
-          <a href="/team" onClick={() => setMenuOpen(false)}>TEAM</a>
-          <a href="/events-press" onClick={() => setMenuOpen(false)}>EVENTS/PRESS</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>CAREER</a>
-        </div>
-      </header>
-
       <main>
         <Container as="section" className="about-hero" id="top" fluid>
           <img

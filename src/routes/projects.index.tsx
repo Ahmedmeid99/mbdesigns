@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioHeader } from '../components/PortfolioChrome'
 import { projectCategories } from '../portfolio-data'
 
 export const Route = createFileRoute('/projects/')({
@@ -37,7 +36,6 @@ function ProjectsPage() {
 
   return (
     <div ref={pageRef} className={ready ? 'projects-site is-ready' : 'projects-site'}>
-      <PortfolioHeader />
       <main>
         <Container as="section" id="top" className="projects-hero" fluid>
           <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />

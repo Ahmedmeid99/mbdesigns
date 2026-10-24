@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioHeader } from '../components/PortfolioChrome'
 
 const heroImage = '/assets/images/team/hero.webp'
 
@@ -66,7 +65,6 @@ function TeamPage() {
 
   return (
     <div ref={pageRef} className={ready ? 'team-site is-ready' : 'team-site'}>
-      <PortfolioHeader current="team" className="team-header" />
       <main id="top">
         <Container as="section" className="team-hero" aria-label="MB Designs team" fluid>
           <img src={heroImage} alt="MB Designs team in motion" width="2400" height="1200" fetchPriority="high" />

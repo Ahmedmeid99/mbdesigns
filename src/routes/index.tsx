@@ -62,7 +62,6 @@ const luxuryAwards = [
 ] as const
 
 function HomePage() {
-  const [menuOpen, setMenuOpen] = useState(false)
   const [introDone, setIntroDone] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
 
@@ -96,45 +95,6 @@ function HomePage() {
       <div className="intro-curtain" aria-hidden="true">
         <span>MB</span>
       </div>
-
-      <header className="site-header">
-        <nav className="desktop-nav" aria-label="Primary navigation">
-          <a href="/about">ABOUT</a>
-          <a href="/awards">AWARDS</a>
-          <a href="/projects">PROJECTS</a>
-          <a href="#top" className="brand" aria-label="MB Designs home">
-            <span className="wordmark" aria-hidden="true">
-              <b>MB | DESIGNS</b>
-              <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
-            </span>
-          </a>
-          <a href="/team">TEAM</a>
-          <a href="/events-press">EVENTS/PRESS</a>
-          <a href="#contact">CAREER</a>
-        </nav>
-        <a href="#top" className="mobile-brand" aria-label="MB Designs home">
-          <span className="wordmark" aria-hidden="true">
-            <b>MB | DESIGNS</b>
-            <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
-          </span>
-        </a>
-        <button
-          className="menu-toggle"
-          type="button"
-          aria-expanded={menuOpen}
-          aria-controls="mobile-menu"
-          onClick={() => setMenuOpen((value) => !value)}
-        >
-          {menuOpen ? 'CLOSE' : 'MENU'}
-        </button>
-        <div id="mobile-menu" className={menuOpen ? 'mobile-menu is-open' : 'mobile-menu'}>
-          {['ABOUT', 'AWARDS', 'PROJECTS', 'TEAM', 'EVENTS/PRESS', 'CAREER'].map((item) => (
-            <a key={item} href={item === 'ABOUT' ? '/about' : item === 'AWARDS' ? '/awards' : item === 'PROJECTS' ? '/projects' : item === 'TEAM' ? '/team' : item === 'EVENTS/PRESS' ? '/events-press' : '#contact'} onClick={() => setMenuOpen(false)}>
-              {item}
-            </a>
-          ))}
-        </div>
-      </header>
 
       <main>
         <Container as="section" id="top" className="hero" fluid>

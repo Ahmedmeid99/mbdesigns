@@ -124,6 +124,38 @@ video {
   color: #fff;
 }
 
+.shared-header .desktop-nav > a.is-current {
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 5px;
+}
+
+.shared-header--surface {
+  position: relative;
+  min-height: 74px;
+  color: #050505;
+  background: #fff;
+}
+
+.shared-header--ink {
+  color: #050505;
+}
+
+.shared-header--surface .wordmark,
+.shared-header--ink .wordmark {
+  color: #050505;
+}
+
+.shared-header--surface .menu-toggle,
+.shared-header--ink .menu-toggle {
+  color: #050505;
+}
+
+.shared-header.is-menu-open .wordmark,
+.shared-header.is-menu-open .menu-toggle {
+  color: #fff;
+}
+
 .desktop-nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr) 2.2fr repeat(3, 1fr);
@@ -1014,12 +1046,14 @@ video {
     gap: 12px;
     padding: 80px 26px;
     background: #080808;
+    z-index: 1;
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.35s ease, visibility 0.35s ease;
   }
   .mobile-menu.is-open { opacity: 1; visibility: visible; }
-  .mobile-menu a { font-size: clamp(2.4rem, 11vw, 5rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.07em; }
+  .mobile-menu a { width: fit-content; font-size: clamp(2.4rem, 11vw, 5rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.07em; }
+  .mobile-menu a.is-current { font-family: Georgia, 'Times New Roman', serif; font-style: italic; font-weight: 400; }
   .statement { min-height: 340px; }
   .home-crafting,
   .home-about-detail { grid-template-columns: 1fr; }

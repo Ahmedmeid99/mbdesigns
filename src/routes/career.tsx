@@ -1,12 +1,10 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { FormEvent, useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioHeader } from '../components/PortfolioChrome'
 
 const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height: number) => `/assets/images/career/${id}.webp`
 
 const heroImage = wixImage('beb217_eb9741a51a4847268ed2c29d1b15a25c', 'jpg', 2400, 1450)
-const headerLogo = wixImage('beb217_7045e1c98fe7473e9c71b4cf8a4e6050', 'png', 600, 180)
 const statementLogo = wixImage('beb217_2092a8268dce4b678f8e3e47a2c80c8b', 'png', 1200, 364)
 type ApplicationKind = 'internship' | 'supplier'
 
@@ -51,7 +49,6 @@ function CareerPage() {
 
   return (
     <div ref={rootRef} className={ready ? 'career-site is-ready' : 'career-site'}>
-      <PortfolioHeader current="career" className="career-header" logoImage={headerLogo} />
       <main id="top">
         <Container as="section" className="career-hero" fluid>
           <img src={heroImage} alt="MB Designs creative studio in motion" width="2400" height="1450" fetchPriority="high" />

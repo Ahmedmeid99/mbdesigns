@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioHeader } from '../components/PortfolioChrome'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 import { getProjectDetail } from '../project-details.generated'
 
@@ -47,7 +46,6 @@ function SingleProjectPage() {
   if (!detail || detail.category !== categorySlug || !cover) {
     return (
       <div className="single-project-site">
-        <PortfolioHeader />
         <Container as="main" className="single-project-missing">
           <h1>PROJECT NOT FOUND</h1>
           <Link to="/projects/$category" params={{ category: categorySlug }}>BACK TO PROJECTS</Link>
@@ -58,7 +56,6 @@ function SingleProjectPage() {
 
   return (
     <div ref={pageRef} className={ready ? 'single-project-site is-ready' : 'single-project-site'}>
-      <PortfolioHeader />
       <Container as="main" id="top" className="single-project-main">
         <header className="single-project-heading">
           <h1>{detail.title}</h1>
