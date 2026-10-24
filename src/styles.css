@@ -3665,12 +3665,20 @@ video {
 /* Events / press browser */
 .events-hub-site { background: #f6f5f1; }
 
+.events-hub-hero-inner {
+  position: absolute;
+  z-index: 3;
+  inset: 0;
+  height: 100%;
+}
+
 .events-hub-hero-copy {
   top: auto;
   right: auto;
   bottom: clamp(68px, 9vh, 108px);
   left: var(--container-gutter);
   width: min(940px, calc(100% - (var(--container-gutter) * 2)));
+  align-items: flex-start;
   padding: 0;
   transform: none;
   text-align: left;
@@ -3683,6 +3691,8 @@ video {
 }
 
 .events-hub-hero-copy h1 {
+  width: auto;
+  max-width: 100%;
   margin: 0;
   font-size: clamp(4.7rem, 10.6vw, 10rem);
   line-height: .72;

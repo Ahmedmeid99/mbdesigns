@@ -170,12 +170,14 @@ function EventsPressPage() {
         <Container as="section" className="events-hero" fluid>
           <img src={heroImage} alt="MB Designs event gathering" width="2400" height="1450" fetchPriority="high" />
           <div className="events-hero-shade" />
-          <div className="events-hero-copy events-hub-hero-copy">
-            <p>MB DESIGNS · CAIRO / DUBAI</p>
-            <h1>EVENTS<br />&amp; PRESS</h1>
-            <span>EXHIBITIONS, COLLABORATIONS, CONVERSATIONS AND STORIES FROM OUR STUDIO.</span>
-          </div>
-          <a className="events-hub-scroll" href="#events-browser">EXPLORE <i>↓</i></a>
+          <Container className="events-hub-hero-inner">
+            <div className="events-hero-copy events-hub-hero-copy">
+              <p>MB DESIGNS · CAIRO / DUBAI</p>
+              <h1>EVENTS<br />&amp; PRESS</h1>
+              <span>EXHIBITIONS, COLLABORATIONS, CONVERSATIONS AND STORIES FROM OUR STUDIO.</span>
+            </div>
+            <a className="events-hub-scroll" href="#events-browser">EXPLORE <i>↓</i></a>
+          </Container>
         </Container>
 
         <Container as="section" id="events-browser" className="events-browser">
