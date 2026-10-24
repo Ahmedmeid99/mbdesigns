@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
+import { PortfolioHeader } from '../components/PortfolioChrome'
 import { projectCategories } from '../portfolio-data'
 
 export const Route = createFileRoute('/projects/')({
@@ -66,7 +66,6 @@ function ProjectsPage() {
           <div className="projects-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
         </Container>
       </main>
-      <PortfolioFooter />
     </div>
   )
 }

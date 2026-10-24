@@ -1,7 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { EventsFooter } from '../components/EventsFooter'
 import { PortfolioHeader } from '../components/PortfolioChrome'
 
 type ImageSource = readonly [string, 'jpg' | 'jpeg' | 'png']
@@ -246,7 +245,6 @@ function EventsPressPage() {
           )}
         </Container>
       </main>
-      <EventsFooter />
       {selected && <EventDialog event={selected} onClose={() => setSelected(null)} />}
     </div>
   )

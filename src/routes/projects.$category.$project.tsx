@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PortfolioFooter, PortfolioHeader } from '../components/PortfolioChrome'
+import { PortfolioHeader } from '../components/PortfolioChrome'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 import { getProjectDetail } from '../project-details.generated'
 
@@ -95,7 +95,6 @@ function SingleProjectPage() {
           </Container>
         </div>
       </Container>
-      <PortfolioFooter />
     </div>
   )
 }

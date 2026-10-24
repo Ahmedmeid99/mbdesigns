@@ -8,8 +8,6 @@ const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height
 const heroImage = wixImage('beb217_eb9741a51a4847268ed2c29d1b15a25c', 'jpg', 2400, 1450)
 const headerLogo = wixImage('beb217_7045e1c98fe7473e9c71b4cf8a4e6050', 'png', 600, 180)
 const statementLogo = wixImage('beb217_2092a8268dce4b678f8e3e47a2c80c8b', 'png', 1200, 364)
-const contactImage = wixImage('beb217_c8d6b2aff1e04d3aaefbe1525d64f982', 'jpg', 2400, 1000)
-
 type ApplicationKind = 'internship' | 'supplier'
 
 export const Route = createFileRoute('/career')({
@@ -93,12 +91,10 @@ function CareerPage() {
           <div className="career-scroll-arrows" aria-hidden="true"><span>←</span><span>→</span></div>
         </Container>
       </main>
-      <CareerFooter />
       {application && <ApplicationDialog kind={application} onClose={() => setApplication(null)} />}
     </div>
   )
 }
-
 function Opportunity({ title, subtitle, copy, action, onClick }: { title: string; subtitle: string; copy: string; action: string; onClick: () => void }) {
   return (
     <article className="career-opportunity" data-reveal>
@@ -134,23 +130,5 @@ function ApplicationDialog({ kind, onClose }: { kind: ApplicationKind; onClose: 
         </form>
       </Container>
     </div>
-  )
-}
-
-function CareerFooter() {
-  return (
-    <footer id="contact" className="career-footer">
-      <img src={contactImage} alt="MB Designs landscape visualization" width="2400" height="1000" loading="lazy" decoding="async" />
-      <div className="career-footer-shade" />
-      <div className="career-footer-content">
-        <h2>CONTACT US</h2>
-        <div className="career-footer-grid">
-          <address><b>Egypt Office</b><span>9 Salah Eldin Fadel Street</span><span>Heliopolis, Cairo, Egypt</span><a href="tel:+201003003797">+20 100 300 3797</a><a href="tel:+20221811013">+20 2 2181 1013</a></address>
-          <address><b>UAE Office</b><span>IFZA Business Park</span><span>DDP Building A1 Dubai Silicon Oasis</span><span>Dubai, United Arab Emirates</span><a href="tel:+971502551477">+971 50 255 1477</a></address>
-          <a className="career-footer-site" href="mailto:info@mbdesigns.design">MBDESIGNS.DESIGN</a>
-        </div>
-      </div>
-      <div className="career-footer-bottom">© 2035 BY ELITE ARCHITECTURE. BUILT ON WIX STUDIO</div>
-    </footer>
   )
 }

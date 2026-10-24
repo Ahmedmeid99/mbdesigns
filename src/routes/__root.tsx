@@ -5,6 +5,7 @@ import {
   Scripts,
   createRootRoute,
 } from '@tanstack/react-router'
+import { SiteFooter } from '../components/SiteFooter'
 import stylesHref from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -43,6 +44,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
       </head>
       <body>
         {children}
+        <SiteFooter />
         <Scripts />
       </body>
     </html>

@@ -321,35 +321,6 @@ function HomePage() {
           <a className="pill awards-pill awards-pill--last" href="/awards">EXPLORE</a>
         </Container>
       </main>
-
-      <footer id="contact" className="footer">
-        <img src="/assets/images/contact.webp" alt="MB Designs landscape visualization" width="568" height="216" loading="lazy" decoding="async" />
-        <div className="footer-shade" />
-        <div className="footer-content" data-reveal>
-          <h2>CONTACT US</h2>
-          <div className="footer-grid">
-            <address>
-              <b>Egypt Office</b>
-              <span>9 Salah Eldin Fadel Street</span>
-              <span>Heliopolis, Cairo, Egypt</span>
-              <a href="tel:+201003003797">+20 100 300 3797</a>
-              <a href="tel:+20221811013">+20 2 2181 1013</a>
-            </address>
-            <address>
-              <b>UAE Office</b>
-              <span>IFZA Business Park</span>
-              <span>DDP Building A1 Dubai Silicon Oasis</span>
-              <span>Dubai, United Arab Emirates</span>
-              <a href="tel:+971502551477">+971 50 255 1477</a>
-            </address>
-            <a className="footer-site" href="mailto:info@mbdesigns.design">MBDESIGNS.DESIGN</a>
-          </div>
-        </div>
-        <div className="footer-bottom">
-          <span>© {new Date().getFullYear()} MB DESIGNS</span>
-          <a href="#top">BACK TO TOP ↑</a>
-        </div>
-      </footer>
     </div>
   )
 }
