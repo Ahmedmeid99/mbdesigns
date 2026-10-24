@@ -2,9 +2,13 @@
   "name": "mb-designs",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "22.x"
+  },
   "scripts": {
     "dev": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js dev",
     "build": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js build && node scripts/prepare-site-build.mjs && tsc --noEmit",
+    "build:vercel": "node --import ./scripts/vercel-env.mjs ./node_modules/vite/bin/vite.js build && tsc --noEmit",
     "start": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js preview",
     "preview": "node --import ./scripts/sites-env.mjs ./node_modules/vite/bin/vite.js preview"
   },
@@ -20,6 +24,7 @@
     "@types/react": "latest",
     "@types/react-dom": "latest",
     "@vitejs/plugin-react": "latest",
+    "nitro": "^3.0.260903-beta",
     "typescript": "latest",
     "vite": "latest",
     "wrangler": "latest"
