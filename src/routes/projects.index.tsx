@@ -39,7 +39,7 @@ function ProjectsPage() {
     <div ref={pageRef} className={ready ? 'projects-site is-ready' : 'projects-site'}>
       <PortfolioHeader />
       <main>
-        <Container as="section" id="top" className="projects-hero">
+        <Container as="section" id="top" className="projects-hero" fluid>
           <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
           <div className="projects-hero-shade" />
           <h1>WE PURSUE<br />EXCELLENCE IN EVERY DETAIL</h1>

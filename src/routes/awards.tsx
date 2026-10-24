@@ -137,7 +137,7 @@ function AwardsPage() {
       </header>
 
       <main>
-        <Container as="section" id="top" className="awards-hero">
+        <Container as="section" id="top" className="awards-hero" fluid>
           <img src="/assets/images/awards-hero.webp" alt="Abstract amber architectural light" width="1920" height="1145" fetchPriority="high" />
           <div className="awards-hero-shade" />
           <div className="awards-hero-copy">

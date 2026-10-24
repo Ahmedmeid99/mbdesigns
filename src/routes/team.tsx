@@ -68,7 +68,7 @@ function TeamPage() {
     <div ref={pageRef} className={ready ? 'team-site is-ready' : 'team-site'}>
       <PortfolioHeader current="team" className="team-header" />
       <main id="top">
-        <Container as="section" className="team-hero" aria-label="MB Designs team">
+        <Container as="section" className="team-hero" aria-label="MB Designs team" fluid>
           <img src={heroImage} alt="MB Designs team in motion" width="2400" height="1200" fetchPriority="high" />
           <h1>BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</h1>
         </Container>

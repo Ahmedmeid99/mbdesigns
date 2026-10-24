@@ -137,7 +137,7 @@ function HomePage() {
       </header>
 
       <main>
-        <Container as="section" id="top" className="hero">
+        <Container as="section" id="top" className="hero" fluid>
           <video
             className="hero-video"
             poster="/assets/images/hero.webp"
@@ -160,51 +160,39 @@ function HomePage() {
             <span>CAIRO, EGYPT</span>
             <span>DUBAI, UAE</span>
           </div>
-          <a className="scroll-cue" href="#statement" aria-label="Scroll to introduction">
+          <a className="scroll-cue" href="#about" aria-label="Scroll to introduction">
             <span>SCROLL</span>
             <i />
           </a>
         </Container>
 
-        <Container as="section" id="statement" className="statement section-pad">
-          <p className="eyebrow" data-reveal>WE REDEFINE</p>
-          <h2 data-reveal>
-            WE REDEFINE TIMELESS
-            <br />
-            ARCHITECTURE &amp; INTERIOR DESIGN
-          </h2>
-          <div className="statement-index" data-reveal>
-            <span>EST. 1994</span>
-            <span>CAIRO / DUBAI</span>
+        <Container as="section" id="about" className="home-crafting">
+          <div className="home-crafting-copy" data-reveal>
+            <h2>CRAFTING<br />TIMELESS SPACES</h2>
+            <p>ARCHITECTURE &amp; INTERIOR DESIGN THAT INSPIRES</p>
           </div>
+          <img
+            src="/assets/images/about-tall.webp"
+            alt="Contemporary courtyard designed by MB Designs"
+            width="1266"
+            height="1280"
+            loading="lazy"
+            decoding="async"
+            data-reveal
+          />
         </Container>
 
-        <Container as="section" id="about" className="about-collage section-pad">
-          <div className="about-heading" data-reveal>
-            <span>01</span>
-            <h2>CRAFTING<br />TIMELESS SPACES</h2>
-          </div>
-          <div className="about-images" data-reveal>
-            <img
-              className="about-tall"
-              src="/assets/images/about-tall.webp"
-              alt="Contemporary MB Designs architecture"
-              width="620"
-              height="642"
-              loading="lazy"
-              decoding="async"
-            />
-            <img
-              className="about-wide"
-              src="/assets/images/about-wide.webp"
-              alt="Modern courtyard designed by MB Designs"
-              width="913"
-              height="514"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div className="about-copy" data-reveal>
+        <Container as="section" className="home-about-detail">
+          <img
+            src="/assets/images/about-wide.webp"
+            alt="MB Designs architecture in warm evening light"
+            width="1360"
+            height="768"
+            loading="lazy"
+            decoding="async"
+            data-reveal
+          />
+          <div className="home-about-copy" data-reveal>
             <h3>
               DRIVEN BY OVER THREE DECADES OF DESIGN EXCELLENCE, MB DESIGNS CREATES AWARD-WINNING ARCHITECTURE AND INTERIOR ENVIRONMENTS THAT SEAMLESSLY BLEND INNOVATION, FUNCTIONALITY, AND TIMELESS AESTHETICS.
             </h3>
@@ -213,6 +201,14 @@ function HomePage() {
             </p>
             <a className="pill" href="/about">EXPLORE</a>
           </div>
+        </Container>
+
+        <Container as="section" id="statement" className="statement">
+          <h2 data-reveal>
+            WE REDEFINE TIMELESS
+            <br />
+            ARCHITECTURE &amp; INTERIOR DESIGN
+          </h2>
         </Container>
 
         <Container as="section" className="partners section-pad" aria-labelledby="partners-title">

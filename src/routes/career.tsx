@@ -55,7 +55,7 @@ function CareerPage() {
     <div ref={rootRef} className={ready ? 'career-site is-ready' : 'career-site'}>
       <PortfolioHeader current="career" className="career-header" logoImage={headerLogo} />
       <main id="top">
-        <Container as="section" className="career-hero">
+        <Container as="section" className="career-hero" fluid>
           <img src={heroImage} alt="MB Designs creative studio in motion" width="2400" height="1450" fetchPriority="high" />
           <div className="career-hero-overlay" />
           <div className="career-hero-copy">

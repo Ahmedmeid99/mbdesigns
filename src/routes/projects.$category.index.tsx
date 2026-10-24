@@ -46,7 +46,7 @@ function ProjectCategoryPage() {
     <div ref={pageRef} className={ready ? `project-detail-site project-detail-${slug} is-ready` : `project-detail-site project-detail-${slug}`}>
       <PortfolioHeader />
       <main>
-        <Container as="section" id="top" className="project-detail-hero">
+        <Container as="section" id="top" className="project-detail-hero" fluid>
           <img src={detail.hero} alt={`${category.name} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
           <div className="project-detail-shade" />
           <div className="project-detail-hero-copy">

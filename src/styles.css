@@ -86,6 +86,11 @@ video {
   max-width: var(--container-narrow);
 }
 
+.layout-container-fluid {
+  max-width: none;
+  margin-inline: 0;
+}
+
 .intro-curtain {
   position: fixed;
   inset: 0;
@@ -111,6 +116,9 @@ video {
 .site-header {
   position: absolute;
   inset: 0 0 auto;
+  width: 100%;
+  max-width: none;
+  margin-inline: 0;
   z-index: 20;
   padding: 20px var(--container-gutter);
   color: #fff;
@@ -275,20 +283,23 @@ video {
 }
 
 .statement {
-  min-height: 110vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
   position: relative;
+  min-height: clamp(320px, 27.7vw, 440px);
+  display: grid;
+  place-items: center;
+  padding: clamp(72px, 8vw, 120px) var(--container-gutter);
+  background: #fff;
 }
 
 .statement h2 {
   margin: 0;
-  max-width: 1240px;
-  font-size: clamp(3rem, 8vw, 8.8rem);
-  line-height: 0.86;
-  letter-spacing: -0.085em;
-  font-weight: 700;
+  max-width: 1480px;
+  font-family: 'Arial Black', Arial, sans-serif;
+  font-size: clamp(2.5rem, 4.45vw, 5rem);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  font-weight: 900;
+  text-align: center;
 }
 
 .statement-index {
@@ -300,6 +311,79 @@ video {
   border-top: 1px solid var(--line);
   font-size: 0.68rem;
   font-weight: 700;
+}
+
+.home-crafting {
+  min-height: clamp(650px, 59vw, 840px);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: clamp(54px, 6vw, 92px) 0 clamp(10px, 1.1vw, 18px);
+  background: #fff;
+}
+
+.home-crafting-copy {
+  align-self: center;
+  padding: 40px var(--container-gutter);
+  text-align: center;
+}
+
+.home-crafting-copy h2 {
+  margin: 0;
+  font-size: clamp(2.8rem, 4.35vw, 5rem);
+  font-weight: 300;
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+}
+
+.home-crafting-copy p {
+  margin: 10px 0 0;
+  font-size: clamp(0.75rem, 1.25vw, 1.15rem);
+  line-height: 1.2;
+}
+
+.home-crafting > img {
+  width: 100%;
+  height: 100%;
+  min-height: 560px;
+  object-fit: cover;
+}
+
+.home-about-detail {
+  min-height: clamp(570px, 51vw, 730px);
+  display: grid;
+  grid-template-columns: 57.4% 42.6%;
+  align-items: stretch;
+  padding: clamp(34px, 3vw, 48px) 0 clamp(40px, 4vw, 62px);
+  background: #fff;
+}
+
+.home-about-detail > img {
+  width: 100%;
+  height: 100%;
+  min-height: 500px;
+  object-fit: cover;
+}
+
+.home-about-copy {
+  align-self: center;
+  padding: 48px clamp(28px, 5vw, 84px);
+  text-align: center;
+}
+
+.home-about-copy h3 {
+  margin: 0 auto 24px;
+  max-width: 650px;
+  font-size: clamp(1rem, 1.45vw, 1.42rem);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+.home-about-copy p {
+  margin: 0 auto 24px;
+  max-width: 590px;
+  font-size: clamp(0.72rem, 0.96vw, 0.95rem);
+  line-height: 1.08;
+  font-weight: 600;
 }
 
 .about-collage {
@@ -795,7 +879,15 @@ video {
   }
   .mobile-menu.is-open { opacity: 1; visibility: visible; }
   .mobile-menu a { font-size: clamp(2.4rem, 11vw, 5rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.07em; }
-  .statement { min-height: 85vh; }
+  .statement { min-height: 340px; }
+  .home-crafting,
+  .home-about-detail { grid-template-columns: 1fr; }
+  .home-crafting { padding-top: 70px; }
+  .home-crafting-copy { min-height: 330px; }
+  .home-crafting > img { min-height: 0; aspect-ratio: 1 / 0.92; }
+  .home-about-detail > img { min-height: 0; aspect-ratio: 1.4 / 1; }
+  .home-about-copy { min-height: 430px; display: grid; place-content: center; }
+  .home-about-copy .pill { justify-self: center; }
   .about-images { min-height: 620px; }
   .about-tall { width: 54vw; height: 520px; }
   .about-wide { width: 70vw; height: 400px; top: 120px; }
@@ -808,8 +900,14 @@ video {
   .hero-title { width: 92vw; font-size: 2.35rem; }
   .hero-locations { gap: 18px; font-size: 0.62rem; }
   .scroll-cue { display: none; }
-  .statement { min-height: 78vh; }
-  .statement h2 { font-size: clamp(2.6rem, 13vw, 4.7rem); }
+  .statement { min-height: 300px; padding-block: 64px; }
+  .statement h2 { font-size: clamp(2rem, 9.4vw, 3.75rem); }
+  .home-crafting { min-height: 0; padding-top: 48px; }
+  .home-crafting-copy { min-height: 280px; padding-block: 40px; }
+  .home-crafting-copy h2 { font-size: clamp(2.4rem, 11vw, 4rem); }
+  .home-crafting-copy p { font-size: 0.72rem; }
+  .home-about-detail { min-height: 0; padding-block: 24px 40px; }
+  .home-about-copy { min-height: 390px; padding: 52px var(--container-gutter); }
   .about-collage { padding-top: 60px; padding-bottom: 100px; }
   .about-heading { grid-template-columns: 1fr; gap: 16px; }
   .about-heading h2 { font-size: 18vw; }

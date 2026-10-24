@@ -91,7 +91,7 @@ function AboutPage() {
       </header>
 
       <main>
-        <Container as="section" className="about-hero" id="top">
+        <Container as="section" className="about-hero" id="top" fluid>
           <img
             className="about-founder"
             src="/assets/images/about-founder.webp"
