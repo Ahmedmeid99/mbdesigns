@@ -25,6 +25,8 @@ const awardEntries = [
     name: 'EASTOWN DUPLEX',
     category: 'RESIDENTIAL PROPERTY INTERIOR – PRIVATE RESIDENCE',
     image: '/assets/images/award-eastown.webp',
+    width: 3909,
+    height: 2596,
     copy: [
       'THE EASTOWN DUPLEX PROJECT WAS RECOGNIZED AT THE ARABIAN-AFRICAN INTERNATIONAL PROPERTY AWARDS 2020–2021, WINNING IN THE RESIDENTIAL PROPERTY INTERIOR – PRIVATE RESIDENCE CATEGORY.',
       "THE PROJECT SHOWCASES MB DESIGNS' COMMITMENT TO CREATING SOPHISTICATED RESIDENTIAL SPACES THAT COMBINE FUNCTIONALITY, ELEGANCE, AND TIMELESS DESIGN.",
@@ -35,6 +37,8 @@ const awardEntries = [
     name: 'NUWA BY MORI CO',
     category: 'LEISURE INTERIOR CONCEPT',
     image: '/assets/images/award-nuwa.webp',
+    width: 1600,
+    height: 1013,
     copy: [
       'NUWA BY MORI CO RECEIVED THE ARABIAN-AFRICAN INTERNATIONAL PROPERTY AWARDS 2020–2021 FOR ITS OUTSTANDING INTERIOR CONCEPT IN THE LEISURE AND HOSPITALITY SECTOR.',
       'INSPIRED BY CONTEMPORARY ASIAN AESTHETICS, THE RESTAURANT DELIVERS AN IMMERSIVE DINING EXPERIENCE THROUGH CAREFULLY CURATED MATERIALS, LIGHTING, AND SPATIAL STORYTELLING.',
@@ -48,6 +52,8 @@ const luxuryEntries = [
     name: 'GRAND RESIDENCE VILLA',
     category: 'BEST LUXURY RESIDENTIAL INTERIOR DESIGN IN EGYPT',
     image: '/assets/images/award-villa.webp',
+    width: 1600,
+    height: 1013,
     copy: [
       'THE GRAND RESIDENCE VILLA WAS HONORED WITH THE LUXURY LIFESTYLE AWARDS 2021, RECEIVING THE TITLE OF BEST LUXURY RESIDENTIAL INTERIOR DESIGN IN EGYPT.',
       'THE PROJECT REFLECTS EXCEPTIONAL CRAFTSMANSHIP, REFINED DETAILING, AND A SEAMLESS BLEND OF LUXURY WITH EVERYDAY LIVING.',
@@ -58,6 +64,8 @@ const luxuryEntries = [
     name: 'BEST LUXURY INTERIOR DESIGN STUDIO IN EGYPT',
     category: '',
     image: '/assets/images/award-studio.webp',
+    width: 1709,
+    height: 1617,
     copy: [
       'IN 2022, MB DESIGNS WAS RECOGNIZED AS THE BEST LUXURY INTERIOR DESIGN STUDIO IN EGYPT BY THE LUXURY LIFESTYLE AWARDS.',
       "THIS ACHIEVEMENT CELEBRATES THE FIRM'S CONTINUED EXCELLENCE IN DELIVERING INNOVATIVE ARCHITECTURAL AND INTERIOR DESIGN SOLUTIONS ACROSS RESIDENTIAL, HOSPITALITY, RETAIL, AND CORPORATE SECTORS.",
@@ -65,9 +73,75 @@ const luxuryEntries = [
   },
 ] as const
 
+type CertificateImage = {
+  src: string
+  alt: string
+  width: number
+  height: number
+}
+
+const certificateSets: ReadonlyArray<{ year: string; images: readonly CertificateImage[] }> = [
+  {
+    year: '2021',
+    images: [
+      {
+        src: '/assets/images/award-2021-letter.webp',
+        alt: 'Luxury Lifestyle Awards 2021 winner letter',
+        width: 1156,
+        height: 1520,
+      },
+      {
+        src: '/assets/images/award-2021-certificate.webp',
+        alt: 'Luxury Lifestyle Awards 2021 winner certificate',
+        width: 1560,
+        height: 1177,
+      },
+    ],
+  },
+  {
+    year: '2022',
+    images: [
+      {
+        src: '/assets/images/award-2022-letter.webp',
+        alt: 'Luxury Lifestyle Awards 2022 winner letter',
+        width: 1109,
+        height: 1574,
+      },
+      {
+        src: '/assets/images/award-2022-certificate.webp',
+        alt: 'Luxury Lifestyle Awards 2022 winner certificate',
+        width: 1542,
+        height: 1208,
+      },
+    ],
+  },
+]
+
+const certificateLightboxCount = certificateSets.reduce((total, set) => total + set.images.length, 0)
+
+const awardLightboxImages = [
+  ...certificateSets.flatMap((set) => set.images),
+  ...awardEntries.map((entry) => ({
+    src: entry.image,
+    alt: `${entry.name} award project`,
+    width: entry.width,
+    height: entry.height,
+  })),
+  ...luxuryEntries.map((entry) => ({
+    src: entry.image,
+    alt: `${entry.name} award project`,
+    width: entry.width,
+    height: entry.height,
+  })),
+]
+
 function AwardsPage() {
   const [ready, setReady] = useState(false)
+  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
   const pageRef = useRef<HTMLDivElement>(null)
+  const closeLightboxRef = useRef<HTMLButtonElement>(null)
+  const lastImageTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const lightboxOpen = activeImageIndex !== null
 
   useEffect(() => {
     const timer = window.setTimeout(() => setReady(true), 90)
@@ -94,15 +168,49 @@ function AwardsPage() {
     }
   }, [])
 
+  useEffect(() => {
+    if (!lightboxOpen) return
+
+    const previousOverflow = document.body.style.overflow
+    const focusFrame = window.requestAnimationFrame(() => closeLightboxRef.current?.focus())
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveImageIndex(null)
+      if (event.key === 'ArrowLeft') {
+        setActiveImageIndex((current) => current === null ? null : (current - 1 + awardLightboxImages.length) % awardLightboxImages.length)
+      }
+      if (event.key === 'ArrowRight') {
+        setActiveImageIndex((current) => current === null ? null : (current + 1) % awardLightboxImages.length)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+
+    return () => {
+      window.cancelAnimationFrame(focusFrame)
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+      lastImageTriggerRef.current?.focus()
+    }
+  }, [lightboxOpen])
+
+  const openImage = (index: number, trigger: HTMLButtonElement) => {
+    lastImageTriggerRef.current = trigger
+    setActiveImageIndex(index)
+  }
+
+  const activeImage = activeImageIndex === null ? null : awardLightboxImages[activeImageIndex]
+
   return (
     <div ref={pageRef} className={ready ? 'awards-site is-ready' : 'awards-site'}>
       <main>
-        <Container as="section" id="top" className="awards-hero" fluid>
+        <Container as="section" id="top" className="awards-hero site-page-hero" fluid aria-labelledby="awards-hero-title">
           <img src="/assets/images/awards-hero.webp" alt="Abstract amber architectural light" width="1920" height="1145" fetchPriority="high" />
           <div className="awards-hero-shade" />
-          <div className="awards-hero-copy">
-            <h1 className="display-title">WHERE VISION<br />EARNS RECOGNITION</h1>
-            <p>HONORING A TRADITION OF TIMELESS<br />DESIGN AND ARCHITECTURAL EXCELLENCE.</p>
+          <div className="awards-hero-copy site-page-hero__copy">
+            <p className="site-page-hero__eyebrow">AWARDS / INTERNATIONAL RECOGNITION</p>
+            <h1 id="awards-hero-title" className="display-title site-page-hero__title">WHERE VISION<br />EARNS RECOGNITION</h1>
+            <p className="site-page-hero__lead">Honoring a tradition of timeless design and architectural excellence.</p>
           </div>
         </Container>
 
@@ -113,16 +221,23 @@ function AwardsPage() {
             title="AWARDS"
             description="A selection of international distinctions honoring our architectural and interior design work."
           />
-          <CertificateRow year="2021" image="/assets/images/awards-2021.webp" width={2400} height={1217} />
-          <CertificateRow year="2022" image="/assets/images/awards-2022.webp" width={2400} height={1396} />
+          {certificateSets.map((set, index) => (
+            <CertificateRow
+              key={set.year}
+              year={set.year}
+              images={set.images}
+              startIndex={index * set.images.length}
+              onOpen={openImage}
+            />
+          ))}
         </Container>
 
-        <Container as="section" className="awards-purpose">
-          <img src="/assets/images/awards-purpose.webp" alt="Contemporary residence in warm evening light" width="1472" height="1840" loading="lazy" decoding="async" />
-          <div className="awards-purpose-shade" />
-          <div data-reveal>
-            <h2 className="display-title">DESIGN<br />WITH PURPOSE</h2>
-            <p>EACH AWARD REFLECTS OUR PASSION FOR<br className="desktop-break" /> CREATING TIMELESS SPACES WITH PURPOSE, PRECISION,<br className="desktop-break" /> AND LASTING IMPACT.</p>
+        <Container as="section" className="awards-purpose" fluid>
+          <div className="awards-purpose-sticky">
+            <div className="awards-purpose-copy" data-reveal>
+              <h2 className="display-title">DESIGN<br />WITH PURPOSE</h2>
+              <p>EACH AWARD REFLECTS OUR PASSION FOR<br className="desktop-break" /> CREATING TIMELESS SPACES WITH PURPOSE, PRECISION,<br className="desktop-break" /> AND LASTING IMPACT.</p>
+            </div>
           </div>
         </Container>
 
@@ -134,7 +249,7 @@ function AwardsPage() {
             variant="property"
           />
           {awardEntries.map((entry, index) => (
-            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} />
+            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} onOpen={(trigger) => openImage(index + certificateLightboxCount, trigger)} />
           ))}
 
           <AwardFamilyHeader
@@ -144,20 +259,70 @@ function AwardsPage() {
             variant="luxury"
           />
           {luxuryEntries.map((entry, index) => (
-            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} />
+            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} onOpen={(trigger) => openImage(index + certificateLightboxCount + awardEntries.length, trigger)} />
           ))}
 
         </Container>
       </main>
+
+      {activeImageIndex !== null && activeImage ? (
+        <div className="single-project-lightbox award-lightbox" role="dialog" aria-modal="true" aria-label="Awards image viewer">
+          <button className="single-project-lightbox-close" type="button" ref={closeLightboxRef} onClick={() => setActiveImageIndex(null)}>
+            CLOSE
+          </button>
+          <div className="single-project-lightbox-frame">
+            <img src={activeImage.src} alt={activeImage.alt} width={activeImage.width} height={activeImage.height} />
+          </div>
+          <div className="single-project-lightbox-controls">
+            <button
+              type="button"
+              onClick={() => setActiveImageIndex((current) => current === null ? null : (current - 1 + awardLightboxImages.length) % awardLightboxImages.length)}
+              aria-label="Previous award image"
+            >
+              PREVIOUS
+            </button>
+            <span>{String(activeImageIndex + 1).padStart(2, '0')} / {String(awardLightboxImages.length).padStart(2, '0')}</span>
+            <button
+              type="button"
+              onClick={() => setActiveImageIndex((current) => current === null ? null : (current + 1) % awardLightboxImages.length)}
+              aria-label="Next award image"
+            >
+              NEXT
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }
 
-function CertificateRow({ year, image, width, height }: { year: string; image: string; width: number; height: number }) {
+function CertificateRow({
+  year,
+  images,
+  startIndex,
+  onOpen,
+}: {
+  year: string
+  images: readonly CertificateImage[]
+  startIndex: number
+  onOpen: (index: number, trigger: HTMLButtonElement) => void
+}) {
   return (
     <article className="certificate-row" data-reveal>
       <p>/LUXURY LIFESTYLE AWARDS {year}</p>
-      <img src={image} alt={`Luxury Lifestyle Awards ${year} letter and winner certificate`} width={width} height={height} loading="lazy" decoding="async" />
+      <div className="certificate-row__media">
+        {images.map((image, index) => (
+          <button
+            key={image.src}
+            className="award-focus-trigger award-focus-trigger--certificate"
+            type="button"
+            aria-label={`Open ${image.alt}`}
+            onClick={(event) => onOpen(startIndex + index, event.currentTarget)}
+          >
+            <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" />
+          </button>
+        ))}
+      </div>
     </article>
   )
 }
@@ -186,9 +351,15 @@ function AwardFamilyHeader({
         className="award-family-heading"
       />
       {variant === 'property' ? (
-        <div className="property-flags" role="img" aria-label="Arabian Property Awards winner 2020–2021">
-          <span aria-hidden="true">ARABIAN<br />PROPERTY<br />AWARDS<br /><b>AWARD<br />WINNER</b><small>2020–2021</small></span>
-          <span aria-hidden="true">ARABIAN<br />PROPERTY<br />AWARDS<br /><b>AWARD<br />WINNER</b><small>2020–2021</small></span>
+        <div className="property-flags">
+          <img
+            src="/assets/images/award-property-flags.webp"
+            alt="Arabian Property Awards winner 2020–2021"
+            width="1338"
+            height="1739"
+            loading="lazy"
+            decoding="async"
+          />
         </div>
       ) : (
         <div className="luxury-wins" role="img" aria-label="Luxury Lifestyle Awards winners 2021 and 2022">
@@ -200,7 +371,7 @@ function AwardFamilyHeader({
   )
 }
 
-function EditorialAward({ entry, reverse = false }: { entry: AwardEntry; reverse?: boolean }) {
+function EditorialAward({ entry, reverse = false, onOpen }: { entry: AwardEntry; reverse?: boolean; onOpen: (trigger: HTMLButtonElement) => void }) {
   const headingId = `award-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`
 
   return (
@@ -210,7 +381,9 @@ function EditorialAward({ entry, reverse = false }: { entry: AwardEntry; reverse
         {entry.category && <h4>{entry.category}</h4>}
         {entry.copy.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       </div>
-      <img src={entry.image} alt={`${entry.name} award project`} width="1600" height="1013" loading="lazy" decoding="async" />
+      <button className="award-focus-trigger award-focus-trigger--editorial" type="button" aria-label={`Open ${entry.name} award image`} onClick={(event) => onOpen(event.currentTarget)}>
+        <img src={entry.image} alt={`${entry.name} award project`} width={entry.width} height={entry.height} loading="lazy" decoding="async" />
+      </button>
     </article>
   )
 }

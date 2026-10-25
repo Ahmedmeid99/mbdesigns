@@ -45,28 +45,40 @@ function ProjectCategoryPage() {
   return (
     <div ref={pageRef} className={ready ? `project-detail-site project-detail-${slug} is-ready` : `project-detail-site project-detail-${slug}`}>
       <main>
-        <Container as="section" id="top" className="project-detail-hero" fluid>
+        <Container as="section" id="top" className="project-detail-hero site-page-hero" fluid aria-labelledby="project-detail-hero-title">
           <img src={detail.hero} alt={`${category.name} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
           <div className="project-detail-shade" />
-          <div className="project-detail-hero-copy">
-            <h1 className="display-title">{detail.heroLines[0]}<br />{detail.heroLines[1]}</h1>
-            <p>{detail.subtitle}</p>
-          </div>
+          <Container className="project-detail-hero-inner site-page-hero__inner">
+            <div className="project-detail-hero-copy site-page-hero__copy">
+              <p className="project-detail-hero-eyebrow site-page-hero__eyebrow">PROJECTS / {category.name}</p>
+              <h1 id="project-detail-hero-title" className="display-title site-page-hero__title">{detail.heroLines[0]}<br />{detail.heroLines[1]}</h1>
+              <p className="project-detail-hero-lead site-page-hero__lead">{detail.subtitle}</p>
+            </div>
+            <div className="project-detail-hero-foot">
+              <Link to="/projects">ALL PROJECTS</Link>
+              <a href="#project-gallery">{String(projects.length).padStart(2, '0')} SELECTED PROJECTS</a>
+            </div>
+          </Container>
         </Container>
 
-        <Container as="section" className={`project-detail-gallery detail-layout-${detail.layout}`} aria-labelledby="project-gallery-title">
+        <Container as="section" id="project-gallery" className={`project-detail-gallery detail-layout-${detail.layout}`} aria-labelledby="project-gallery-title">
           <SectionHeading
             id="project-gallery-title"
             eyebrow={category.name}
             title={<>{category.name}<br />PROJECTS</>}
-            description={`${projects.length} SELECTED PROJECTS`}
+            description={`${String(projects.length).padStart(2, '0')} SELECTED PROJECTS`}
+            align="start"
           />
           <div className="detail-project-grid">
             {projects.map((project, index) => {
               const card = (
                 <article className={`detail-project detail-project-${project.shape}`} data-reveal>
-                  <div><img src={project.image} alt={`${project.name} by MB Designs`} width="1280" height="1280" loading={index < 3 ? 'eager' : 'lazy'} decoding="async" /></div>
-                  <h3>{project.name}</h3>
+                  <div className="detail-project-media"><img src={project.image} alt={`${project.name} by MB Designs`} width="1280" height="1280" loading={index < 3 ? 'eager' : 'lazy'} decoding="async" /></div>
+                  <div className="detail-project-caption">
+                    <span className="detail-project-number">{String(index + 1).padStart(2, '0')}</span>
+                    <h3>{project.name}</h3>
+                    <span className="detail-project-action">VIEW PROJECT</span>
+                  </div>
                 </article>
               )
 

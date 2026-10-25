@@ -1,12 +1,15 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { FormEvent, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
 
 const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height: number) => `/assets/images/career/${id}.webp`
 
 const heroImage = wixImage('beb217_eb9741a51a4847268ed2c29d1b15a25c', 'jpg', 2400, 1450)
 const statementLogo = wixImage('beb217_2092a8268dce4b678f8e3e47a2c80c8b', 'png', 1200, 364)
-type ApplicationKind = 'internship' | 'supplier'
+const careersEmail = 'info@mbdesigns.design'
+
+const careerEmailHref = (jobTitle: string) =>
+  `mailto:${careersEmail}?subject=${encodeURIComponent(jobTitle)}`
 
 export const Route = createFileRoute('/career')({
   head: () => ({
@@ -22,7 +25,6 @@ export const Route = createFileRoute('/career')({
 function CareerPage() {
   const rootRef = useRef<HTMLDivElement>(null)
   const [ready, setReady] = useState(false)
-  const [application, setApplication] = useState<ApplicationKind | null>(null)
 
   useEffect(() => {
     const timer = window.setTimeout(() => setReady(true), 80)
@@ -40,27 +42,16 @@ function CareerPage() {
     return () => { window.clearTimeout(timer); observer.disconnect() }
   }, [])
 
-  useEffect(() => {
-    if (!application) return
-    const previousOverflow = document.body.style.overflow
-    const onKeyDown = (event: KeyboardEvent) => { if (event.key === 'Escape') setApplication(null) }
-    document.body.style.overflow = 'hidden'
-    document.addEventListener('keydown', onKeyDown)
-    return () => {
-      document.body.style.overflow = previousOverflow
-      document.removeEventListener('keydown', onKeyDown)
-    }
-  }, [application])
-
   return (
     <div ref={rootRef} className={ready ? 'career-site is-ready' : 'career-site'}>
       <main id="top">
-        <Container as="section" className="career-hero" fluid>
+        <Container as="section" className="career-hero site-page-hero" fluid aria-labelledby="career-hero-title">
           <img src={heroImage} alt="MB Designs creative studio in motion" width="2400" height="1450" fetchPriority="high" />
           <div className="career-hero-overlay" />
-          <div className="career-hero-copy">
-            <h1>THE FUTURE IS DESIGNED BY THOSE<br />WHO DARE TO CREATE</h1>
-            <p>AT MB DESIGNS, WE TURN BOLD IDEAS INTO LASTING IMPACT</p>
+          <div className="career-hero-copy site-page-hero__copy">
+            <p className="site-page-hero__eyebrow">CAREERS / CAIRO · DUBAI</p>
+            <h1 id="career-hero-title" className="site-page-hero__title">THE FUTURE IS DESIGNED BY THOSE<br />WHO DARE TO CREATE</h1>
+            <p className="site-page-hero__lead">At MB Designs, we turn bold ideas into lasting impact.</p>
           </div>
         </Container>
 
@@ -89,7 +80,7 @@ function CareerPage() {
             subtitle="START YOUR JOURNEY WITH MB DESIGNS"
             copy="Interested in gaining hands-on experience with MB DESIGNS? Submit your application along with links to your CV, portfolio, and a recent photo for our team to review."
             action="APPLY NOW"
-            onClick={() => setApplication('internship')}
+            emailSubject="INTERNSHIPS"
           />
           <Opportunity
             index="02"
@@ -97,49 +88,20 @@ function CareerPage() {
             subtitle="WORK WITH MB DESIGNS"
             copy="Interested in becoming part of our network of trusted suppliers and partners? Submit your company profile, portfolio or catalogue, and relevant project or product photography for our team to review."
             action="SUBMIT YOUR PROFILE"
-            onClick={() => setApplication('supplier')}
+            emailSubject="SUPPLIERS"
           />
         </Container>
       </main>
-      {application && <ApplicationDialog kind={application} onClose={() => setApplication(null)} />}
     </div>
   )
 }
-function Opportunity({ index, title, subtitle, copy, action, onClick }: { index: string; title: string; subtitle: string; copy: string; action: string; onClick: () => void }) {
+
+function Opportunity({ index, title, subtitle, copy, action, emailSubject }: { index: string; title: string; subtitle: string; copy: string; action: string; emailSubject: string }) {
   return (
     <article className="career-opportunity" data-reveal>
       <div className="career-opportunity-label"><span>{index}</span><h3>{title}</h3></div>
       <div className="career-opportunity-copy"><h4>{subtitle}</h4><p>{copy}</p></div>
-      <button type="button" onClick={onClick}>{action}</button>
+      <a className="career-opportunity-action" href={careerEmailHref(emailSubject)} aria-label={`${action} by email for ${emailSubject}`}>{action}</a>
     </article>
-  )
-}
-
-function ApplicationDialog({ kind, onClose }: { kind: ApplicationKind; onClose: () => void }) {
-  const isInternship = kind === 'internship'
-  const submit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    const form = new FormData(event.currentTarget)
-    const name = String(form.get('name') || '')
-    const email = String(form.get('email') || '')
-    const link = String(form.get('link') || '')
-    const subject = isInternship ? 'Internship application' : 'Supplier profile'
-    const body = `${subject} from ${name}\nEmail: ${email}\n\nPortfolio / profile: ${link}`
-    window.location.href = `mailto:info@mbdesigns.design?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-  }
-  return (
-    <div className="career-dialog-backdrop" role="presentation" onMouseDown={(event) => { if (event.target === event.currentTarget) onClose() }}>
-      <Container as="section" size="narrow" className="career-dialog" role="dialog" aria-modal="true" aria-labelledby="career-dialog-title">
-        <button className="career-dialog-close" type="button" onClick={onClose} aria-label="Close application form">×</button>
-        <p>{isInternship ? 'INTERNSHIPS' : 'SUPPLIERS'}</p>
-        <h2 id="career-dialog-title">{isInternship ? 'START YOUR JOURNEY' : 'WORK WITH MB DESIGNS'}</h2>
-        <form onSubmit={submit}>
-          <label>NAME / COMPANY<input name="name" required autoFocus /></label>
-          <label>EMAIL<input name="email" type="email" required /></label>
-          <label>{isInternship ? 'CV / PORTFOLIO LINK' : 'PROFILE / CATALOGUE LINK'}<input name="link" type="url" placeholder="https://" required /></label>
-          <button type="submit">CONTINUE BY EMAIL</button>
-        </form>
-      </Container>
-    </div>
   )
 }

@@ -168,14 +168,14 @@ function EventsPressPage() {
   return (
     <div ref={pageRef} className={ready ? 'events-site events-hub-site is-ready' : 'events-site events-hub-site'}>
       <main id="top">
-        <Container as="section" className="events-hero" fluid>
+        <Container as="section" className="events-hero site-page-hero" fluid aria-labelledby="events-hero-title">
           <img src={heroImage} alt="MB Designs event gathering" width="2400" height="1450" fetchPriority="high" />
           <div className="events-hero-shade" />
-          <Container className="events-hub-hero-inner">
-            <div className="events-hero-copy events-hub-hero-copy">
-              <p>MB DESIGNS · CAIRO / DUBAI</p>
-              <h1>EVENTS<br />&amp; PRESS</h1>
-              <span>EXHIBITIONS, COLLABORATIONS, CONVERSATIONS AND STORIES FROM OUR STUDIO.</span>
+          <Container className="events-hub-hero-inner site-page-hero__inner">
+            <div className="events-hero-copy events-hub-hero-copy site-page-hero__copy">
+              <p className="site-page-hero__eyebrow">MB DESIGNS · CAIRO / DUBAI</p>
+              <h1 id="events-hero-title" className="site-page-hero__title">EVENTS<br />&amp; PRESS</h1>
+              <span className="site-page-hero__lead">Exhibitions, collaborations, conversations and stories from our studio.</span>
             </div>
             <a className="events-hub-scroll" href="#events-browser">EXPLORE <ArrowIcon direction="down" /></a>
           </Container>

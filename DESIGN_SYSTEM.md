@@ -24,10 +24,20 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 
 ## Shared site chrome
 
-- Every route uses the same fixed `SiteHeader`: white navigation and wordmark over one restrained dark-to-transparent gradient at the top of a hero.
-- After scrolling, the shared header gains one dark translucent surface so navigation stays readable above every page; do not add route-specific header color or positioning variants.
+- Every route uses the same fixed-height `SiteHeader`: white navigation and wordmark on one dark translucent surface, including project gallery pages.
+- After scrolling, the shared surface becomes slightly more opaque and gains a restrained shadow; do not add route-specific header color, height, or positioning variants.
 - Keep anchor targets clear of the fixed header with the shared root `scroll-padding-top` value.
 - The shared footer starts directly with the dark brand and office directory. Keep page-level promotional callouts out of the footer.
+- Open project gallery images inside the in-page viewer below the shared header; never navigate visitors directly to a raw image asset.
+- Start every individual project route with the same full-viewport hero pattern: local project cover, category eyebrow, oversized project name, location, and clear routes back to the category and down to the gallery.
+
+## Interior page hero pattern
+
+- Every page except Home uses the shared `site-page-hero` composition and `--page-hero-height` token.
+- Keep the content hierarchy consistent: compact uppercase eyebrow, balanced display title, then a concise sentence-case lead.
+- Align hero copy to the shared gutter near the lower-left of the viewport. Page-specific images and copy may change, but hero height, title scale, spacing, and mobile behavior must not.
+- Use the shared `site-page-hero__inner`, `site-page-hero__copy`, `site-page-hero__eyebrow`, `site-page-hero__title`, and `site-page-hero__lead` classes instead of recreating route-specific positioning.
+- Home intentionally keeps its own narrative hero and is not part of this pattern.
 
 ## Awards page pattern
 
@@ -38,10 +48,18 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 - Use the accent only for hierarchy markers such as years and item numbers; long-form copy stays on neutral ink tokens.
 - Keep entrance motion limited to the shared `[data-reveal]` treatment and preserve the global reduced-motion fallback.
 
+## Projects page pattern
+
+- Use a true-viewport image hero with a category eyebrow, concise lead, and a bottom utility row that links directly to the work below.
+- Present project categories as numbered editorial links with project counts; the full image and caption are one keyboard-focusable target.
+- Category pages reuse the same hero hierarchy and expose both an all-projects route and an anchored selected-project count.
+- Project cards use neutral image outlines, structural caption dividers, tabular indices, and a text action that appears on hover/focus while remaining visible on touch.
+- Keep image motion restrained to a small interruptible scale and never animate card layout, dimensions, or spacing.
+
 ## About page pattern
 
 - Keep the About narrative focused on four visitor needs: the founder, the studio story, the design philosophy, and the mission/vision that guide the practice.
-- Use a split true-viewport hero on wide screens so the founder portrait keeps its full composition; switch to an image-overlay hero below `720px`.
+- Use the shared full-width interior hero while preserving the founder portrait's focal point and readable contrast.
 - Use `SectionHeading` for story, philosophy, and direction so their hierarchy matches the redesigned Home page.
 - Pair large display headings with readable copy capped near `58ch`; use sentence case for long paragraphs rather than dense all-caps copy.
 - Present studio milestones as a structural fact strip and design principles as ordered rows with tabular indices.

@@ -66,9 +66,13 @@ function TeamPage() {
   return (
     <div ref={pageRef} className={ready ? 'team-site is-ready' : 'team-site'}>
       <main id="top">
-        <Container as="section" className="team-hero" aria-label="MB Designs team" fluid>
+        <Container as="section" className="team-hero site-page-hero" aria-labelledby="team-hero-title" fluid>
           <img src={heroImage} alt="MB Designs team in motion" width="2400" height="1200" fetchPriority="high" />
-          <h1>BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</h1>
+          <div className="team-hero-copy site-page-hero__copy">
+            <p className="site-page-hero__eyebrow">STUDIO / THE PEOPLE BEHIND THE WORK</p>
+            <h1 id="team-hero-title" className="site-page-hero__title">BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</h1>
+            <p className="site-page-hero__lead">A multidisciplinary team united by curiosity, precision and a shared commitment to purposeful design.</p>
+          </div>
         </Container>
 
         <Container as="section" className="team-roster" aria-labelledby="team-roster-title">

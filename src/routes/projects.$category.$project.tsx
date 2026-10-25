@@ -7,11 +7,13 @@ import { getProjectDetail } from '../project-details.generated'
 export const Route = createFileRoute('/projects/$category/$project')({
   head: ({ params }) => {
     const detail = getProjectDetail(params.project)
+    const cover = getCategoryProjects(params.category).find((project) => project.slug === params.project)
     return {
       meta: [
         { title: `${detail?.title ?? 'Project'} | MB Designs` },
         { name: 'description', content: `${detail?.title ?? 'Project'} by MB Designs.` },
       ],
+      links: cover ? [{ rel: 'preload', as: 'image', href: cover.image }] : [],
     }
   },
   component: SingleProjectPage,
@@ -25,9 +27,16 @@ function SingleProjectPage() {
   const detail = getProjectDetail(projectSlug)
   const cover = categoryProjects.find((project) => project.slug === projectSlug)
   const [ready, setReady] = useState(false)
+  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
   const pageRef = useRef<HTMLDivElement>(null)
+  const closeLightboxRef = useRef<HTMLButtonElement>(null)
+  const lastImageTriggerRef = useRef<HTMLButtonElement | null>(null)
+  const galleryLength = detail?.gallery.length ?? 0
+  const lightboxOpen = activeImageIndex !== null
 
   useEffect(() => {
+    setActiveImageIndex(null)
+    setReady(false)
     const timer = window.setTimeout(() => setReady(true), 60)
     const root = pageRef.current
     if (!root) return () => window.clearTimeout(timer)
@@ -43,6 +52,31 @@ function SingleProjectPage() {
     return () => { window.clearTimeout(timer); observer.disconnect() }
   }, [projectSlug])
 
+  useEffect(() => {
+    if (!lightboxOpen || galleryLength === 0) return
+
+    const previousOverflow = document.body.style.overflow
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setActiveImageIndex(null)
+      if (event.key === 'ArrowLeft') {
+        setActiveImageIndex((current) => current === null ? null : (current - 1 + galleryLength) % galleryLength)
+      }
+      if (event.key === 'ArrowRight') {
+        setActiveImageIndex((current) => current === null ? null : (current + 1) % galleryLength)
+      }
+    }
+
+    document.body.style.overflow = 'hidden'
+    window.addEventListener('keydown', handleKeyDown)
+    closeLightboxRef.current?.focus()
+
+    return () => {
+      document.body.style.overflow = previousOverflow
+      window.removeEventListener('keydown', handleKeyDown)
+      lastImageTriggerRef.current?.focus()
+    }
+  }, [galleryLength, lightboxOpen])
+
   if (!detail || detail.category !== categorySlug || !cover) {
     return (
       <div className="single-project-site">
@@ -56,13 +90,24 @@ function SingleProjectPage() {
 
   return (
     <div ref={pageRef} className={ready ? 'single-project-site is-ready' : 'single-project-site'}>
-      <Container as="main" id="top" className="single-project-main">
-        <header className="single-project-heading">
-          <h1>{detail.title}</h1>
-          <p>{detail.location}</p>
-        </header>
+      <Container as="section" id="top" className="single-project-hero site-page-hero" fluid aria-labelledby="single-project-title">
+        <img src={cover.image} alt={`${detail.title} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
+        <div className="single-project-hero-shade" />
+        <Container className="single-project-hero-inner site-page-hero__inner">
+          <div className="single-project-hero-copy site-page-hero__copy">
+            <p className="single-project-hero-eyebrow site-page-hero__eyebrow">PROJECT / {category.name}</p>
+            <h1 id="single-project-title" className={`display-title site-page-hero__title${detail.title.length > 18 ? ' is-long' : ''}`}>{detail.title}</h1>
+            <p className="single-project-hero-location site-page-hero__lead">{detail.location}</p>
+          </div>
+          <div className="single-project-hero-foot">
+            <Link to="/projects/$category" params={{ category: categorySlug }}>BACK TO {category.name}</Link>
+            <a href="#project-gallery">SCROLL TO VIEW PROJECT</a>
+          </div>
+        </Container>
+      </Container>
 
-        <div className="single-project-layout">
+      <Container as="main" className="single-project-main">
+        <div id="project-gallery" className="single-project-layout">
           <aside className="single-project-rail" aria-label={`${category.name} projects`}>
             <div className="single-project-thumbs">
               {relatedProjects.map((project) => (
@@ -81,17 +126,58 @@ function SingleProjectPage() {
           </aside>
 
           <Container as="section" className="single-project-visuals" aria-label={`${detail.title} gallery`}>
-            <img className="single-project-cover" src={cover.image} alt={`${detail.title} by MB Designs`} width="1600" height="900" fetchPriority="high" />
             <div className="single-project-gallery">
               {detail.gallery.map((image, index) => (
-                <a href={image.src} target="_blank" rel="noreferrer" data-reveal key={`${image.src}-${index}`} aria-label={`Open ${detail.title} image ${index + 1}`}>
+                <button
+                  type="button"
+                  data-reveal
+                  key={`${image.src}-${index}`}
+                  aria-label={`Open ${detail.title} image ${index + 1}`}
+                  onClick={(event) => {
+                    lastImageTriggerRef.current = event.currentTarget
+                    setActiveImageIndex(index)
+                  }}
+                >
                   <img src={image.src} alt={`${detail.title} project view ${index + 1}`} width={image.width} height={image.height} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
-                </a>
+                </button>
               ))}
             </div>
           </Container>
         </div>
       </Container>
+
+      {activeImageIndex !== null && detail.gallery[activeImageIndex] ? (
+        <div className="single-project-lightbox" role="dialog" aria-modal="true" aria-label={`${detail.title} image viewer`}>
+          <button className="single-project-lightbox-close" type="button" ref={closeLightboxRef} onClick={() => setActiveImageIndex(null)}>
+            CLOSE
+          </button>
+          <div className="single-project-lightbox-frame">
+            <img
+              src={detail.gallery[activeImageIndex].src}
+              alt={`${detail.title} project view ${activeImageIndex + 1}`}
+              width={detail.gallery[activeImageIndex].width}
+              height={detail.gallery[activeImageIndex].height}
+            />
+          </div>
+          <div className="single-project-lightbox-controls">
+            <button
+              type="button"
+              onClick={() => setActiveImageIndex((current) => current === null ? null : (current - 1 + galleryLength) % galleryLength)}
+              aria-label="Previous project image"
+            >
+              PREVIOUS
+            </button>
+            <span aria-live="polite">{String(activeImageIndex + 1).padStart(2, '0')} / {String(galleryLength).padStart(2, '0')}</span>
+            <button
+              type="button"
+              onClick={() => setActiveImageIndex((current) => current === null ? null : (current + 1) % galleryLength)}
+              aria-label="Next project image"
+            >
+              NEXT
+            </button>
+          </div>
+        </div>
+      ) : null}
     </div>
   )
 }

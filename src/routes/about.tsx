@@ -71,15 +71,15 @@ function AboutPage() {
   return (
     <div ref={pageRef} className={ready ? 'about-site about-v2 is-ready' : 'about-site about-v2'}>
       <main>
-        <Container as="section" id="top" className="about-v2-hero" fluid aria-labelledby="about-v2-hero-title">
-          <div className="about-v2-hero-copy">
-            <p className="about-v2-eyebrow">MB DESIGNS · ESTABLISHED 1995</p>
-            <h1 id="about-v2-hero-title" className="display-title">
+        <Container as="section" id="top" className="about-v2-hero site-page-hero" fluid aria-labelledby="about-v2-hero-title">
+          <div className="about-v2-hero-copy site-page-hero__copy">
+            <p className="about-v2-eyebrow site-page-hero__eyebrow">MB DESIGNS · ESTABLISHED 1995</p>
+            <h1 id="about-v2-hero-title" className="display-title site-page-hero__title">
               A PRACTICE BUILT
               <br />
               ON <em>VISION.</em>
             </h1>
-            <p className="about-v2-hero-lead">
+            <p className="about-v2-hero-lead site-page-hero__lead">
               Led by founder Mohamed Badr, MB Designs brings creativity, technical knowledge and human experience together to shape purposeful, enduring spaces.
             </p>
           </div>
