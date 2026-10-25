@@ -19,7 +19,7 @@
   --line-height-heading: .98;
   --line-height-body: 1.5;
   --tracking-label: .1em;
-  --tracking-heading: -.055em;
+  --tracking-heading: -.025em;
 
   /* Color */
   --color-paper: #f5f4f1;
@@ -37,6 +37,7 @@
   --color-line-strong: oklch(0 0 0 / .32);
   --color-line-inverse: oklch(1 0 0 / .24);
   --color-image-outline: oklch(0 0 0 / .1);
+  --color-ghost: oklch(0 0 0 / .055);
 
   /* Spacing — 4px base rhythm */
   --space-1: .25rem;
@@ -102,6 +103,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  scroll-padding-top: clamp(76px, 6vw, 96px);
 }
 
 body {
@@ -116,6 +118,7 @@ h2,
 h3 {
   font-family: var(--font-display);
   letter-spacing: var(--tracking-heading);
+  word-spacing: .04em;
   text-wrap: balance;
 }
 
@@ -127,7 +130,8 @@ h4 { text-wrap: balance; }
   font-size: clamp(3rem, 4.75vw, 5.25rem);
   font-weight: 700;
   line-height: var(--line-height-tight);
-  letter-spacing: -.075em;
+  letter-spacing: var(--tracking-heading);
+  word-spacing: .06em;
   text-transform: uppercase;
   text-wrap: balance;
 }
@@ -233,13 +237,23 @@ select {
   margin-inline: auto;
 }
 
-.site-header:not(.shared-header--surface):not(.shared-header--ink) {
-  background: linear-gradient(180deg, oklch(0 0 0 / .34), transparent);
+.site-header {
+  background-color: transparent;
+  background-image: linear-gradient(180deg, oklch(0 0 0 / .34), transparent);
   text-shadow: 0 1px 12px oklch(0 0 0 / .26);
 }
 
+.site-header.is-scrolled {
+  background-color: oklch(0.08 0 0 / .9);
+  box-shadow: 0 1px 0 oklch(1 0 0 / .12), 0 10px 32px oklch(0 0 0 / .14);
+  backdrop-filter: blur(14px) saturate(1.08);
+}
+
 .site-header.is-menu-open {
-  background: transparent;
+  background-color: transparent;
+  background-image: none;
+  box-shadow: none;
+  backdrop-filter: none;
   text-shadow: none;
 }
 
@@ -257,7 +271,6 @@ select {
 :where(
   button,
   .pill,
-  .site-footer-project,
   .events-hub-scroll,
   .single-project-back
 ) {
@@ -269,7 +282,6 @@ select {
 :where(
   button,
   .pill,
-  .site-footer-project,
   .events-hub-scroll,
   .single-project-back
 ):active {
@@ -367,7 +379,6 @@ select {
   stroke-width: 1.5;
 }
 
-.site-footer-project .icon,
 .site-footer-bottom .icon,
 .events-hub-scroll .icon,
 .event-card-content .icon {
@@ -376,7 +387,7 @@ select {
   transition-timing-function: var(--ease-ui);
 }
 
-:where(.site-footer-project, .events-hub-scroll, .event-browser-card button):hover .icon {
+:where(.events-hub-scroll, .event-browser-card button):hover .icon {
   scale: 1.08;
 }
 

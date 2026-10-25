@@ -1,5 +1,7 @@
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute, Link } from '@tanstack/react-router'
+import type { CSSProperties } from 'react'
 import { useEffect, useRef, useState } from 'react'
+import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
 import { SectionHeading } from '../components/SectionHeading'
 
@@ -9,38 +11,56 @@ export const Route = createFileRoute('/about')({
       { title: 'About | MB Designs' },
       {
         name: 'description',
-        content: 'The story, philosophy, mission and vision behind MB Designs.',
+        content: 'Discover the story, philosophy and vision behind MB Designs, founded in 1995 by Mohamed Badr.',
       },
     ],
-    links: [
-      { rel: 'preload', as: 'image', href: '/assets/images/about-founder.webp' },
-    ],
+    links: [{ rel: 'preload', as: 'image', href: '/assets/images/about-founder.webp' }],
   }),
   component: AboutPage,
 })
+
+const principles = [
+  {
+    number: '01',
+    name: 'PURPOSE',
+    copy: 'Every decision begins with how a space should serve the people who use it.',
+  },
+  {
+    number: '02',
+    name: 'FUNCTION',
+    copy: 'Planning, movement and material choices work together to make every environment effortless.',
+  },
+  {
+    number: '03',
+    name: 'CRAFT',
+    copy: 'Technical precision and close attention to detail turn a strong idea into a lasting place.',
+  },
+  {
+    number: '04',
+    name: 'LONGEVITY',
+    copy: 'We pursue a timeless character that remains relevant beyond trends and first impressions.',
+  },
+] as const
 
 function AboutPage() {
   const [ready, setReady] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const timer = window.setTimeout(() => setReady(true), 100)
+    const timer = window.setTimeout(() => setReady(true), 80)
     const root = pageRef.current
     if (!root) return () => window.clearTimeout(timer)
 
-    const items = root.querySelectorAll<HTMLElement>('[data-reveal]')
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible')
-            observer.unobserve(entry.target)
-          }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible')
+          observer.unobserve(entry.target)
         }
-      },
-      { rootMargin: '0px 0px -8% 0px', threshold: 0.12 },
-    )
-    items.forEach((item) => observer.observe(item))
+      })
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 })
+
+    root.querySelectorAll<HTMLElement>('[data-reveal]').forEach((item) => observer.observe(item))
 
     return () => {
       window.clearTimeout(timer)
@@ -49,91 +69,152 @@ function AboutPage() {
   }, [])
 
   return (
-    <div ref={pageRef} className={ready ? 'about-site is-ready' : 'about-site'}>
+    <div ref={pageRef} className={ready ? 'about-site about-v2 is-ready' : 'about-site about-v2'}>
       <main>
-        <Container as="section" className="about-hero" id="top" fluid>
-          <img
-            className="about-founder"
-            src="/assets/images/about-founder.webp"
-            alt="Mohamed Badr, founder of MB Designs"
-            width="1133"
-            height="1388"
-            fetchPriority="high"
-          />
-          <div className="about-hero-copy">
-            <h1 className="display-title">THE VISION<br />BEHIND EVERY PROJECT</h1>
-            <p>
-              MOHAMED BADR IS RENOWNED FOR HIS INNOVATIVE DESIGN APPROACH, COMBINING<br className="desktop-break" />
-              CREATIVITY WITH A DEEP UNDERSTANDING OF MATERIALS, FUNCTIONALITY, AND HUMAN EXPERIENCE. HIS EXPERTISE
-              SPANS ARCHITECTURE, INTERIOR DESIGN, PROJECT MANAGEMENT, AND CONSULTANCY,<br className="desktop-break" />
-              EARNING RECOGNITION FOR CREATING SOPHISTICATED SPACES THAT<br className="desktop-break" />
-              ARE BOTH PURPOSEFUL AND TIMELESS.
+        <Container as="section" id="top" className="about-v2-hero" fluid aria-labelledby="about-v2-hero-title">
+          <div className="about-v2-hero-copy">
+            <p className="about-v2-eyebrow">MB DESIGNS · ESTABLISHED 1995</p>
+            <h1 id="about-v2-hero-title" className="display-title">
+              A PRACTICE BUILT
+              <br />
+              ON <em>VISION.</em>
+            </h1>
+            <p className="about-v2-hero-lead">
+              Led by founder Mohamed Badr, MB Designs brings creativity, technical knowledge and human experience together to shape purposeful, enduring spaces.
             </p>
           </div>
-          <div className="about-legacy" aria-label="Elevating lasting legacies">
-            <span>ELEVATING</span>
-            <span>LASTING</span>
-            <span>LEGACIES</span>
+          <figure className="about-v2-founder">
+            <img
+              src="/assets/images/about-founder.webp"
+              alt="Mohamed Badr, founder of MB Designs"
+              width="1133"
+              height="1388"
+              fetchPriority="high"
+            />
+            <figcaption>
+              <span>MOHAMED BADR</span>
+              <span>FOUNDER · MB DESIGNS</span>
+            </figcaption>
+          </figure>
+          <a className="about-v2-scroll" href="#story">
+            <span>DISCOVER OUR STORY</span>
+            <ArrowIcon direction="down" />
+          </a>
+        </Container>
+
+        <Container as="section" id="story" className="about-v2-story section-pad" aria-labelledby="about-v2-story-title">
+          <div className="about-v2-section-heading">
+            <SectionHeading
+              id="about-v2-story-title"
+              eyebrow="01 / OUR STORY"
+              title={<>THREE DECADES OF<br />DESIGN EVOLUTION</>}
+              description="A multidisciplinary practice built through collaboration, precision and a commitment to architectural excellence."
+              align="start"
+            />
+          </div>
+          <div className="about-v2-story-grid">
+            <div className="about-v2-story-image" data-reveal>
+              <img
+                src="/assets/images/about-wide.webp"
+                alt="MB Designs architecture in warm evening light"
+                width="1360"
+                height="768"
+                loading="eager"
+                decoding="async"
+              />
+            </div>
+            <div className="about-v2-story-copy" data-reveal>
+              <p>
+                Founded in 1995, MB Designs has grown into a multidisciplinary studio delivering architecture and interior solutions across corporate, hospitality, retail and residential sectors.
+              </p>
+              <p>
+                Each project is guided by collaboration, creative clarity and technical rigor. Today, the practice continues to build on that legacy by designing spaces that enrich how people live, work and connect.
+              </p>
+              <Link className="home-text-link" to="/projects">
+                <span>EXPLORE OUR WORK</span>
+                <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+          <dl className="about-v2-facts" data-reveal>
+            <div>
+              <dt>1995</dt>
+              <dd>THE PRACTICE WAS FOUNDED</dd>
+            </div>
+            <div>
+              <dt>02</dt>
+              <dd>STUDIOS · CAIRO + DUBAI</dd>
+            </div>
+            <div>
+              <dt>06</dt>
+              <dd>INTEGRATED DISCIPLINES</dd>
+            </div>
+          </dl>
+        </Container>
+
+        <Container as="section" className="about-v2-philosophy" fluid aria-labelledby="about-v2-philosophy-title">
+          <div className="about-v2-philosophy-image" data-reveal>
+            <img
+              src="/assets/images/about-tall.webp"
+              alt="Contemporary courtyard designed by MB Designs"
+              width="1266"
+              height="1280"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div className="about-v2-philosophy-copy section-pad">
+            <SectionHeading
+              id="about-v2-philosophy-title"
+              eyebrow="02 / OUR PHILOSOPHY"
+              title={<>DESIGN BEYOND<br /><em>AESTHETICS.</em></>}
+              description="Exceptional spaces should inspire, function effortlessly and express the identity of the people and organizations they serve."
+              align="start"
+            />
+            <ol className="about-v2-principles">
+              {principles.map((principle, index) => (
+                <li data-reveal style={{ '--delay': `${index * 60}ms` } as CSSProperties} key={principle.name}>
+                  <span>{principle.number}</span>
+                  <strong>{principle.name}</strong>
+                  <p>{principle.copy}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </Container>
 
-        <Container as="section" className="about-story about-section" aria-labelledby="about-story-title">
+        <Container as="section" className="about-v2-direction section-pad" aria-labelledby="about-v2-direction-title">
           <SectionHeading
-            id="about-story-title"
-            eyebrow="1995 — TODAY"
-            title={<>OUR<br />STORY</>}
-            description="WHERE OUR JOURNEY BEGAN"
+            id="about-v2-direction-title"
+            eyebrow="03 / PURPOSE & DIRECTION"
+            title="WHAT GUIDES THE PRACTICE"
+            description="A clear mission for today and an ambitious vision for the future of the built environment."
             align="start"
-            className="about-story-heading"
           />
-          <div className="about-story-copy" data-reveal>
-            <p>FOUNDED IN 1995, MB DESIGNS HAS GROWN INTO A MULTIDISCIPLINARY DESIGN STUDIO RECOGNIZED FOR DELIVERING EXCEPTIONAL ARCHITECTURE AND INTERIOR SOLUTIONS ACROSS CORPORATE, HOSPITALITY, RETAIL, AND RESIDENTIAL SECTORS.</p>
-            <p>EVERY PROJECT IS GUIDED BY COLLABORATION, CREATIVITY, AND A DEDICATION TO ARCHITECTURAL EXCELLENCE. TODAY, WE CONTINUE TO BUILD UPON OUR LEGACY BY DESIGNING SPACES THAT ENHANCE EXPERIENCES AND ENRICH THE WAY PEOPLE LIVE, WORK, AND CONNECT.</p>
+          <div className="about-v2-direction-grid">
+            <article data-reveal aria-labelledby="about-v2-mission-title">
+              <span>01 / MISSION</span>
+              <h3 id="about-v2-mission-title">CREATE MEANINGFUL SPACES</h3>
+              <p>
+                Our mission is to elevate human experience through thoughtful architecture, timeless interiors and uncompromising quality—transforming vision into lasting value for clients and communities.
+              </p>
+              <Link className="home-text-link" to="/projects">
+                <span>VIEW PROJECTS</span>
+                <ArrowIcon />
+              </Link>
+            </article>
+            <article data-reveal style={{ '--delay': '90ms' } as CSSProperties} aria-labelledby="about-v2-vision-title">
+              <span>02 / VISION</span>
+              <h3 id="about-v2-vision-title">SHAPE HOW PEOPLE EXPERIENCE SPACE</h3>
+              <p>
+                Our vision is to advance architecture and interior design through innovation, creativity and purpose—setting a higher standard for how people live, work and connect.
+              </p>
+              <Link className="home-text-link" to="/team">
+                <span>MEET THE TEAM</span>
+                <ArrowIcon />
+              </Link>
+            </article>
           </div>
-        </Container>
-
-        <Container as="section" className="about-philosophy" fluid aria-labelledby="about-philosophy-title">
-          <div className="about-philosophy-shade" />
-          <SectionHeading
-            id="about-philosophy-title"
-            eyebrow="DESIGN PRINCIPLES"
-            title={<>OUR<br />PHILOSOPHY</>}
-            align="start"
-            className="about-philosophy-heading"
-          />
-          <p className="about-philosophy-copy" data-reveal>
-            WE BELIEVE THAT EXCEPTIONAL DESIGN EXTENDS BEYOND AESTHETICS. EVERY SPACE SHOULD INSPIRE, FUNCTION EFFORTLESSLY, AND REFLECT THE IDENTITY OF THOSE WHO EXPERIENCE IT. OUR WORK BALANCES ELEGANCE, INNOVATION, CRAFTSMANSHIP, AND TECHNICAL EXPERTISE TO CREATE ENVIRONMENTS THAT IMPROVE EVERYDAY LIFE WHILE STANDING THE TEST OF TIME.
-          </p>
-        </Container>
-
-        <Container as="section" className="about-values about-section" aria-label="Mission and vision">
-          <article className="about-value" aria-labelledby="about-mission-title" data-reveal>
-            <SectionHeading
-              id="about-mission-title"
-              eyebrow="01 / WHAT DRIVES US"
-              title={<>OUR<br />MISSION</>}
-              align="start"
-              reveal={false}
-              className="about-value-heading"
-            />
-            <div className="about-value-copy">
-              <p>OUR MISSION IS TO DESIGN MEANINGFUL SPACES THAT ELEVATE HUMAN EXPERIENCES THROUGH THOUGHTFUL ARCHITECTURE, TIMELESS INTERIORS, AND UNCOMPROMISING QUALITY.</p>
-              <p>EVERY PROJECT IS AN OPPORTUNITY TO TRANSFORM VISION INTO REALITY WHILE DELIVERING ENDURING VALUE FOR OUR CLIENTS AND COMMUNITIES.</p>
-            </div>
-          </article>
-          <article className="about-value about-value-vision" aria-labelledby="about-vision-title" data-reveal>
-            <SectionHeading
-              id="about-vision-title"
-              eyebrow="02 / THE FUTURE WE ENVISION"
-              title={<>OUR<br />VISION</>}
-              align="start"
-              reveal={false}
-              className="about-value-heading"
-            />
-            <div className="about-value-copy">
-              <p>TO SHAPE THE FUTURE OF ARCHITECTURE AND INTERIOR DESIGN BY CREATING INSPIRING ENVIRONMENTS THAT REDEFINE HOW PEOPLE LIVE, WORK, AND EXPERIENCE SPACE, SETTING NEW STANDARDS OF EXCELLENCE THROUGH INNOVATION, CREATIVITY, AND PURPOSEFUL DESIGN.</p>
-            </div>
-          </article>
         </Container>
       </main>
     </div>

@@ -22,6 +22,13 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 7. Animate only `opacity`, `filter`, `scale`, or `transform`; never use `transition: all`.
 8. Add new colors, radii, or type sizes to the shared tokens before using them in a page.
 
+## Shared site chrome
+
+- Every route uses the same fixed `SiteHeader`: white navigation and wordmark over one restrained dark-to-transparent gradient at the top of a hero.
+- After scrolling, the shared header gains one dark translucent surface so navigation stays readable above every page; do not add route-specific header color or positioning variants.
+- Keep anchor targets clear of the fixed header with the shared root `scroll-padding-top` value.
+- The shared footer starts directly with the dark brand and office directory. Keep page-level promotional callouts out of the footer.
+
 ## Awards page pattern
 
 - Use `display-title` for the hero and full-bleed narrative statement.
@@ -33,9 +40,22 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 
 ## About page pattern
 
-- Keep the founder portrait and opening statement full-bleed, with the title and supporting copy treated as separate entrance steps.
-- Use `SectionHeading` for story, philosophy, mission, and vision so their hierarchy matches the rest of the site.
-- Pair large display headings with readable copy columns capped near `64ch`; never inherit the centered home-page collage copy style.
-- Use structural hairlines instead of cards for story, mission, and vision, preserving the studio's editorial character.
-- Alternate mission and vision on wide screens, then restore a consistent heading-first reading order below `760px`.
-- Keep the philosophy image crisp with a contrast gradient rather than a backdrop blur.
+- Keep the About narrative focused on four visitor needs: the founder, the studio story, the design philosophy, and the mission/vision that guide the practice.
+- Use a split true-viewport hero on wide screens so the founder portrait keeps its full composition; switch to an image-overlay hero below `720px`.
+- Use `SectionHeading` for story, philosophy, and direction so their hierarchy matches the redesigned Home page.
+- Pair large display headings with readable copy capped near `58ch`; use sentence case for long paragraphs rather than dense all-caps copy.
+- Present studio milestones as a structural fact strip and design principles as ordered rows with tabular indices.
+- Keep mission and vision in equal editorial columns on wide screens and one reading-order column on mobile.
+- Use hairlines and neutral image outlines instead of decorative cards or shadows, preserving the studio's architectural character.
+- Keep local WebP images, intrinsic dimensions, lazy loading below the hero, and the shared reduced-motion fallback.
+
+## Home page pattern
+
+- Keep the narrative focused on six visitor needs: studio positioning, selected work, services, recognition, trusted clients, and contact through the shared footer.
+- Use one true-viewport architectural hero with a concise value proposition and two clear routes: projects and studio profile. Do not add a blocking intro curtain.
+- Give projects the largest share of the page. Present six projects from distinct practice categories as one horizontal, scroll-snapped row with keyboard-focusable overflow and explicit previous/next controls.
+- Present services as one integrated-practice section instead of repeating standalone service, manifesto, and location sections.
+- Present every available client logo as section 04 in one continuous marquee, duplicate the sequence only for visual continuity, pause on hover/focus, and replace the animation with native horizontal scrolling when reduced motion is requested.
+- Summarize recognition as section 05 on Home and link to the complete Awards page; do not reproduce the entire awards archive on the landing page.
+- Preserve local WebP posters and MP4 sources, intrinsic image dimensions, lazy loading below the first viewport, and static poster fallbacks for reduced motion.
+- Use the accent only for hierarchy markers and dates; use structural hairlines, neutral image outlines, and the shared spacing scale throughout.

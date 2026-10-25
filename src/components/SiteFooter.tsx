@@ -2,9 +2,6 @@ import { Link } from '@tanstack/react-router'
 import { Container } from './Container'
 import { ArrowIcon } from './Icon'
 
-const footerImage = '/assets/images/events/beb217_c8d6b2aff1e04d3aaefbe1525d64f982.webp'
-const footerLogo = '/assets/images/events/beb217_7045e1c98fe7473e9c71b4cf8a4e6050.webp'
-
 const footerLinks = [
   { label: 'HOME', to: '/' },
   { label: 'ABOUT', to: '/about' },
@@ -18,36 +15,17 @@ const footerLinks = [
 export function SiteFooter() {
   return (
     <footer id="contact" className="site-footer">
-      <section className="site-footer-hero" aria-labelledby="site-footer-title">
-        <img src={footerImage} alt="MB Designs studio interior" width="1700" height="950" loading="lazy" decoding="async" />
-        <div className="site-footer-shade" />
-        <Container className="site-footer-hero-inner">
-          <div className="site-footer-eyebrow">
-            <span>START A CONVERSATION</span>
-            <span>CAIRO · DUBAI</span>
-          </div>
-          <div className="site-footer-callout">
-            <h2 id="site-footer-title">LET’S TURN<br />IDEAS INTO<br /><em>PLACES.</em></h2>
-            <a className="site-footer-project" href="mailto:info@mbdesigns.design">
-              <span>START A PROJECT</span>
-              <ArrowIcon />
-            </a>
-          </div>
-        </Container>
-      </section>
-
       <section className="site-footer-body">
         <Container>
           <header className="site-footer-brand">
-            <img src={footerLogo} alt="MB Designs" width="600" height="180" loading="lazy" decoding="async" />
-            <p>ARCHITECTURE · INTERIOR DESIGN · PROJECT MANAGEMENT</p>
+            <Link className="site-footer-wordmark" to="/" aria-label="MB Designs home">
+              <strong>MB <span>|</span> DESIGNS</strong>
+              <small>ARCHITECTURE + INTERIOR DESIGN STUDIO</small>
+            </Link>
+            <p>Thoughtful spaces shaped by context, craft and the people who use them.</p>
           </header>
 
           <div className="site-footer-directory">
-            <div className="site-footer-intro">
-              <small>BUILDING TIMELESS EXPERIENCES</small>
-              <p>Thoughtful spaces shaped by context, craft and the people who use them.</p>
-            </div>
             <address>
               <small>01 / EGYPT OFFICE</small>
               <strong>CAIRO</strong>
@@ -64,7 +42,7 @@ export function SiteFooter() {
             <div className="site-footer-new-business">
               <small>03 / NEW BUSINESS</small>
               <strong>LET’S TALK</strong>
-              <span>Projects, collaborations and press enquiries.</span>
+              <span>Projects, collaborations, careers and press enquiries.</span>
               <a href="mailto:info@mbdesigns.design">INFO@MBDESIGNS.DESIGN</a>
             </div>
           </div>

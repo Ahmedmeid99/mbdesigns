@@ -13,14 +13,10 @@ const navigation = [
 export function SiteHeader() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
-  const pathParts = pathname.split('/').filter(Boolean)
-  const isSingleProject = pathParts[0] === 'projects' && pathParts.length >= 3
-  const isSurfaceHeader = pathname === '/team'
+  const [scrolled, setScrolled] = useState(false)
   const headerClassName = [
-    'site-header',
-    'shared-header',
-    isSingleProject ? 'shared-header--ink' : '',
-    isSurfaceHeader ? 'shared-header--surface' : '',
+    'site-header shared-header',
+    scrolled ? 'is-scrolled' : '',
     menuOpen ? 'is-menu-open' : '',
   ].filter(Boolean).join(' ')
 
@@ -32,6 +28,21 @@ export function SiteHeader() {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = previousOverflow }
   }, [menuOpen])
+
+  useEffect(() => {
+    let frame = 0
+    const updateHeader = () => {
+      window.cancelAnimationFrame(frame)
+      frame = window.requestAnimationFrame(() => setScrolled(window.scrollY > 24))
+    }
+
+    updateHeader()
+    window.addEventListener('scroll', updateHeader, { passive: true })
+    return () => {
+      window.removeEventListener('scroll', updateHeader)
+      window.cancelAnimationFrame(frame)
+    }
+  }, [])
 
   return (
     <header className={headerClassName}>
