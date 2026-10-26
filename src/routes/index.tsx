@@ -148,9 +148,9 @@ function HomePage() {
           <div className="home-hero-content">
             <p className="home-hero-eyebrow">ARCHITECTURE · INTERIORS · CAIRO · DUBAI</p>
             <h1 id="home-hero-title" className="display-title">
-              DESIGNING SPACES
-              <br />
-              THAT <em>ENDURE.</em>
+              ARCHITECTURE &<br /> INTERIOR DESIGN<br /> THAT INSPIRES
+
+
             </h1>
             <p className="home-hero-lead">
               Award-winning environments shaped by context, precision and more than three decades of design practice.
