@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 
 export const Route = createFileRoute('/awards')({
@@ -207,11 +208,13 @@ function AwardsPage() {
         <Container as="section" id="top" className="awards-hero site-page-hero" fluid aria-labelledby="awards-hero-title">
           <img src="/assets/images/awards-hero.webp" alt="Abstract amber architectural light" width="1920" height="1145" fetchPriority="high" />
           <div className="awards-hero-shade" />
-          <div className="awards-hero-copy site-page-hero__copy">
-            <p className="site-page-hero__eyebrow">AWARDS / INTERNATIONAL RECOGNITION</p>
-            <h1 id="awards-hero-title" className="display-title site-page-hero__title">WHERE VISION<br />EARNS RECOGNITION</h1>
-            <p className="site-page-hero__lead">Honoring a tradition of timeless design and architectural excellence.</p>
-          </div>
+          <PageHeroCopy
+            id="awards-hero-title"
+            className="awards-hero-copy"
+            eyebrow="AWARDS / INTERNATIONAL RECOGNITION"
+            title={<>WHERE VISION<br />EARNS RECOGNITION</>}
+            lead="Honoring a tradition of timeless design and architectural excellence."
+          />
         </Container>
 
         <Container as="section" className="certificate-section" aria-labelledby="awards-certificate-title">

@@ -2,6 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 
 const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height: number) => `/assets/images/career/${id}.webp`
@@ -49,11 +50,13 @@ function CareerPage() {
         <Container as="section" className="career-hero site-page-hero" fluid aria-labelledby="career-hero-title">
           <img src={heroImage} alt="MB Designs creative studio in motion" width="2400" height="1450" fetchPriority="high" />
           <div className="career-hero-overlay" />
-          <div className="career-hero-copy site-page-hero__copy">
-            <p className="site-page-hero__eyebrow">CAREERS · CAIRO + DUBAI</p>
-            <h1 id="career-hero-title" className="site-page-hero__title">THE FUTURE IS DESIGNED<br />BY THOSE WHO DARE TO CREATE.</h1>
-            <p className="site-page-hero__lead">AT MB DESIGNS, BOLD IDEAS BECOME PURPOSEFUL SPACES AND LASTING IMPACT.</p>
-          </div>
+          <PageHeroCopy
+            id="career-hero-title"
+            className="career-hero-copy"
+            eyebrow="CAREERS · CAIRO + DUBAI"
+            title={<>THE FUTURE IS DESIGNED<br />BY THOSE WHO DARE TO CREATE.</>}
+            lead="AT MB DESIGNS, BOLD IDEAS BECOME PURPOSEFUL SPACES AND LASTING IMPACT."
+          />
           <a className="career-hero-scroll" href="#opportunities">
             <span>VIEW OPPORTUNITIES</span>
             <ArrowIcon direction="down" />

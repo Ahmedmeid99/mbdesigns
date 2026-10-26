@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 import { getProjectDetail } from '../project-details.generated'
 
@@ -94,11 +95,16 @@ function SingleProjectPage() {
         <img src={cover.image} alt={`${detail.title} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
         <div className="single-project-hero-shade" />
         <Container className="single-project-hero-inner site-page-hero__inner">
-          <div className="single-project-hero-copy site-page-hero__copy">
-            <p className="single-project-hero-eyebrow site-page-hero__eyebrow">PROJECT / {category.name}</p>
-            <h1 id="single-project-title" className={`display-title site-page-hero__title${detail.title.length > 18 ? ' is-long' : ''}`}>{detail.title}</h1>
-            <p className="single-project-hero-location site-page-hero__lead">{detail.location}</p>
-          </div>
+          <PageHeroCopy
+            id="single-project-title"
+            className="single-project-hero-copy"
+            eyebrowClassName="single-project-hero-eyebrow"
+            titleClassName={detail.title.length > 18 ? 'is-long' : ''}
+            leadClassName="single-project-hero-location"
+            eyebrow={<>PROJECT / {category.name}</>}
+            title={detail.title}
+            lead={detail.location}
+          />
           <div className="single-project-hero-foot">
             <Link to="/projects/$category" params={{ category: categorySlug }}>BACK TO {category.name}</Link>
             <a href="#project-gallery">SCROLL TO VIEW PROJECT</a>

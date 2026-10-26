@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 
 const heroImage = '/assets/images/team/hero.webp'
 
@@ -68,11 +69,13 @@ function TeamPage() {
       <main id="top">
         <Container as="section" className="team-hero site-page-hero" aria-labelledby="team-hero-title" fluid>
           <img src={heroImage} alt="MB Designs team in motion" width="2400" height="1200" fetchPriority="high" />
-          <div className="team-hero-copy site-page-hero__copy">
-            <p className="site-page-hero__eyebrow">STUDIO / THE PEOPLE BEHIND THE WORK</p>
-            <h1 id="team-hero-title" className="site-page-hero__title">BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</h1>
-            <p className="site-page-hero__lead">A multidisciplinary team united by curiosity, precision and a shared commitment to purposeful design.</p>
-          </div>
+          <PageHeroCopy
+            id="team-hero-title"
+            className="team-hero-copy"
+            eyebrow="STUDIO / THE PEOPLE BEHIND THE WORK"
+            title={<>BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</>}
+            lead="A multidisciplinary team united by curiosity, precision and a shared commitment to purposeful design."
+          />
         </Container>
 
         <Container as="section" className="team-roster" aria-labelledby="team-roster-title">

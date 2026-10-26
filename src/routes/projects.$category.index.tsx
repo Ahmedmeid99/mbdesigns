@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 
@@ -49,11 +50,15 @@ function ProjectCategoryPage() {
           <img src={detail.hero} alt={`${category.name} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
           <div className="project-detail-shade" />
           <Container className="project-detail-hero-inner site-page-hero__inner">
-            <div className="project-detail-hero-copy site-page-hero__copy">
-              <p className="project-detail-hero-eyebrow site-page-hero__eyebrow">PROJECTS / {category.name}</p>
-              <h1 id="project-detail-hero-title" className="display-title site-page-hero__title">{detail.heroLines[0]}<br />{detail.heroLines[1]}</h1>
-              <p className="project-detail-hero-lead site-page-hero__lead">{detail.subtitle}</p>
-            </div>
+            <PageHeroCopy
+              id="project-detail-hero-title"
+              className="project-detail-hero-copy"
+              eyebrowClassName="project-detail-hero-eyebrow"
+              leadClassName="project-detail-hero-lead"
+              eyebrow={<>PROJECTS / {category.name}</>}
+              title={<>{detail.heroLines[0]}<br />{detail.heroLines[1]}</>}
+              lead={detail.subtitle}
+            />
             <div className="project-detail-hero-foot">
               <Link to="/projects">ALL PROJECTS</Link>
               <a href="#project-gallery">{String(projects.length).padStart(2, '0')} SELECTED PROJECTS</a>

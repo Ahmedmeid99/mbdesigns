@@ -14,12 +14,40 @@ const footerLinks = [
 ] as const
 
 const socialLinks = [
-  { label: 'FACEBOOK', href: 'https://www.facebook.com/mb.mbdesigns/?locale=ar_AR' },
-  { label: 'INSTAGRAM', href: 'https://www.instagram.com/mbdesigns.design/' },
-  { label: 'LINKEDIN', href: 'https://www.linkedin.com/company/mbdesignseg/home/' },
+  { label: 'FACEBOOK', href: 'https://www.facebook.com/mb.mbdesigns/?locale=ar_AR', network: 'facebook' },
+  { label: 'INSTAGRAM', href: 'https://www.instagram.com/mbdesigns.design/', network: 'instagram' },
+  { label: 'LINKEDIN', href: 'https://www.linkedin.com/company/mbdesignseg/home/', network: 'linkedin' },
 ] as const
 
 const cairoMapUrl = 'https://www.bing.com/maps/search?q=30.109478694184%2C+31.34949233624&cp=30.109478%7E31.349493&lvl=16&style=r'
+
+type SocialNetwork = (typeof socialLinks)[number]['network']
+
+function SocialIcon({ network }: { network: SocialNetwork }) {
+  if (network === 'facebook') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path fill="currentColor" d="M13.7 21v-8h2.7l.4-3h-3.1V8.1c0-.9.3-1.5 1.6-1.5H17V3.9a22 22 0 0 0-2.4-.1c-2.4 0-4.1 1.5-4.1 4.2v2H8v3h2.5v8h3.2Z" />
+      </svg>
+    )
+  }
+
+  if (network === 'instagram') {
+    return (
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <rect x="3.5" y="3.5" width="17" height="17" rx="5" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="17.5" cy="6.7" r="1.1" fill="currentColor" />
+      </svg>
+    )
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" aria-hidden="true">
+      <path fill="currentColor" d="M5.2 8.3H8V19H5.2V8.3Zm1.4-5.2a1.65 1.65 0 1 1 0 3.3 1.65 1.65 0 0 1 0-3.3ZM10.2 8.3h2.7v1.5h.1c.4-.7 1.3-1.8 3.3-1.8 3.5 0 4.1 2.2 4.1 5.2V19h-2.8v-5.2c0-1.2 0-2.9-1.8-2.9s-2 1.4-2 2.8V19h-2.9V8.3Z" />
+    </svg>
+  )
+}
 
 export function SiteFooter() {
   const footerRef = useRef<HTMLElement>(null)
@@ -66,10 +94,10 @@ export function SiteFooter() {
               <Link className="site-footer-wordmark" to="/" aria-label="MB Designs home">
                 <img
                   className="site-footer-logo"
-                  src="/assets/branding/mb-designs-logo-white.png"
+                  src="/assets/branding/mb-designs-logo-white-hq.png"
                   alt=""
-                  width="1169"
-                  height="354"
+                  width="937"
+                  height="177"
                   loading="lazy"
                   decoding="async"
                 />
@@ -99,18 +127,21 @@ export function SiteFooter() {
                 <strong>LET’S TALK</strong>
                 <span>Projects, collaborations, careers and press enquiries.</span>
                 <a href="mailto:info@mbdesigns.design">INFO@MBDESIGNS.DESIGN</a>
+                <nav className="site-footer-social" aria-label="Social media">
+                  {socialLinks.map((item) => (
+                    <a
+                      key={item.label}
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`MB Designs on ${item.label}`}
+                      title={item.label}
+                    >
+                      <SocialIcon network={item.network} />
+                    </a>
+                  ))}
+                </nav>
               </div>
-            </div>
-
-            <div className="site-footer-social">
-              <span>FOLLOW THE STUDIO</span>
-              <nav aria-label="Social media">
-                {socialLinks.map((item) => (
-                  <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer">
-                    {item.label} <ArrowIcon />
-                  </a>
-                ))}
-              </nav>
             </div>
 
             <nav className="site-footer-links" aria-label="Footer navigation">

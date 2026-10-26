@@ -2,6 +2,8 @@ import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { Container } from '../components/Container'
 import { ArrowIcon } from '../components/Icon'
+import { PageHeroCopy } from '../components/PageHeroCopy'
+import { SectionHeading } from '../components/SectionHeading'
 
 type ImageSource = readonly [string, 'jpg' | 'jpeg' | 'png']
 type EventYear = '2026' | '2025' | '2023' | '2019' | '2018'
@@ -11,7 +13,7 @@ const eventImage = (id: string) => `/assets/images/events/${id}.webp`
 const image = ([id]: ImageSource) => eventImage(id)
 
 const heroImage = eventImage('beb217_a1ad0c8b264f477b9b0456fc974ad4bf')
-const pressHero = eventImage('beb217_f6d401a6b8744e12b88e9b766c9c4247')
+const pressHero = '/assets/images/events/press-feature-clean.webp'
 
 const design2026 = [
   ['beb217_ff8f9ee68ec94188b960eb61b12c037f', 'png'], ['beb217_f5fd7dc5fee7480da3819221a205fc91', 'png'],
@@ -110,10 +112,12 @@ const events: readonly EventItem[] = [
 ] as const
 
 const pressLogos = [
-  ['beb217_9cfecee13beb4fada02a2abdec2c91d1', 'png'], ['beb217_9c850e9ad2bf4a95a689207e58a71bbc', 'png'],
-  ['beb217_16d4edd124b94d41a30178c2d27306b4', 'png'], ['beb217_8f6a962789714c48b5a8162d7c5b59ff', 'jpg'],
-  ['beb217_f202f7e7ad4df0ac2aa3c67f0007df', 'jpg'],
-] as const satisfies readonly ImageSource[]
+  { src: '/assets/images/events/press-logos/press-01.webp', alt: 'Fuzed Magazine' },
+  { src: '/assets/images/events/press-logos/press-02.webp', alt: 'Unplugged' },
+  { src: '/assets/images/events/press-logos/press-03.webp', alt: 'Enigma — The International Arab Magazine' },
+  { src: '/assets/images/events/press-logos/press-04.webp', alt: 'Al Bait Magazine' },
+  { src: '/assets/images/events/press-logos/press-05.webp', alt: 'Cairo Design District' },
+] as const
 
 export const Route = createFileRoute('/events-press')({
   head: () => ({
@@ -172,20 +176,25 @@ function EventsPressPage() {
           <img src={heroImage} alt="MB Designs event gathering" width="2400" height="1450" fetchPriority="high" />
           <div className="events-hero-shade" />
           <Container className="events-hub-hero-inner site-page-hero__inner">
-            <div className="events-hero-copy events-hub-hero-copy site-page-hero__copy">
-              <p className="site-page-hero__eyebrow">MB DESIGNS · CAIRO / DUBAI</p>
-              <h1 id="events-hero-title" className="site-page-hero__title">EVENTS<br />&amp; PRESS</h1>
-              <span className="site-page-hero__lead">Exhibitions, collaborations, conversations and stories from our studio.</span>
-            </div>
+            <PageHeroCopy
+              id="events-hero-title"
+              className="events-hero-copy events-hub-hero-copy"
+              eyebrow="MB DESIGNS · CAIRO / DUBAI"
+              title={<>EVENTS<br />&amp; PRESS</>}
+              lead="Exhibitions, collaborations, conversations and stories from our studio."
+            />
             <a className="events-hub-scroll" href="#events-browser">EXPLORE <ArrowIcon direction="down" /></a>
           </Container>
         </Container>
 
         <Container as="section" id="events-browser" className="events-browser">
-          <header className="events-browser-intro" data-reveal>
-            <p>DISCOVER THE MOMENTS BEHIND OUR WORK</p>
-            <h2>CHOOSE WHAT<br />YOU WANT TO EXPLORE</h2>
-          </header>
+          <SectionHeading
+            id="events-browser-title"
+            className="events-browser-intro"
+            eyebrow="DISCOVER THE MOMENTS BEHIND OUR WORK"
+            title={<>CHOOSE WHAT YOU<br />WANT TO EXPLORE</>}
+            align="start"
+          />
 
           <div className="events-view-tabs" role="tablist" aria-label="Events and press sections">
             <button type="button" role="tab" aria-selected={view === 'events'} className={view === 'events' ? 'is-active' : ''} onClick={() => changeView('events')}>
@@ -225,7 +234,7 @@ function EventsPressPage() {
           ) : (
             <div role="tabpanel" className="press-browser-panel">
               <div className="press-browser-feature" data-reveal>
-                <img src={pressHero} alt="MB Designs architectural project featured in the press" width="2400" height="900" loading="lazy" decoding="async" />
+                <img src={pressHero} alt="MB Designs architectural project featured in the press" width="1920" height="1080" loading="lazy" decoding="async" />
                 <div><p>IN THE NEWS</p><h2>WHERE OUR WORK<br />MAKES HEADLINES</h2></div>
               </div>
               <div className="press-browser-copy" data-reveal>
@@ -234,9 +243,9 @@ function EventsPressPage() {
               </div>
               <div className="press-browser-grid">
                 {pressLogos.map((logo, index) => (
-                  <article key={logo[0]} data-reveal style={{ '--delay': `${index * 70}ms` } as React.CSSProperties}>
+                  <article key={logo.src} data-reveal style={{ '--delay': `${index * 70}ms` } as React.CSSProperties}>
                     <span>{String(index + 1).padStart(2, '0')}</span>
-                    <img src={image(logo)} alt={`Press publication ${index + 1}`} loading="lazy" decoding="async" />
+                    <img src={logo.src} alt={logo.alt} width="440" height="160" loading="lazy" decoding="async" />
                     <small>FEATURED PUBLICATION</small>
                   </article>
                 ))}

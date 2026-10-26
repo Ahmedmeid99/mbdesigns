@@ -100,18 +100,18 @@ function BrandLogo() {
     <span className="brand-logo" aria-hidden="true">
       <img
         className="brand-logo__image brand-logo__image--white"
-        src="/assets/branding/mb-designs-logo-white.png"
+        src="/assets/branding/mb-designs-logo-white-hq.png"
         alt=""
-        width="1169"
-        height="354"
+        width="937"
+        height="177"
         fetchPriority="high"
       />
       <img
         className="brand-logo__image brand-logo__image--black"
-        src="/assets/branding/mb-designs-logo-black.png"
+        src="/assets/branding/mb-designs-logo-black-hq.png"
         alt=""
-        width="1169"
-        height="354"
+        width="937"
+        height="177"
         decoding="async"
       />
     </span>

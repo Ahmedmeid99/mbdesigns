@@ -25,11 +25,11 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 ## Shared site chrome
 
 - Every route uses the same fixed-height `SiteHeader`: navigation and the official local MB Designs logo over a fully transparent surface, including project gallery pages.
-- Use `/assets/branding/mb-designs-logo-white.png` on dark heroes, dark narrative panels, open mobile navigation, and the footer. Use `/assets/branding/mb-designs-logo-black.png` on light content. The fixed header detects the surface beneath it and swaps variants without filters or recoloring.
+- Use the tightly cropped, lossless `/assets/branding/mb-designs-logo-white-hq.png` on dark heroes, dark narrative panels, open mobile navigation, and the footer. Use `/assets/branding/mb-designs-logo-black-hq.png` on light content. The fixed header detects the surface beneath it and swaps variants without filters or recoloring.
 - After scrolling, keep the header colorless and add only background blur plus a restrained hairline; do not add route-specific header color, height, or positioning variants.
 - Keep anchor targets clear of the fixed header with the shared root `scroll-padding-top` value.
 - The shared footer starts directly with the dark brand and office directory. Keep page-level promotional callouts out of the footer.
-- Keep the shared social strip text-led and use the existing directional icon for every external link. The Cairo address links to the canonical map coordinates without advertising or tracking parameters.
+- Keep social media controls as accessible 44px icon links directly beneath “LET’S TALK”; do not detach them into a separate footer strip. The Cairo address links to the canonical map coordinates without advertising or tracking parameters.
 - Use one global scroll-to-top control from `SiteFooter`: reveal it only after meaningful scroll progress, switch to the light treatment over the dark footer, preserve a 44px-or-larger hit area, and honor reduced-motion preferences.
 - Open project gallery images inside the in-page viewer below the shared header; never navigate visitors directly to a raw image asset.
 - Start every individual project route with the same full-viewport hero pattern: local project cover, category eyebrow, oversized project name, location, and clear routes back to the category and down to the gallery.
@@ -37,10 +37,19 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 ## Interior page hero pattern
 
 - Every page except Home uses the shared `site-page-hero` composition and `--page-hero-height` token.
+- Render every non-home hero’s eyebrow, title and lead through the reusable `PageHeroCopy` component so their position, scale, spacing and entrance behavior cannot drift between routes.
 - Keep the content hierarchy consistent: compact uppercase eyebrow, balanced display title, then a concise sentence-case lead.
 - Align hero copy to the shared gutter near the lower-left of the viewport. Page-specific images and copy may change, but hero height, title scale, spacing, and mobile behavior must not.
 - Use the shared `site-page-hero__inner`, `site-page-hero__copy`, `site-page-hero__eyebrow`, `site-page-hero__title`, and `site-page-hero__lead` classes instead of recreating route-specific positioning.
 - Home intentionally keeps its own narrative hero and is not part of this pattern.
+- Team and Awards use the About page's editorial copy treatment: left-aligned eyebrow, display title and concise lead over a restrained directional image gradient, with the shared full-viewport height and gutter.
+
+## Events and press pattern
+
+- Keep publication marks sourced from the source site's Press section as local optimized WebP assets; never load Wix media at runtime.
+- Remove inconsistent source whitespace before display, then place every mark on the same `440 × 160` neutral canvas so logos share one optical footprint without stretching or changing their proportions.
+- Preserve descriptive alternative text for every publication mark and use the same grid cell dimensions at each breakpoint.
+- Introduce the Events / Press browser with the shared left-aligned `SectionHeading` hierarchy before the view tabs; avoid one-off oversized heading compositions.
 
 ## Awards page pattern
 
@@ -62,7 +71,7 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 ## About page pattern
 
 - Keep the About narrative focused on four visitor needs: the founder, the studio story, the design philosophy, and the mission/vision that guide the practice.
-- Use the locally outpainted full-width founder portrait in the hero. Keep the founder and chair on the right and place the copy directly over the empty burgundy negative space on the left; do not add a separate color panel. Use the original portrait above a dedicated copy panel on narrow screens.
+- Use the locally outpainted full-width founder portrait in the hero. Keep the founder and chair on the right, preserve the complete seated figure and headroom with uncropped desktop framing, and place the copy directly over the empty burgundy negative space on the left; do not add a separate color panel. Use the original portrait above a dedicated copy panel on narrow screens.
 - Use `SectionHeading` for story, philosophy, and direction so their hierarchy matches the redesigned Home page.
 - Pair large display headings with readable copy capped near `58ch`; use sentence case for long paragraphs rather than dense all-caps copy.
 - Present studio milestones as a structural fact strip and design principles as ordered rows with tabular indices.

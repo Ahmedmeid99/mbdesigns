@@ -3,6 +3,7 @@ import type { CSSProperties } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 
 export const Route = createFileRoute('/about')({
@@ -72,17 +73,15 @@ function AboutPage() {
     <div ref={pageRef} className={ready ? 'about-site about-v2 is-ready' : 'about-site about-v2'}>
       <main>
         <Container as="section" id="top" className="about-v2-hero site-page-hero" fluid aria-labelledby="about-v2-hero-title">
-          <div className="about-v2-hero-copy site-page-hero__copy">
-            <p className="about-v2-eyebrow site-page-hero__eyebrow">MB DESIGNS · ESTABLISHED 1995</p>
-            <h1 id="about-v2-hero-title" className="display-title site-page-hero__title">
-              A PRACTICE BUILT
-              <br />
-              ON <em>VISION.</em>
-            </h1>
-            <p className="about-v2-hero-lead site-page-hero__lead">
-              Led by founder Mohamed Badr, MB Designs brings creativity, technical knowledge and human experience together to shape purposeful, enduring spaces.
-            </p>
-          </div>
+          <PageHeroCopy
+            id="about-v2-hero-title"
+            className="about-v2-hero-copy"
+            eyebrowClassName="about-v2-eyebrow"
+            leadClassName="about-v2-hero-lead"
+            eyebrow="MB DESIGNS · ESTABLISHED 1995"
+            title={<>A PRACTICE BUILT<br />ON VISION.</>}
+            lead="Led by founder Mohamed Badr, MB Designs brings creativity, technical knowledge and human experience together to shape purposeful, enduring spaces."
+          />
           <figure className="about-v2-founder">
             <picture>
               <source media="(max-width: 720px)" srcSet="/assets/images/about-founder.webp" />

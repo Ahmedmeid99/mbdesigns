@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
+import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 import { projectCategories } from '../portfolio-data'
 
@@ -42,11 +43,15 @@ function ProjectsPage() {
           <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
           <div className="projects-hero-shade" />
           <Container className="projects-hero-inner site-page-hero__inner">
-            <div className="projects-hero-copy site-page-hero__copy">
-              <p className="projects-hero-eyebrow site-page-hero__eyebrow">SELECTED WORK / SIX DISCIPLINES</p>
-              <h1 id="projects-hero-title" className="display-title site-page-hero__title">WE PURSUE<br />EXCELLENCE IN EVERY DETAIL</h1>
-              <p className="projects-hero-lead site-page-hero__lead">Architecture and interiors shaped by context, precision and the people who use them.</p>
-            </div>
+            <PageHeroCopy
+              id="projects-hero-title"
+              className="projects-hero-copy"
+              eyebrowClassName="projects-hero-eyebrow"
+              leadClassName="projects-hero-lead"
+              eyebrow="SELECTED WORK / SIX DISCIPLINES"
+              title={<>WE PURSUE<br />EXCELLENCE IN EVERY DETAIL</>}
+              lead="Architecture and interiors shaped by context, precision and the people who use them."
+            />
             <div className="projects-hero-foot">
               <span>CAIRO / DUBAI</span>
               <a href="#project-categories">EXPLORE CATEGORIES</a>

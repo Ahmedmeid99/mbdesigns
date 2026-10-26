@@ -25,7 +25,7 @@ export const Route = createRootRoute({
     links: [
       { rel: 'preload', as: 'font', href: '/assets/fonts/cal-sans-semibold.woff2', type: 'font/woff2', crossOrigin: 'anonymous' },
       { rel: 'preload', as: 'font', href: '/assets/fonts/league-spartan-bold.woff2', type: 'font/woff2', crossOrigin: 'anonymous' },
-      { rel: 'preload', as: 'image', href: '/assets/branding/mb-designs-logo-white.png' },
+      { rel: 'preload', as: 'image', href: '/assets/branding/mb-designs-logo-white-hq.png' },
       { rel: 'stylesheet', href: stylesHref },
       { rel: 'stylesheet', href: designSystemHref },
       { rel: 'preload', as: 'image', href: '/assets/images/hero.webp' },
