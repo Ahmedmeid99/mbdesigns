@@ -3339,8 +3339,9 @@ video {
 
 .events-hero {
   position: relative;
-  height: min(61.5vw, 780px);
-  min-height: 690px;
+  isolation: isolate;
+  height: 100svh;
+  min-height: var(--page-hero-height);
   overflow: hidden;
   background: #5e260e;
   color: #fff;
@@ -3721,11 +3722,6 @@ video {
 }
 
 @media (max-width: 820px) {
-  .events-hero {
-    height: 78svh;
-    min-height: 560px;
-  }
-
   .events-hero-copy h1 {
     font-size: clamp(2.1rem, 7.5vw, 3.3rem);
   }
@@ -3752,11 +3748,6 @@ video {
 @media (max-width: 640px) {
   .events-header .mobile-brand .wordmark {
     color: #fff;
-  }
-
-  .events-hero {
-    height: 76svh;
-    min-height: 520px;
   }
 
   .events-hero-copy {
