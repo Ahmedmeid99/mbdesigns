@@ -1,11 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
+import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
+import { SectionHeading } from '../components/SectionHeading'
 
 const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height: number) => `/assets/images/career/${id}.webp`
 
 const heroImage = wixImage('beb217_eb9741a51a4847268ed2c29d1b15a25c', 'jpg', 2400, 1450)
-const statementLogo = wixImage('beb217_2092a8268dce4b678f8e3e47a2c80c8b', 'png', 1200, 364)
 const careersEmail = 'info@mbdesigns.design'
 
 const careerEmailHref = (jobTitle: string) =>
@@ -43,53 +44,65 @@ function CareerPage() {
   }, [])
 
   return (
-    <div ref={rootRef} className={ready ? 'career-site is-ready' : 'career-site'}>
+    <div ref={rootRef} className={ready ? 'career-site career-v2 is-ready' : 'career-site career-v2'}>
       <main id="top">
         <Container as="section" className="career-hero site-page-hero" fluid aria-labelledby="career-hero-title">
           <img src={heroImage} alt="MB Designs creative studio in motion" width="2400" height="1450" fetchPriority="high" />
           <div className="career-hero-overlay" />
           <div className="career-hero-copy site-page-hero__copy">
-            <p className="site-page-hero__eyebrow">CAREERS / CAIRO · DUBAI</p>
-            <h1 id="career-hero-title" className="site-page-hero__title">THE FUTURE IS DESIGNED BY THOSE<br />WHO DARE TO CREATE</h1>
-            <p className="site-page-hero__lead">At MB Designs, we turn bold ideas into lasting impact.</p>
+            <p className="site-page-hero__eyebrow">CAREERS · CAIRO + DUBAI</p>
+            <h1 id="career-hero-title" className="site-page-hero__title">THE FUTURE IS DESIGNED<br />BY THOSE WHO DARE TO CREATE.</h1>
+            <p className="site-page-hero__lead">AT MB DESIGNS, BOLD IDEAS BECOME PURPOSEFUL SPACES AND LASTING IMPACT.</p>
           </div>
+          <a className="career-hero-scroll" href="#opportunities">
+            <span>VIEW OPPORTUNITIES</span>
+            <ArrowIcon direction="down" />
+          </a>
         </Container>
 
-        <Container as="section" className="career-statement" aria-label="Join the MB Designs team">
-          <div className="career-statement-copy" data-reveal>
-            <p>BUILD WHAT COMES NEXT</p>
-            <h2><span>READY TO SHAPE</span><span>THE FUTURE OF DESIGN?</span><strong>JOIN THE TEAM.</strong></h2>
+        <Container as="section" className="career-statement section-pad" aria-labelledby="career-statement-title">
+          <div className="career-statement-heading">
+            <SectionHeading
+              id="career-statement-title"
+              eyebrow="01 / BUILD WITH US"
+              title={<>READY TO SHAPE<br />WHAT COMES NEXT?</>}
+              description="Join a multidisciplinary practice where curiosity, precision and collaboration turn ambitious ideas into enduring places."
+              align="start"
+            />
           </div>
           <div className="career-statement-side" data-reveal>
-            <img src={statementLogo} alt="MB Designs team" width="1200" height="364" loading="eager" />
-            <p>WE WELCOME CURIOUS MINDS, BOLD THINKERS AND TRUSTED PARTNERS WHO WANT TO CREATE WORK WITH LASTING VALUE.</p>
+            <p className="career-statement-kicker">MB DESIGNS / ESTABLISHED 1995</p>
+            <p>WE WELCOME CURIOUS MINDS, BOLD THINKERS AND TRUSTED PARTNERS WHO CARE ABOUT THE QUALITY OF EVERY DECISION.</p>
+            <p>FROM EARLY-CAREER TALENT TO ESTABLISHED SUPPLIERS, WE VALUE PEOPLE WHO BRING CRAFT, INITIATIVE AND A GENEROUS COLLABORATIVE SPIRIT.</p>
           </div>
         </Container>
 
-        <Container as="section" className="career-opportunities" aria-labelledby="career-title">
-          <header data-reveal>
-            <div>
-              <p>OPPORTUNITIES</p>
-              <h2 id="career-title">BE PART OF<br />THE TEAM</h2>
-            </div>
-            <span>TALENT / PARTNERS</span>
-          </header>
-          <Opportunity
-            index="01"
-            title="INTERNSHIPS"
-            subtitle="START YOUR JOURNEY WITH MB DESIGNS"
-            copy="Interested in gaining hands-on experience with MB DESIGNS? Submit your application along with links to your CV, portfolio, and a recent photo for our team to review."
-            action="APPLY NOW"
-            emailSubject="INTERNSHIPS"
+        <Container as="section" id="opportunities" className="career-opportunities section-pad" aria-labelledby="career-title">
+          <SectionHeading
+            id="career-title"
+            eyebrow="02 / OPPORTUNITIES"
+            title={<>BE PART OF<br />THE TEAM</>}
+            description="Choose the path that fits you. Each action opens your email with the correct opportunity already added to the subject line."
+            align="start"
           />
-          <Opportunity
-            index="02"
-            title="SUPPLIERS"
-            subtitle="WORK WITH MB DESIGNS"
-            copy="Interested in becoming part of our network of trusted suppliers and partners? Submit your company profile, portfolio or catalogue, and relevant project or product photography for our team to review."
-            action="SUBMIT YOUR PROFILE"
-            emailSubject="SUPPLIERS"
-          />
+          <div className="career-opportunity-list">
+            <Opportunity
+              index="01"
+              title="INTERNSHIPS"
+              subtitle="START YOUR JOURNEY WITH MB DESIGNS"
+              copy="Interested in gaining hands-on experience with MB Designs? Email your CV, portfolio link and a short introduction for our team to review."
+              action="APPLY BY EMAIL"
+              emailSubject="INTERNSHIPS"
+            />
+            <Opportunity
+              index="02"
+              title="SUPPLIERS"
+              subtitle="WORK WITH MB DESIGNS"
+              copy="Interested in joining our trusted supplier network? Email your company profile, catalogue and relevant project or product photography."
+              action="SEND YOUR PROFILE"
+              emailSubject="SUPPLIERS"
+            />
+          </div>
         </Container>
       </main>
     </div>
@@ -101,7 +114,10 @@ function Opportunity({ index, title, subtitle, copy, action, emailSubject }: { i
     <article className="career-opportunity" data-reveal>
       <div className="career-opportunity-label"><span>{index}</span><h3>{title}</h3></div>
       <div className="career-opportunity-copy"><h4>{subtitle}</h4><p>{copy}</p></div>
-      <a className="career-opportunity-action" href={careerEmailHref(emailSubject)} aria-label={`${action} by email for ${emailSubject}`}>{action}</a>
+      <a className="career-opportunity-action" href={careerEmailHref(emailSubject)} aria-label={`${action} for ${emailSubject}`}>
+        <span>{action}</span>
+        <ArrowIcon />
+      </a>
     </article>
   )
 }

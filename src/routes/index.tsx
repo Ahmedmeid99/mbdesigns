@@ -78,28 +78,17 @@ const services = [
   'SITE SUPERVISION',
 ] as const
 
-const clientLogos = [
-  ['18f4e5a174db548d', ''],
-  ['20af07b07db56cf2', ''],
-  ['22df8de71dee97fd', ''],
-  ['2550bd4224eb62d4', ''],
-  ['2938c3574ba2aebe', ''],
-  ['3b4e6777a0647590', 'Palm Hills Developments'],
-  ['4ff1a755e5a7ab9e', ''],
-  ['538bb5dd411be0e1', ''],
-  ['6d4b5d12526e8392', 'Hugo Boss'],
-  ['70856edca403ccbe', ''],
-  ['7804445959065e27', ''],
-  ['8e4f93d539550a8a', 'Al Jazi Gardens'],
-  ['a244ee3790d7910d', 'SODIC'],
-  ['af05a4481afd8b74', 'Asfour Crystal'],
-  ['c78f3991e2b90752', ''],
-  ['d1a6577d69ebd454', 'Billionaire'],
-  ['e97a6c6713d3eb28', ''],
-  ['ef0a159464d1e2ee', ''],
-  ['f4402aa139140d81', ''],
-  ['f83ac1d5c2a93a53', ''],
-] as const
+// 49 unique logo crops from the reference site's “Our Valued Partners” section.
+// The source repeats one crop exactly, so it is intentionally stored only once here.
+const clientLogos = Array.from({ length: 49 }, (_, index) => [
+  `our-valued-partners-normalized/partner-${String(index + 1).padStart(2, '0')}`,
+  '',
+] as const)
+
+const clientLogoRows = [
+  clientLogos.filter((_, index) => index % 2 === 0),
+  clientLogos.filter((_, index) => index % 2 === 1),
+]
 
 function HomePage() {
   const [ready, setReady] = useState(false)
@@ -328,25 +317,34 @@ function HomePage() {
               align="start"
             />
           </Container>
-          <div className="home-client-marquee" data-reveal tabIndex={0} aria-label="Selected client logos">
-            <div className="home-client-track">
-              {[0, 1].map((sequenceIndex) => (
-                <div className="home-client-sequence" aria-hidden={sequenceIndex === 1 ? true : undefined} key={sequenceIndex}>
-                  {clientLogos.map(([id, alt]) => (
-                    <div className="home-client-logo" key={`${sequenceIndex}-${id}`}>
-                      <img
-                        src={`/assets/partners/${id}.webp`}
-                        alt={sequenceIndex === 0 ? alt : ''}
-                        width="180"
-                        height="86"
-                        loading="eager"
-                        decoding="async"
-                      />
+          <div className="home-client-marquees" data-reveal>
+            {clientLogoRows.map((logos, rowIndex) => (
+              <div
+                className={`home-client-marquee${rowIndex === 1 ? ' is-reverse' : ''}`}
+                tabIndex={0}
+                aria-label={`Selected client logos row ${rowIndex + 1}`}
+                key={rowIndex}
+              >
+                <div className="home-client-track">
+                  {[0, 1].map((sequenceIndex) => (
+                    <div className="home-client-sequence" aria-hidden={sequenceIndex === 1 ? true : undefined} key={sequenceIndex}>
+                      {logos.map(([id, alt]) => (
+                        <div className="home-client-logo" data-logo={id} key={`${rowIndex}-${sequenceIndex}-${id}`}>
+                          <img
+                            src={`/assets/partners/${id}.webp`}
+                            alt={sequenceIndex === 0 ? alt : ''}
+                            width="180"
+                            height="86"
+                            loading="eager"
+                            decoding="async"
+                          />
+                        </div>
+                      ))}
                     </div>
                   ))}
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </Container>
 

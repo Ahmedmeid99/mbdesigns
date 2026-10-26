@@ -14,9 +14,11 @@ export function SiteHeader() {
   const { pathname } = useLocation()
   const [menuOpen, setMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [overDark, setOverDark] = useState(true)
   const headerClassName = [
     'site-header shared-header',
     scrolled ? 'is-scrolled' : '',
+    overDark ? 'is-over-dark' : 'is-over-light',
     menuOpen ? 'is-menu-open' : '',
   ].filter(Boolean).join(' ')
 
@@ -33,16 +35,30 @@ export function SiteHeader() {
     let frame = 0
     const updateHeader = () => {
       window.cancelAnimationFrame(frame)
-      frame = window.requestAnimationFrame(() => setScrolled(window.scrollY > 24))
+      frame = window.requestAnimationFrame(() => {
+        const probeY = Math.min(42, window.innerHeight / 2)
+        const darkSurfaces = document.querySelectorAll<HTMLElement>(
+          '.site-page-hero, .home-hero, .site-footer, .awards-purpose, .home-awards-hero',
+        )
+        const isOverDark = Array.from(darkSurfaces).some((surface) => {
+          const bounds = surface.getBoundingClientRect()
+          return bounds.top <= probeY && bounds.bottom >= probeY
+        })
+
+        setScrolled(window.scrollY > 24)
+        setOverDark(isOverDark)
+      })
     }
 
     updateHeader()
     window.addEventListener('scroll', updateHeader, { passive: true })
+    window.addEventListener('resize', updateHeader)
     return () => {
       window.removeEventListener('scroll', updateHeader)
+      window.removeEventListener('resize', updateHeader)
       window.cancelAnimationFrame(frame)
     }
-  }, [])
+  }, [pathname])
 
   return (
     <header className={headerClassName}>
@@ -51,7 +67,7 @@ export function SiteHeader() {
           <Link key={item.to} to={item.to} activeProps={{ className: 'is-current' }}>{item.label}</Link>
         ))}
         <Link to="/" className="brand" activeOptions={{ exact: true }} aria-label="MB Designs home">
-          <Wordmark />
+          <BrandLogo />
         </Link>
         {navigation.slice(3).map((item) => (
           <Link key={item.to} to={item.to} activeProps={{ className: 'is-current' }}>{item.label}</Link>
@@ -59,7 +75,7 @@ export function SiteHeader() {
       </nav>
 
       <Link to="/" className="mobile-brand" activeOptions={{ exact: true }} aria-label="MB Designs home" onClick={() => setMenuOpen(false)}>
-        <Wordmark />
+        <BrandLogo />
       </Link>
       <button
         className="menu-toggle"
@@ -79,11 +95,25 @@ export function SiteHeader() {
   )
 }
 
-function Wordmark() {
+function BrandLogo() {
   return (
-    <span className="wordmark" aria-hidden="true">
-      <b>MB | DESIGNS</b>
-      <small>ARCHITECTURE &amp; INTERIOR DESIGN STUDIO</small>
+    <span className="brand-logo" aria-hidden="true">
+      <img
+        className="brand-logo__image brand-logo__image--white"
+        src="/assets/branding/mb-designs-logo-white.png"
+        alt=""
+        width="1169"
+        height="354"
+        fetchPriority="high"
+      />
+      <img
+        className="brand-logo__image brand-logo__image--black"
+        src="/assets/branding/mb-designs-logo-black.png"
+        alt=""
+        width="1169"
+        height="354"
+        decoding="async"
+      />
     </span>
   )
 }

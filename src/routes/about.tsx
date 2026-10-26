@@ -14,7 +14,7 @@ export const Route = createFileRoute('/about')({
         content: 'Discover the story, philosophy and vision behind MB Designs, founded in 1995 by Mohamed Badr.',
       },
     ],
-    links: [{ rel: 'preload', as: 'image', href: '/assets/images/about-founder.webp' }],
+    links: [{ rel: 'preload', as: 'image', href: '/assets/images/about-founder-wide.webp' }],
   }),
   component: AboutPage,
 })
@@ -84,13 +84,16 @@ function AboutPage() {
             </p>
           </div>
           <figure className="about-v2-founder">
-            <img
-              src="/assets/images/about-founder.webp"
-              alt="Mohamed Badr, founder of MB Designs"
-              width="1133"
-              height="1388"
-              fetchPriority="high"
-            />
+            <picture>
+              <source media="(max-width: 720px)" srcSet="/assets/images/about-founder.webp" />
+              <img
+                src="/assets/images/about-founder-wide.webp"
+                alt="Mohamed Badr, founder of MB Designs"
+                width="1672"
+                height="941"
+                fetchPriority="high"
+              />
+            </picture>
             <figcaption>
               <span>MOHAMED BADR</span>
               <span>FOUNDER · MB DESIGNS</span>

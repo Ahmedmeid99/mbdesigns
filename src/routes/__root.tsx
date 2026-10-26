@@ -23,6 +23,9 @@ export const Route = createRootRoute({
       { title: 'MB Designs | Architecture & Interior Design' },
     ],
     links: [
+      { rel: 'preload', as: 'font', href: '/assets/fonts/cal-sans-semibold.woff2', type: 'font/woff2', crossOrigin: 'anonymous' },
+      { rel: 'preload', as: 'font', href: '/assets/fonts/league-spartan-bold.woff2', type: 'font/woff2', crossOrigin: 'anonymous' },
+      { rel: 'preload', as: 'image', href: '/assets/branding/mb-designs-logo-white.png' },
       { rel: 'stylesheet', href: stylesHref },
       { rel: 'stylesheet', href: designSystemHref },
       { rel: 'preload', as: 'image', href: '/assets/images/hero.webp' },
