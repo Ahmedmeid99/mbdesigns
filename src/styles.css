@@ -3063,22 +3063,46 @@ video {
     display: flex;
     flex-direction: column;
     gap: 24px;
+    width: 100%;
+    min-width: 0;
   }
 
   .single-project-rail {
+    position: relative;
+    z-index: 1;
+    top: auto;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    align-self: stretch;
+    gap: 8px;
+    padding: 8px 0 10px;
+    overflow: hidden;
+    isolation: isolate;
+    border-top: var(--border-hairline);
+    border-bottom: var(--border-hairline);
+    background: var(--color-surface);
   }
 
   .single-project-thumbs {
-    position: static;
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
     display: flex;
     gap: 7px;
     overflow-x: auto;
     padding-bottom: 7px;
+    overscroll-behavior-inline: contain;
     scroll-snap-type: x proximity;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
   }
+
+  .single-project-thumbs::-webkit-scrollbar { display: none; }
 
   .single-project-thumbs a {
     width: 116px;
@@ -3090,6 +3114,10 @@ video {
   .single-project-back {
     position: static;
     order: -1;
+    min-height: 44px;
+    width: max-content;
+    display: inline-flex;
+    align-items: center;
     margin: 0;
   }
 
