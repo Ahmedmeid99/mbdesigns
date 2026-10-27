@@ -310,7 +310,7 @@ select {
   scale: .96;
 }
 
-.desktop-nav > a:not(.brand),
+.desktop-nav__links > a,
 .site-footer-links a,
 .site-footer-bottom a {
   min-block-size: 40px;

@@ -63,15 +63,19 @@ export function SiteHeader() {
   return (
     <header className={headerClassName}>
       <nav className="desktop-nav" aria-label="Primary navigation">
-        {navigation.slice(0, 3).map((item) => (
-          <Link key={item.to} to={item.to} activeProps={{ className: 'is-current' }}>{item.label}</Link>
-        ))}
+        <div className="desktop-nav__links">
+          {navigation.slice(0, 3).map((item) => (
+            <Link key={item.to} to={item.to} activeProps={{ className: 'is-current' }}>{item.label}</Link>
+          ))}
+        </div>
         <Link to="/" className="brand" activeOptions={{ exact: true }} aria-label="MB Designs home">
           <BrandLogo />
         </Link>
-        {navigation.slice(3).map((item) => (
-          <Link key={item.to} to={item.to} activeProps={{ className: 'is-current' }}>{item.label}</Link>
-        ))}
+        <div className="desktop-nav__links">
+          {navigation.slice(3).map((item) => (
+            <Link key={item.to} to={item.to} activeProps={{ className: 'is-current' }}>{item.label}</Link>
+          ))}
+        </div>
       </nav>
 
       <Link to="/" className="mobile-brand" activeOptions={{ exact: true }} aria-label="MB Designs home" onClick={() => setMenuOpen(false)}>

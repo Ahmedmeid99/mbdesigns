@@ -94,6 +94,8 @@ function HomePage() {
   const [ready, setReady] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
   const workTrackRef = useRef<HTMLDivElement>(null)
+  const heroVideoRef = useViewportVideo()
+  const practiceVideoRef = useViewportVideo({ preloadAhead: true })
 
   const moveWorkSlider = (direction: -1 | 1) => {
     const track = workTrackRef.current
@@ -133,13 +135,14 @@ function HomePage() {
       <main>
         <Container as="section" id="top" className="home-hero" fluid aria-labelledby="home-hero-title">
           <video
+            ref={heroVideoRef}
             className="home-hero-media"
             poster="/assets/images/hero.webp"
             autoPlay
             muted
             loop
             playsInline
-            preload="metadata"
+            preload="auto"
             aria-label="MB Designs architectural project film"
           >
             <source src="/assets/video/hero.mp4" type="video/mp4" />
@@ -275,11 +278,11 @@ function HomePage() {
         <Container as="section" className="home-practice" fluid aria-labelledby="home-practice-title">
           <div className="home-practice-media">
             <video
-              autoPlay
+              ref={practiceVideoRef}
               muted
               loop
               playsInline
-              preload="none"
+              preload="metadata"
               poster="/assets/images/about-tall.webp"
               aria-label="MB Designs project environments"
             >
@@ -386,4 +389,58 @@ function HomePage() {
       </main>
     </div>
   )
+}
+
+function useViewportVideo({ preloadAhead = false }: { preloadAhead?: boolean } = {}) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)')
+    let isVisible = false
+
+    const syncPlayback = () => {
+      const shouldPlay = isVisible && !document.hidden && !reducedMotion.matches
+      if (shouldPlay) {
+        void video.play().catch(() => {
+          // Autoplay can be denied by browser policy; the poster remains visible.
+        })
+      } else {
+        video.pause()
+      }
+    }
+
+    const playbackObserver = new IntersectionObserver(([entry]) => {
+      isVisible = entry.isIntersecting && entry.intersectionRatio >= 0.12
+      syncPlayback()
+    }, { threshold: [0, 0.12, 0.5] })
+
+    playbackObserver.observe(video)
+    document.addEventListener('visibilitychange', syncPlayback)
+    reducedMotion.addEventListener('change', syncPlayback)
+
+    let preloadObserver: IntersectionObserver | undefined
+    if (preloadAhead) {
+      preloadObserver = new IntersectionObserver(([entry]) => {
+        if (!entry.isIntersecting) return
+        video.preload = 'auto'
+        video.load()
+        syncPlayback()
+        preloadObserver?.disconnect()
+      }, { rootMargin: '40% 0px' })
+      preloadObserver.observe(video)
+    }
+
+    return () => {
+      playbackObserver.disconnect()
+      preloadObserver?.disconnect()
+      document.removeEventListener('visibilitychange', syncPlayback)
+      reducedMotion.removeEventListener('change', syncPlayback)
+      video.pause()
+    }
+  }, [preloadAhead])
+
+  return videoRef
 }
