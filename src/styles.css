@@ -7140,6 +7140,7 @@ video {
   .home-hero .display-title,
   .single-project-missing h1 {
     font-size: var(--font-size-mobile-hero);
+    max-width: 100%;
     line-height: .88;
     word-break: normal;
     overflow-wrap: normal;
@@ -7160,6 +7161,7 @@ video {
   .team-roster > h2,
   .press-browser-feature h2 {
     font-size: var(--font-size-mobile-section);
+    max-width: 100%;
     line-height: .92;
     letter-spacing: var(--tracking-heading);
     text-wrap: balance;
@@ -7169,11 +7171,18 @@ video {
 
   .event-dialog header h2 {
     font-size: var(--font-size-mobile-feature);
+    max-width: 100%;
     line-height: .94;
     letter-spacing: var(--tracking-heading);
     text-wrap: balance;
     word-break: normal;
     overflow-wrap: normal;
+  }
+
+  .home-recognition-copy,
+  .home-recognition-copy .section-heading {
+    min-width: 0;
+    width: 100%;
   }
 }
 
