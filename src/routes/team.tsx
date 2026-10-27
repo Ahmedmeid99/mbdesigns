@@ -6,7 +6,7 @@ import { PageHeroCopy } from '../components/PageHeroCopy'
 const heroImage = '/assets/images/team/hero.webp'
 
 const portrait = (source: string, _extension: 'jpg' | 'png', _focalPoint = '0.50_0.50') => `/assets/images/team/${source}.webp`
-
+//  
 const teamMembers = [
   { name: 'MOHAMED BADR', role: 'FOUNDER & CHIEF DESIGNER', image: portrait('beb217_a18c866788764b2aa7716b963dc5dba0', 'png', '0.48_0.26') },
   { name: 'GHADA YOUSSEF', role: 'OFFICE MANAGER/HR ADMIN', image: portrait('beb217_673aa22389e6474f8db5688f33486883', 'png', '0.51_0.30') },
