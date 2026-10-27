@@ -151,7 +151,7 @@ function HomePage() {
           <div className="home-hero-content">
             <p className="home-hero-eyebrow">ARCHITECTURE · INTERIORS · CAIRO · DUBAI</p>
             <h1 id="home-hero-title" className="display-title">
-              ARCHITECTURE &<br /> INTERIOR DESIGN<br /> THAT INSPIRES
+              ARCHITECTURE &<br /> INTERIOR DESIGN<br /> THAT <em>INSPIRES</em>
 
 
             </h1>

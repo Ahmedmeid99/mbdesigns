@@ -4714,7 +4714,7 @@ video {
 
 .scroll-top-button {
   position: fixed;
-  z-index: 30;
+  z-index: 14; /*30*/
   right: max(18px, var(--container-gutter));
   bottom: 24px;
   min-width: 54px;
