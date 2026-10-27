@@ -6,6 +6,7 @@ The website uses one shared visual system in `src/design-system.css`. Page-level
 
 - **Color:** `--color-paper`, `--color-surface`, `--color-surface-muted`, `--color-ink`, `--color-ink-soft`, `--color-accent`, and structural line tokens.
 - **Typography:** locally hosted Cal Sans for display titles and locally hosted League Spartan for navigation, labels, subtitles, paragraphs, and controls. Display all site copy in uppercase.
+- **Mobile heading scale:** use `--font-size-mobile-hero` for every page `h1`, `--font-size-mobile-section` for primary section `h2` headings, and `--font-size-mobile-feature` for compact editorial features. Do not introduce route-specific viewport scales for the same hierarchy level.
 - **Spacing:** a 4px-based scale from `--space-1` through `--space-12`, plus responsive section spacing tokens.
 - **Layout:** `--container-wide`, `--container-content-width`, `--container-narrow-width`, and `--gutter`.
 - **Surfaces:** shared radii, borders, shadows, focus ring, and 44px control height.

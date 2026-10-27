@@ -15,6 +15,9 @@
   --font-size-lead: clamp(1.125rem, .65vw + .96rem, 1.55rem);
   --font-size-title-sm: clamp(2.35rem, 3.2vw + 1rem, 5rem);
   --font-size-title-lg: clamp(3.5rem, 6.2vw + 1rem, 9rem);
+  --font-size-mobile-hero: clamp(2.75rem, 11vw, 4rem);
+  --font-size-mobile-section: clamp(2.25rem, 9.4vw, 3.35rem);
+  --font-size-mobile-feature: clamp(1.85rem, 8vw, 2.75rem);
   --line-height-tight: .86;
   --line-height-heading: .98;
   --line-height-body: 1.5;
@@ -400,7 +403,7 @@ select {
   }
 
   .display-title {
-    font-size: clamp(2.6rem, 12vw, 4.2rem);
+    font-size: var(--font-size-mobile-section);
   }
 
   .section-heading {

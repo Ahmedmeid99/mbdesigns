@@ -7080,7 +7080,7 @@ video {
 
   .site-page-hero .site-page-hero__copy .site-page-hero__title,
   .site-page-hero .site-page-hero__copy .site-page-hero__title.is-long {
-    font-size: clamp(2.75rem, 12vw, 4.4rem);
+    font-size: var(--font-size-mobile-hero);
     line-height: .88;
   }
 
@@ -7088,6 +7088,48 @@ video {
     max-width: 36ch;
     margin-top: var(--space-5);
     font-size: var(--font-size-small);
+  }
+}
+
+/* Mobile heading scale — authoritative across current page and section titles */
+@media (max-width: 640px) {
+  .home-hero .display-title,
+  .single-project-missing h1 {
+    font-size: var(--font-size-mobile-hero);
+    line-height: .88;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .section-heading .display-title,
+  .home-studio-heading .display-title,
+  .home-work-heading .display-title,
+  .home-practice-copy .display-title,
+  .home-recognition .display-title,
+  .home-clients .display-title,
+  .about-v2-section-heading .display-title,
+  .about-v2-direction > .section-heading .display-title,
+  .about-v2-philosophy-copy .display-title,
+  .career-statement-heading .display-title,
+  .career-v2 .career-opportunities > .section-heading .display-title,
+  .awards-purpose .display-title,
+  .team-roster > h2,
+  .press-browser-feature h2 {
+    font-size: var(--font-size-mobile-section);
+    line-height: .92;
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .event-dialog header h2 {
+    font-size: var(--font-size-mobile-feature);
+    line-height: .94;
+    letter-spacing: var(--tracking-heading);
+    text-wrap: balance;
+    word-break: normal;
+    overflow-wrap: normal;
   }
 }
 
