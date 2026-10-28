@@ -139,20 +139,25 @@ video {
 }
 
 .desktop-nav {
+  --desktop-nav-gap: clamp(36px, 5.2vw, 84px);
   height: 100%;
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  column-gap: clamp(12px, 1.35vw, 26px);
+  column-gap: var(--desktop-nav-gap);
 }
 
 .desktop-nav__links {
-  display: contents;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: var(--desktop-nav-gap);
 }
 
+.desktop-nav__links:first-child { justify-self: end; }
+.desktop-nav__links:last-child { justify-self: start; }
+
 .desktop-nav__links > a {
-  width: 100%;
-  min-width: 0;
   min-height: 40px;
   display: inline-flex;
   align-items: center;
@@ -171,7 +176,6 @@ video {
 }
 
 .brand {
-  width: 100%;
   display: flex;
   justify-content: center;
   justify-self: center;
