@@ -95,7 +95,7 @@ function AboutPage() {
             </picture>
             <figcaption>
               <span>MOHAMED BADR</span>
-              <span>FOUNDER · MB DESIGNS</span>
+              <span>FOUNDER &amp; CHIEF DESIGNER</span>
             </figcaption>
           </figure>
           <a className="about-v2-scroll" href="#story">
@@ -109,7 +109,7 @@ function AboutPage() {
             <SectionHeading
               id="about-v2-story-title"
               eyebrow="01 / OUR STORY"
-              title={<>THREE DECADES OF<br />DESIGN EVOLUTION</>}
+              title={<>THREE DECADES<br />OF DESIGN<br />EVOLUTION</>}
               description="A multidisciplinary practice built through collaboration, precision and a commitment to architectural excellence."
               align="start"
             />

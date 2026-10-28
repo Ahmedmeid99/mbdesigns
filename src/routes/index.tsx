@@ -18,57 +18,6 @@ export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
-const featuredProjects = [
-  {
-    number: '01',
-    name: 'COMMERCIAL COMPLEX',
-    discipline: 'ARCHITECTURE',
-    image: '/assets/images/architecture-commercial.webp',
-    href: '/projects/architecture/commercial-complex',
-    size: 'feature',
-  },
-  {
-    number: '02',
-    name: 'ARCADE',
-    discipline: 'CORPORATE',
-    image: '/assets/images/corporate-02.webp',
-    href: '/projects/corporate/arcade',
-    size: 'portrait',
-  },
-  {
-    number: '03',
-    name: 'GRAND RESIDENCE',
-    discipline: 'RESIDENTIAL',
-    image: '/assets/images/residential-05.webp',
-    href: '/projects/residential/grand-residence',
-    size: 'portrait',
-  },
-  {
-    number: '04',
-    name: 'NUWA',
-    discipline: 'FOOD & BEVERAGE',
-    image: '/assets/images/fnb-05.webp',
-    href: '/projects/food-and-beverage/nuwa',
-    size: 'wide',
-  },
-  {
-    number: '05',
-    name: 'PINKO',
-    discipline: 'RETAIL & COMMERCIAL',
-    image: '/assets/images/retail-04.webp',
-    href: '/projects/retail-and-commercial/pinko',
-    size: 'portrait',
-  },
-  {
-    number: '06',
-    name: 'COURTYARD BY MARRIOTT',
-    discipline: 'HOSPITALITY',
-    image: '/assets/images/hospitality-02.webp',
-    href: '/projects/hospitality/courtyard-by-marriott',
-    size: 'wide',
-  },
-] as const
-
 const services = [
   'ARCHITECTURE',
   'INTERIOR DESIGN',
@@ -93,20 +42,8 @@ const clientLogoRows = [
 function HomePage() {
   const [ready, setReady] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
-  const workTrackRef = useRef<HTMLDivElement>(null)
   const heroVideoRef = useViewportVideo()
   const practiceVideoRef = useViewportVideo({ preloadAhead: true })
-
-  const moveWorkSlider = (direction: -1 | 1) => {
-    const track = workTrackRef.current
-    if (!track) return
-
-    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    track.scrollBy({
-      left: direction * Math.max(280, track.clientWidth * 0.78),
-      behavior: reduceMotion ? 'auto' : 'smooth',
-    })
-  }
 
   useEffect(() => {
     const timer = window.setTimeout(() => setReady(true), 80)
@@ -229,50 +166,24 @@ function HomePage() {
                 <span>VIEW ALL PROJECTS</span>
                 <ArrowIcon />
               </Link>
-              <div className="home-slider-controls" aria-label="Selected work controls">
-                <button type="button" aria-label="Previous projects" onClick={() => moveWorkSlider(-1)}>
-                  <ArrowIcon direction="left" />
-                </button>
-                <button type="button" aria-label="Next projects" onClick={() => moveWorkSlider(1)}>
-                  <ArrowIcon direction="right" />
-                </button>
-              </div>
             </div>
           </div>
-          <div
-            ref={workTrackRef}
-            className="home-project-track"
-            role="region"
-            aria-label="Selected work carousel"
-            tabIndex={0}
-          >
-            {featuredProjects.map((project, index) => (
-              <a
-                className={`home-project-card home-project-card--${project.size}`}
-                href={project.href}
-                aria-labelledby={`home-project-${index}`}
-                data-reveal
-                style={{ '--delay': `${(index % 2) * 90}ms` } as CSSProperties}
-                key={project.name}
-              >
-                <div className="home-project-image">
-                  <img
-                    src={project.image}
-                    alt={`${project.name} by MB Designs`}
-                    width="1360"
-                    height="1020"
-                    loading={index === 0 ? 'eager' : 'lazy'}
-                    decoding="async"
-                  />
-                </div>
-                <div className="home-project-meta">
-                  <span>{project.number} / {project.discipline}</span>
-                  <h3 id={`home-project-${index}`}>{project.name}</h3>
-                  <ArrowIcon />
-                </div>
-              </a>
-            ))}
-          </div>
+          <Link className="home-project-feature" to="/projects" data-reveal aria-label="Explore all MB Designs projects">
+            <img
+              src="/assets/images/projects-hero.webp"
+              alt="Contemporary architecture by MB Designs"
+              width="1920"
+              height="1116"
+              loading="lazy"
+              decoding="async"
+            />
+            <span className="home-project-feature__shade" />
+            <span className="home-project-feature__caption">
+              <small>ARCHITECTURE · INTERIORS · CAIRO · DUBAI</small>
+              <strong>EXPLORE THE PORTFOLIO</strong>
+              <ArrowIcon />
+            </span>
+          </Link>
         </Container>
 
         <Container as="section" className="home-practice" fluid aria-labelledby="home-practice-title">

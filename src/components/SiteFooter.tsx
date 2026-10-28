@@ -20,6 +20,7 @@ const socialLinks = [
 ] as const
 
 const cairoMapUrl = 'https://www.bing.com/maps/search?q=30.109478694184%2C+31.34949233624&cp=30.109478%7E31.349493&lvl=16&style=r'
+const dubaiMapUrl = 'https://www.bing.com/maps/search?q=IFZA%20Business%20Park%2C%20DDP%20Building%20A1%2C%20Dubai%20Silicon%20Oasis%2C%20UAE'
 
 type SocialNetwork = (typeof socialLinks)[number]['network']
 
@@ -110,17 +111,20 @@ export function SiteFooter() {
                 <small>01 / EGYPT OFFICE</small>
                 <strong>CAIRO</strong>
                 <p>9 Salah Eldin Fadel Street<br />Heliopolis, Cairo, Egypt</p>
+                <a href="tel:+201003003797">+20 100 300 3797</a>
+                <a href="tel:+20221811013">+20 2 2181 1013</a>
                 <a className="site-footer-map-link" href={cairoMapUrl} target="_blank" rel="noopener noreferrer">
                   VIEW ON MAP <ArrowIcon />
                 </a>
-                <a href="tel:+201003003797">+20 100 300 3797</a>
-                <a href="tel:+20221811013">+20 2 2181 1013</a>
               </address>
               <address>
                 <small>02 / UAE OFFICE</small>
                 <strong>DUBAI</strong>
                 <p>IFZA Business Park, DDP Building A1<br />Dubai Silicon Oasis, UAE</p>
                 <a href="tel:+971502551477">+971 50 255 1477</a>
+                <a className="site-footer-map-link" href={dubaiMapUrl} target="_blank" rel="noopener noreferrer">
+                  VIEW ON MAP <ArrowIcon />
+                </a>
               </address>
               <div className="site-footer-new-business">
                 <small>03 / NEW BUSINESS</small>

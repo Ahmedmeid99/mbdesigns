@@ -91,11 +91,11 @@ function CareerPage() {
           <div className="career-opportunity-list">
             <Opportunity
               index="01"
-              title="INTERNSHIPS"
-              subtitle="START YOUR JOURNEY WITH MB DESIGNS"
-              copy="Interested in gaining hands-on experience with MB Designs? Email your CV, portfolio link and a short introduction for our team to review."
+              title="CAREER"
+              subtitle="BUILD YOUR CAREER WITH MB DESIGNS"
+              copy="Interested in joining our multidisciplinary team? Email your CV, portfolio link and the role or discipline you are interested in."
               action="APPLY BY EMAIL"
-              emailSubject="INTERNSHIPS"
+              emailSubject="CAREER APPLICATION"
             />
             <Opportunity
               index="02"
@@ -104,6 +104,14 @@ function CareerPage() {
               copy="Interested in joining our trusted supplier network? Email your company profile, catalogue and relevant project or product photography."
               action="SEND YOUR PROFILE"
               emailSubject="SUPPLIERS"
+            />
+            <Opportunity
+              index="03"
+              title="INTERNSHIP"
+              subtitle="START YOUR JOURNEY WITH MB DESIGNS"
+              copy="Interested in gaining hands-on experience with MB Designs? Email your CV, portfolio link and a short introduction for our team to review."
+              action="APPLY BY EMAIL"
+              emailSubject="INTERNSHIP APPLICATION"
             />
           </div>
         </Container>

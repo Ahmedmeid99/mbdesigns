@@ -76,7 +76,7 @@ function ProjectsPage() {
                 key={category.slug}
                 data-reveal
                 aria-label={`Explore ${category.name}, ${category.detail.projects.length} projects`}
-                style={{ '--delay': `${(index % 2) * 80}ms` } as React.CSSProperties}
+                style={{ '--delay': `${(index % 3) * 70}ms` } as React.CSSProperties}
               >
                 <div className="project-category-image">
                   <img src={category.image} alt={`${category.name} projects`} width="1360" height="832" loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />

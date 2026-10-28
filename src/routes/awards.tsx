@@ -81,8 +81,28 @@ type CertificateImage = {
   height: number
 }
 
-const certificateSets: ReadonlyArray<{ year: string; images: readonly CertificateImage[] }> = [
+const certificateSets: ReadonlyArray<{ label: string; year: string; variant?: 'portrait'; images: readonly CertificateImage[] }> = [
   {
+    label: 'AFRICAN PROPERTY AWARDS',
+    year: '2020–2021',
+    variant: 'portrait',
+    images: [
+      {
+        src: '/assets/images/award-african-nuwa-2021.webp',
+        alt: 'African Property Awards 2020–2021 certificate for Nüwa, Capital Business Park',
+        width: 1488,
+        height: 2105,
+      },
+      {
+        src: '/assets/images/award-african-eastown-2021.webp',
+        alt: 'African Property Awards 2020–2021 certificate for Eastown Duplex',
+        width: 1488,
+        height: 2105,
+      },
+    ],
+  },
+  {
+    label: 'LUXURY LIFESTYLE AWARDS',
     year: '2021',
     images: [
       {
@@ -100,6 +120,7 @@ const certificateSets: ReadonlyArray<{ year: string; images: readonly Certificat
     ],
   },
   {
+    label: 'LUXURY LIFESTYLE AWARDS',
     year: '2022',
     images: [
       {
@@ -227,8 +248,10 @@ function AwardsPage() {
           {certificateSets.map((set, index) => (
             <CertificateRow
               key={set.year}
+              label={set.label}
               year={set.year}
               images={set.images}
+              variant={set.variant}
               startIndex={index * set.images.length}
               onOpen={openImage}
             />
@@ -300,19 +323,23 @@ function AwardsPage() {
 }
 
 function CertificateRow({
+  label,
   year,
   images,
+  variant,
   startIndex,
   onOpen,
 }: {
+  label: string
   year: string
   images: readonly CertificateImage[]
+  variant?: 'portrait'
   startIndex: number
   onOpen: (index: number, trigger: HTMLButtonElement) => void
 }) {
   return (
-    <article className="certificate-row" data-reveal>
-      <p>/LUXURY LIFESTYLE AWARDS {year}</p>
+    <article className={`certificate-row${variant ? ` certificate-row--${variant}` : ''}`} data-reveal>
+      <p>/{label} {year}</p>
       <div className="certificate-row__media">
         {images.map((image, index) => (
           <button
