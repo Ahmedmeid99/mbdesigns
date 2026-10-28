@@ -139,23 +139,26 @@ video {
 }
 
 .desktop-nav {
-  --desktop-nav-gap: clamp(42px, 6.2vw, 104px);
+  --desktop-nav-logo-gap: clamp(42px, 4.3vw, 72px);
+  --desktop-nav-link-gap: clamp(28px, 3.5vw, 56px);
   height: 100%;
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
   align-items: center;
-  column-gap: var(--desktop-nav-gap);
+  column-gap: var(--desktop-nav-logo-gap);
 }
 
 .desktop-nav__links {
+  width: 100%;
   min-width: 0;
   display: flex;
   align-items: center;
-  gap: var(--desktop-nav-gap);
+  justify-content: space-between;
+  gap: var(--desktop-nav-link-gap);
 }
 
-.desktop-nav__links:first-child { justify-self: end; }
-.desktop-nav__links:last-child { justify-self: start; }
+.desktop-nav__links:first-child,
+.desktop-nav__links:last-child { justify-self: stretch; }
 
 .desktop-nav__links > a {
   min-height: 40px;
