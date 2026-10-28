@@ -6,7 +6,7 @@
   color-scheme: light;
 
   /* Typography */
-  --font-body: 'League Spartan', 'Madefor Text', 'MB Helvetica', Arial, sans-serif;
+  --font-body: 'League Spartan', 'MB Helvetica', Arial, sans-serif;
   --font-display: 'Cal Sans', 'Arial Black', Arial, sans-serif;
   --font-editorial: Georgia, 'Times New Roman', serif;
   --font-size-label: clamp(.625rem, .12vw + .59rem, .72rem);

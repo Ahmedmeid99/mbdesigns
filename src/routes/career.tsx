@@ -5,9 +5,9 @@ import { Container } from '../components/Container'
 import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 
-const wixImage = (id: string, _extension: 'jpg' | 'png', _width: number, _height: number) => `/assets/images/career/${id}.webp`
+const localCareerImage = (id: string) => `/assets/images/career/${id}.webp`
 
-const heroImage = wixImage('beb217_eb9741a51a4847268ed2c29d1b15a25c', 'jpg', 2400, 1450)
+const heroImage = localCareerImage('beb217_eb9741a51a4847268ed2c29d1b15a25c')
 const careersEmail = 'info@mbdesigns.design'
 
 const careerEmailHref = (jobTitle: string) =>

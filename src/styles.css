@@ -6,17 +6,17 @@
 
 @font-face {
   font-family: 'Cal Sans';
-  src: url('https://static.parastorage.com/tag-bundler/api/v1/fonts-cache/googlefont/woff2/s/calsans/v2/fdN99sWUv3gWqXxqqRBctFsm46Zw.woff2') format('woff2');
+  src: url('/assets/fonts/cal-sans-semibold.woff2') format('woff2');
   font-style: normal;
-  font-weight: 400;
+  font-weight: 600;
   font-display: swap;
 }
 
 @font-face {
-  font-family: 'Madefor Text';
-  src: url('https://static.parastorage.com/fonts/v2/f73e760d-c6b3-4659-9a8c-9ce1d76c1173/madefor-text.var.original.woff2') format('woff2');
+  font-family: 'League Spartan';
+  src: url('/assets/fonts/league-spartan-bold.woff2') format('woff2');
   font-style: normal;
-  font-weight: 400 800;
+  font-weight: 700;
   font-display: swap;
 }
 
@@ -1133,7 +1133,7 @@ video {
   overflow: clip;
   background: #fff;
   color: #050505;
-  font-family: 'Madefor Text', 'MB Helvetica', Arial, sans-serif;
+  font-family: 'League Spartan', 'MB Helvetica', Arial, sans-serif;
 }
 
 .career-header .desktop-nav > a.is-current {
@@ -3307,7 +3307,7 @@ video {
 
 .team-card p {
   margin: 7px 0 0;
-  font-family: 'Madefor Text', 'MB Helvetica', Arial, sans-serif;
+  font-family: 'League Spartan', 'MB Helvetica', Arial, sans-serif;
   font-size: 1rem;
   line-height: 1.25;
 }
@@ -3374,7 +3374,7 @@ video {
   overflow: clip;
   background: #fff;
   color: #050505;
-  font-family: 'Madefor Text', 'MB Helvetica', Arial, sans-serif;
+  font-family: 'League Spartan', 'MB Helvetica', Arial, sans-serif;
 }
 
 .events-header {
@@ -3481,7 +3481,7 @@ video {
 
 .event-intro-title small {
   padding-top: 2px;
-  font-family: 'Madefor Text', Arial, sans-serif;
+  font-family: 'League Spartan', Arial, sans-serif;
   font-size: 1.1rem;
   font-weight: 800;
 }
