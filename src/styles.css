@@ -139,7 +139,7 @@ video {
 }
 
 .desktop-nav {
-  --desktop-nav-logo-gap: clamp(42px, 4.3vw, 72px);
+  --desktop-nav-logo-gap: clamp(42px, 4.3vw, 72px); /*4.3vw*/
   --desktop-nav-link-gap: clamp(28px, 3.5vw, 56px);
   height: 100%;
   display: grid;
