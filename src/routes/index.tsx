@@ -18,13 +18,20 @@ export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
-const services = [
-  'ARCHITECTURE',
-  'INTERIOR DESIGN',
-  'LANDSCAPE DESIGN',
-  'COST MANAGEMENT',
-  'PROJECT MANAGEMENT',
-  'SITE SUPERVISION',
+const markets = [
+  { name: 'EGYPT', city: 'CAIRO', type: 'FOUNDING STUDIO', x: 53.8, y: 40, copy: 'OUR FOUNDING STUDIO AND THE CENTRE OF OUR ARCHITECTURE AND INTERIOR DESIGN PRACTICE.' },
+  { name: 'SAUDI ARABIA', city: 'RIYADH', type: 'PROJECT MARKET', x: 59.8, y: 42.5, copy: 'A KEY PROJECT MARKET WITH DESIGN WORK SHAPED AROUND A FAST-EVOLVING BUILT ENVIRONMENT.' },
+  { name: 'UNITED ARAB EMIRATES', city: 'DUBAI', type: 'REGIONAL OFFICE', x: 63, y: 42.4, copy: 'OUR UAE OFFICE SUPPORTING CORPORATE, RESIDENTIAL, RETAIL AND HOSPITALITY WORK.' },
+  { name: 'GREECE', city: 'ATHENS', type: 'PROJECT MARKET', x: 52.5, y: 31.8, copy: 'A MEDITERRANEAN PROJECT CONTEXT CONNECTING PLACE, MATERIAL, HOSPITALITY AND CONTEMPORARY LIFESTYLE.' },
+] as const
+
+const sectors = [
+  { name: 'ARCHITECTURE', copy: 'ENDURING BUILDINGS SHAPED BY CONTEXT, CLIMATE AND HUMAN EXPERIENCE.' },
+  { name: 'CORPORATE', copy: 'HIGH-PERFORMING WORKPLACES THAT SUPPORT CULTURE, FOCUS AND COLLABORATION.' },
+  { name: 'RESIDENTIAL', copy: 'PERSONAL, REFINED HOMES DESIGNED AROUND THE RHYTHMS OF DAILY LIFE.' },
+  { name: 'FOOD & BEVERAGE', copy: 'MEMORABLE DINING ENVIRONMENTS WHERE BRAND, ATMOSPHERE AND OPERATIONS ALIGN.' },
+  { name: 'RETAIL & COMMERCIAL', copy: 'CLEAR, DISTINCTIVE CUSTOMER JOURNEYS THAT STRENGTHEN BRAND IDENTITY.' },
+  { name: 'HOSPITALITY', copy: 'CALM, WELCOMING DESTINATIONS DESIGNED AROUND COMFORT AND THE GUEST EXPERIENCE.' },
 ] as const
 
 // 49 unique logo crops from the reference site's “Our Valued Partners” section.
@@ -41,6 +48,8 @@ const clientLogoRows = [
 
 function HomePage() {
   const [ready, setReady] = useState(false)
+  const [activeMarket, setActiveMarket] = useState(0)
+  const [activeSector, setActiveSector] = useState(0)
   const pageRef = useRef<HTMLDivElement>(null)
   const heroVideoRef = useViewportVideo()
   const practiceVideoRef = useViewportVideo({ preloadAhead: true })
@@ -74,7 +83,6 @@ function HomePage() {
           <video
             ref={heroVideoRef}
             className="home-hero-media"
-            poster="/assets/images/hero.webp"
             autoPlay
             muted
             loop
@@ -100,7 +108,7 @@ function HomePage() {
                 <span>EXPLORE PROJECTS</span>
                 <ArrowIcon />
               </Link>
-              <Link className="home-action home-action--ghost" to="/about">
+              <Link className="home-action home-action--ghost" to="/team">
                 <span>MEET THE STUDIO</span>
                 <ArrowIcon />
               </Link>
@@ -112,12 +120,77 @@ function HomePage() {
           </div>
         </Container>
 
+        <Container as="section" id="markets" className="home-markets" fluid aria-labelledby="home-markets-title">
+          <Container className="home-markets-shell section-pad">
+            <div className="home-markets-heading">
+              <SectionHeading
+                id="home-markets-title"
+                eyebrow="01 / GET IN TOUCH"
+                title={<>WE'D LOVE TO<br />HEAR FROM YOU</>}
+                align="start"
+              />
+            </div>
+
+            <div className="home-market-map" data-reveal>
+              <img
+                className="home-market-image"
+                src="/assets/images/world-map-neutral.png"
+                alt="World map showing MB Designs locations in Cairo, Dubai, Riyadh and Athens"
+                width="1792"
+                height="921"
+                loading="lazy"
+                decoding="async"
+              />
+              <span className="home-market-map-label">MB DESIGNS / CAIRO + DUBAI + RIYADH + ATHENS</span>
+              <div className="home-market-pins" role="tablist" aria-label="Select a project location on the world map">
+                {markets.map((market, index) => (
+                  <button
+                    key={market.name}
+                    type="button"
+                    role="tab"
+                    aria-label={`${market.city}, ${market.name}`}
+                    aria-selected={activeMarket === index}
+                    className={activeMarket === index ? 'is-active' : ''}
+                    onClick={() => setActiveMarket(index)}
+                    style={{ '--market-x': `${market.x}%`, '--market-y': `${market.y}%` } as CSSProperties}
+                  >
+                    <span aria-hidden="true" />
+                    <small>{market.city}</small>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="home-market-summary">
+              <p className="home-market-summary__eyebrow">LOCATION.</p>
+              <h3>CONNECTED ACROSS REGIONS</h3>
+              <p className="home-market-summary__lead">Studios in Cairo and Dubai, with project experience extending across Egypt, the UAE, Saudi Arabia and Greece.</p>
+              <div className="home-market-detail" aria-live="polite">
+                <span>{String(activeMarket + 1).padStart(2, '0')} / ACTIVE LOCATION</span>
+                <h4>{markets[activeMarket].city}, {markets[activeMarket].name}</h4>
+                <small>{markets[activeMarket].type}</small>
+                <p>{markets[activeMarket].copy}</p>
+              </div>
+            </div>
+
+            <div className="home-market-tabs" role="tablist" aria-label="MB Designs markets">
+              {markets.map((market, index) => (
+                <button key={market.name} type="button" role="tab" aria-selected={activeMarket === index} onClick={() => setActiveMarket(index)}>
+                  <span>{String(index + 1).padStart(2, '0')}</span>
+                  <strong>{market.city}</strong>
+                  <small>{market.name}</small>
+                </button>
+              ))}
+            </div>
+          </Container>
+        </Container>
+
         <Container as="section" id="studio" className="home-studio section-pad" aria-labelledby="home-studio-title">
           <div className="home-studio-heading">
             <SectionHeading
               id="home-studio-title"
-              eyebrow="01 / THE STUDIO"
-              title={<>DESIGN WITH PURPOSE.<br />DELIVERED WITH PRECISION.</>}
+              eyebrow="02 / THE STUDIO"
+              title={<>DESIGN WITH PURPOSE.<br />DELIVERED WITH <em>PRECISION.</em></>}
               description="We unite architecture, interiors and delivery under one practice—creating places that feel distinctive, function beautifully and last."
               align="start"
             />
@@ -128,10 +201,10 @@ function HomePage() {
           </div>
           <div className="home-studio-visual" data-reveal>
             <img
-              src="/assets/images/about-wide.webp"
-              alt="MB Designs architecture in warm evening light"
-              width="1360"
-              height="768"
+              src="/assets/images/projects/beb217_4847774af8744bcfb64c1a7a803f5152.webp"
+              alt="Refined residential interior detailing by MB Designs"
+              width="1600"
+              height="1600"
               loading="eager"
               decoding="async"
             />
@@ -156,8 +229,8 @@ function HomePage() {
           <div className="home-work-heading">
             <SectionHeading
               id="home-work-title"
-              eyebrow="02 / SELECTED WORK"
-              title="PLACES WITH PRESENCE"
+              eyebrow="03 / SELECTED WORK"
+              title={<>PLACES WITH <em>PRESENCE</em></>}
               description="A cross-section of architecture and interiors designed for living, working, gathering and belonging."
               align="start"
             />
@@ -170,10 +243,10 @@ function HomePage() {
           </div>
           <Link className="home-project-feature" to="/projects" data-reveal aria-label="Explore all MB Designs projects">
             <img
-              src="/assets/images/projects-hero.webp"
-              alt="Contemporary architecture by MB Designs"
-              width="1920"
-              height="1116"
+              src="/assets/images/fnb-05.webp"
+              alt="One Oak Restaurant interior by MB Designs"
+              width="1400"
+              height="900"
               loading="lazy"
               decoding="async"
             />
@@ -194,7 +267,6 @@ function HomePage() {
               loop
               playsInline
               preload="metadata"
-              poster="/assets/images/about-tall.webp"
               aria-label="MB Designs project environments"
             >
               <source src="/assets/video/manifesto.mp4" type="video/mp4" />
@@ -205,19 +277,34 @@ function HomePage() {
           <div className="home-practice-copy section-pad">
             <SectionHeading
               id="home-practice-title"
-              eyebrow="03 / OUR PRACTICE"
-              title="ONE INTEGRATED TEAM"
-              description="Creative vision and technical delivery work together from concept through completion."
+              eyebrow="04 / OUR SECTORS"
+              title={<>DESIGN ACROSS <em>SCALES</em></>}
+              description="Select a sector to explore how our integrated approach responds to different people, places and ambitions."
               align="start"
             />
-            <ol className="home-service-list">
-              {services.map((service, index) => (
-                <li data-reveal style={{ '--delay': `${index * 55}ms` } as CSSProperties} key={service}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <strong>{service}</strong>
-                </li>
-              ))}
-            </ol>
+            <div className="home-sector-explorer">
+              <div className="home-sector-tabs" role="tablist" aria-label="Design sectors">
+                {sectors.map((sector, index) => (
+                  <button
+                    type="button"
+                    role="tab"
+                    aria-selected={activeSector === index}
+                    onClick={() => setActiveSector(index)}
+                    style={{ '--delay': `${index * 55}ms` } as CSSProperties}
+                    key={sector.name}
+                    data-reveal
+                  >
+                    <span>{String(index + 1).padStart(2, '0')}</span>
+                    <span className="home-sector-tab-content">
+                      <strong>{sector.name}</strong>
+                      <span className="home-sector-tab-copy" aria-hidden={activeSector !== index}>
+                        <span>{sector.copy}</span>
+                      </span>
+                    </span>
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
         </Container>
 
@@ -225,8 +312,8 @@ function HomePage() {
           <Container className="home-clients-heading section-pad">
             <SectionHeading
               id="home-clients-title"
-              eyebrow="04 / SELECTED CLIENTS"
-              title="DESIGNING FOR LEADING BRANDS"
+              eyebrow="05 / SELECTED CLIENTS"
+              title={<>DESIGNING FOR LEADING <em>BRANDS</em></>}
               description="Long-term collaborations across real estate, hospitality, retail and commercial development."
               align="start"
             />
@@ -265,10 +352,10 @@ function HomePage() {
         <Container as="section" className="home-recognition section-pad" aria-labelledby="home-recognition-title">
           <div className="home-recognition-image" data-reveal>
             <img
-              src="/assets/images/awards-purpose.webp"
-              alt="Architectural form in warm evening light"
-              width="768"
-              height="1365"
+              src="/assets/images/award-studio.webp"
+              alt="Luxury Lifestyle Awards recognition across four MB Designs projects"
+              width="1709"
+              height="1617"
               loading="lazy"
               decoding="async"
             />
@@ -276,8 +363,8 @@ function HomePage() {
           <div className="home-recognition-copy">
             <SectionHeading
               id="home-recognition-title"
-              eyebrow="05 / RECOGNITION"
-              title="RECOGNIZED INTERNATIONALLY"
+              eyebrow="06 / RECOGNITION"
+              title={<>RECOGNIZED <em>INTERNATIONALLY</em></>}
               description="Awarded for residential, leisure and studio excellence—while remaining focused on the people and purpose behind every project."
               align="start"
             />
@@ -316,7 +403,7 @@ function useViewportVideo({ preloadAhead = false }: { preloadAhead?: boolean } =
       const shouldPlay = isVisible && !document.hidden && !reducedMotion.matches
       if (shouldPlay) {
         void video.play().catch(() => {
-          // Autoplay can be denied by browser policy; the poster remains visible.
+          // Autoplay can be denied by browser policy; keep the video paused on its current frame.
         })
       } else {
         video.pause()

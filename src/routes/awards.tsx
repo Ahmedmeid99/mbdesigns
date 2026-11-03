@@ -39,7 +39,7 @@ const awardEntries = [
     category: 'LEISURE INTERIOR CONCEPT',
     image: '/assets/images/award-nuwa.webp',
     width: 1600,
-    height: 1013,
+    height: 1064,
     copy: [
       'NUWA BY MORI CO RECEIVED THE ARABIAN-AFRICAN INTERNATIONAL PROPERTY AWARDS 2020–2021 FOR ITS OUTSTANDING INTERIOR CONCEPT IN THE LEISURE AND HOSPITALITY SECTOR.',
       'INSPIRED BY CONTEMPORARY ASIAN AESTHETICS, THE RESTAURANT DELIVERS AN IMMERSIVE DINING EXPERIENCE THROUGH CAREFULLY CURATED MATERIALS, LIGHTING, AND SPATIAL STORYTELLING.',
@@ -54,7 +54,7 @@ const luxuryEntries = [
     category: 'BEST LUXURY RESIDENTIAL INTERIOR DESIGN IN EGYPT',
     image: '/assets/images/award-villa.webp',
     width: 1600,
-    height: 1013,
+    height: 1096,
     copy: [
       'THE GRAND RESIDENCE VILLA WAS HONORED WITH THE LUXURY LIFESTYLE AWARDS 2021, RECEIVING THE TITLE OF BEST LUXURY RESIDENTIAL INTERIOR DESIGN IN EGYPT.',
       'THE PROJECT REFLECTS EXCEPTIONAL CRAFTSMANSHIP, REFINED DETAILING, AND A SEAMLESS BLEND OF LUXURY WITH EVERYDAY LIVING.',
@@ -71,6 +71,33 @@ const luxuryEntries = [
       'IN 2022, MB DESIGNS WAS RECOGNIZED AS THE BEST LUXURY INTERIOR DESIGN STUDIO IN EGYPT BY THE LUXURY LIFESTYLE AWARDS.',
       "THIS ACHIEVEMENT CELEBRATES THE FIRM'S CONTINUED EXCELLENCE IN DELIVERING INNOVATIVE ARCHITECTURAL AND INTERIOR DESIGN SOLUTIONS ACROSS RESIDENTIAL, HOSPITALITY, RETAIL, AND CORPORATE SECTORS.",
     ],
+  },
+] as const
+
+const featuredStudioProjects = [
+  {
+    name: 'D STORE',
+    sector: 'RETAIL & COMMERCIAL',
+    copy: 'D Store is a retail interior shaped around a polished, premium shopping experience. Marble surfaces, black stone, gold-toned detailing and carefully organized display zones create a strong visual identity while keeping merchandise presentation clear and easy to navigate.',
+    slug: 'd-store',
+  },
+  {
+    name: 'PROPERTY FINDER',
+    sector: 'CORPORATE',
+    copy: 'The Property Finder workplace combines a clean corporate language with strong brand expression. Double-height spaces, open work areas, meeting rooms and warm material accents create an environment that supports collaboration while maintaining a professional and contemporary identity.',
+    slug: 'property-finder',
+  },
+  {
+    name: 'ONE OAK RESTAURANT',
+    sector: 'FOOD & BEVERAGE',
+    copy: 'One Oak Restaurant uses layered lighting, warm timber, dark finishes and expressive artwork to create an energetic dining atmosphere. The design balances intimate seating with a strong central visual identity, giving the restaurant a distinctive and memorable F&B experience.',
+    slug: 'one-oak',
+  },
+  {
+    name: 'KMK RESIDENCE, DUBAI',
+    sector: 'RESIDENTIAL',
+    copy: 'KMK Residence in Dubai presents a refined contemporary residential language built around warm timber, dark architectural elements and carefully controlled lighting. The interiors combine sculptural details with comfortable furnishings to create a calm, sophisticated and highly curated home.',
+    slug: 'kmk-residence',
   },
 ] as const
 
@@ -108,14 +135,14 @@ const certificateSets: ReadonlyArray<{ label: string; year: string; variant?: 'p
       {
         src: '/assets/images/award-2021-letter.webp',
         alt: 'Luxury Lifestyle Awards 2021 winner letter',
-        width: 1156,
-        height: 1520,
+        width: 2218,
+        height: 3148,
       },
       {
         src: '/assets/images/award-2021-certificate.webp',
         alt: 'Luxury Lifestyle Awards 2021 winner certificate',
-        width: 1560,
-        height: 1177,
+        width: 3084,
+        height: 2416,
       },
     ],
   },
@@ -126,14 +153,14 @@ const certificateSets: ReadonlyArray<{ label: string; year: string; variant?: 'p
       {
         src: '/assets/images/award-2022-letter.webp',
         alt: 'Luxury Lifestyle Awards 2022 winner letter',
-        width: 1109,
-        height: 1574,
+        width: 2032,
+        height: 2884,
       },
       {
         src: '/assets/images/award-2022-certificate.webp',
         alt: 'Luxury Lifestyle Awards 2022 winner certificate',
-        width: 1542,
-        height: 1208,
+        width: 3084,
+        height: 2416,
       },
     ],
   },
@@ -160,6 +187,7 @@ const awardLightboxImages = [
 function AwardsPage() {
   const [ready, setReady] = useState(false)
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
+  const [imageZoomed, setImageZoomed] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
   const closeLightboxRef = useRef<HTMLButtonElement>(null)
   const lastImageTriggerRef = useRef<HTMLButtonElement | null>(null)
@@ -218,6 +246,7 @@ function AwardsPage() {
 
   const openImage = (index: number, trigger: HTMLButtonElement) => {
     lastImageTriggerRef.current = trigger
+    setImageZoomed(false)
     setActiveImageIndex(index)
   }
 
@@ -233,7 +262,7 @@ function AwardsPage() {
             id="awards-hero-title"
             className="awards-hero-copy"
             eyebrow="AWARDS / INTERNATIONAL RECOGNITION"
-            title={<>WHERE VISION<br />EARNS RECOGNITION</>}
+            title={<>WHERE VISION<br />EARNS<br /><em>RECOGNITION</em></>}
             lead="Honoring a tradition of timeless design and architectural excellence."
           />
         </Container>
@@ -245,17 +274,6 @@ function AwardsPage() {
             title="AWARDS"
             description="A selection of international distinctions honoring our architectural and interior design work."
           />
-          {certificateSets.map((set, index) => (
-            <CertificateRow
-              key={set.year}
-              label={set.label}
-              year={set.year}
-              images={set.images}
-              variant={set.variant}
-              startIndex={index * set.images.length}
-              onOpen={openImage}
-            />
-          ))}
         </Container>
 
         <Container as="section" className="awards-purpose" fluid>
@@ -274,6 +292,14 @@ function AwardsPage() {
             description="THE ARABIAN-AFRICAN INTERNATIONAL PROPERTY AWARDS"
             variant="property"
           />
+          <CertificateRow
+            label={certificateSets[0].label}
+            year={certificateSets[0].year}
+            images={certificateSets[0].images}
+            variant={certificateSets[0].variant}
+            startIndex={0}
+            onOpen={openImage}
+          />
           {awardEntries.map((entry, index) => (
             <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} onOpen={(trigger) => openImage(index + certificateLightboxCount, trigger)} />
           ))}
@@ -284,15 +310,48 @@ function AwardsPage() {
             description="INTERNATIONAL RECOGNITION FOR RESIDENTIAL DESIGN AND STUDIO EXCELLENCE"
             variant="luxury"
           />
-          {luxuryEntries.map((entry, index) => (
-            <EditorialAward key={entry.name} entry={entry} reverse={index % 2 === 1} onOpen={(trigger) => openImage(index + certificateLightboxCount + awardEntries.length, trigger)} />
-          ))}
+          <CertificateRow label={certificateSets[1].label} year={certificateSets[1].year} images={certificateSets[1].images} startIndex={2} onOpen={openImage} />
+          <EditorialAward entry={luxuryEntries[0]} onOpen={(trigger) => openImage(certificateLightboxCount + awardEntries.length, trigger)} />
+          <CertificateRow label={certificateSets[2].label} year={certificateSets[2].year} images={certificateSets[2].images} startIndex={4} onOpen={openImage} />
+          <EditorialAward entry={luxuryEntries[1]} reverse onOpen={(trigger) => openImage(certificateLightboxCount + awardEntries.length + 1, trigger)} />
+
+          <section className="featured-awards" aria-labelledby="featured-awards-title">
+            <SectionHeading
+              id="featured-awards-title"
+              eyebrow="BEST LUXURY INTERIOR DESIGN STUDIO AWARDS"
+              title={<>FOUR PROJECTS.<br />ONE STANDARD OF <em>EXCELLENCE.</em></>}
+              description="A closer look at four projects that represent the range, clarity and craft behind our international studio recognition."
+              align="start"
+            />
+            {featuredStudioProjects.map((project, projectIndex) => (
+              <article className={`featured-award-project${projectIndex % 2 === 1 ? ' featured-award-project--reverse' : ''}`} key={project.slug} data-reveal>
+                <header>
+                  <span>{String(projectIndex + 1).padStart(2, '0')} / {project.sector}</span>
+                  <h3>{project.name}</h3>
+                  <p>{project.copy}</p>
+                </header>
+                <figure className="featured-award-collage" role="img" aria-label={`${project.name} project collage showing four views`}>
+                  {[1, 2, 3, 4].map((imageIndex) => (
+                    <img
+                      key={imageIndex}
+                      src={`/assets/images/awards-featured/${project.slug}-${String(imageIndex).padStart(2, '0')}.webp`}
+                      alt=""
+                      width="900"
+                      height="600"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  ))}
+                </figure>
+              </article>
+            ))}
+          </section>
 
         </Container>
       </main>
 
       {activeImageIndex !== null && activeImage ? (
-        <div className="single-project-lightbox award-lightbox" role="dialog" aria-modal="true" aria-label="Awards image viewer">
+        <div className={`single-project-lightbox award-lightbox${imageZoomed ? ' is-zoomed' : ''}`} role="dialog" aria-modal="true" aria-label="Awards image viewer">
           <button className="single-project-lightbox-close" type="button" ref={closeLightboxRef} onClick={() => setActiveImageIndex(null)}>
             CLOSE
           </button>
@@ -302,15 +361,24 @@ function AwardsPage() {
           <div className="single-project-lightbox-controls">
             <button
               type="button"
-              onClick={() => setActiveImageIndex((current) => current === null ? null : (current - 1 + awardLightboxImages.length) % awardLightboxImages.length)}
+              onClick={() => {
+                setImageZoomed(false)
+                setActiveImageIndex((current) => current === null ? null : (current - 1 + awardLightboxImages.length) % awardLightboxImages.length)
+              }}
               aria-label="Previous award image"
             >
               PREVIOUS
             </button>
             <span>{String(activeImageIndex + 1).padStart(2, '0')} / {String(awardLightboxImages.length).padStart(2, '0')}</span>
+            <button type="button" onClick={() => setImageZoomed((current) => !current)} aria-pressed={imageZoomed}>
+              {imageZoomed ? 'FIT IMAGE' : 'READ TEXT'}
+            </button>
             <button
               type="button"
-              onClick={() => setActiveImageIndex((current) => current === null ? null : (current + 1) % awardLightboxImages.length)}
+              onClick={() => {
+                setImageZoomed(false)
+                setActiveImageIndex((current) => current === null ? null : (current + 1) % awardLightboxImages.length)
+              }}
               aria-label="Next award image"
             >
               NEXT

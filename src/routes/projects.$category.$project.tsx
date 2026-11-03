@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PageHeroCopy } from '../components/PageHeroCopy'
+import { EditorialTitle, PageHeroCopy } from '../components/PageHeroCopy'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 import { getProjectDetail } from '../project-details.generated'
 
@@ -28,15 +28,9 @@ function SingleProjectPage() {
   const detail = getProjectDetail(projectSlug)
   const cover = categoryProjects.find((project) => project.slug === projectSlug)
   const [ready, setReady] = useState(false)
-  const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
   const pageRef = useRef<HTMLDivElement>(null)
-  const closeLightboxRef = useRef<HTMLButtonElement>(null)
-  const lastImageTriggerRef = useRef<HTMLButtonElement | null>(null)
-  const galleryLength = detail?.gallery.length ?? 0
-  const lightboxOpen = activeImageIndex !== null
 
   useEffect(() => {
-    setActiveImageIndex(null)
     setReady(false)
     const timer = window.setTimeout(() => setReady(true), 60)
     const root = pageRef.current
@@ -52,31 +46,6 @@ function SingleProjectPage() {
     root.querySelectorAll('[data-reveal]').forEach((item) => observer.observe(item))
     return () => { window.clearTimeout(timer); observer.disconnect() }
   }, [projectSlug])
-
-  useEffect(() => {
-    if (!lightboxOpen || galleryLength === 0) return
-
-    const previousOverflow = document.body.style.overflow
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setActiveImageIndex(null)
-      if (event.key === 'ArrowLeft') {
-        setActiveImageIndex((current) => current === null ? null : (current - 1 + galleryLength) % galleryLength)
-      }
-      if (event.key === 'ArrowRight') {
-        setActiveImageIndex((current) => current === null ? null : (current + 1) % galleryLength)
-      }
-    }
-
-    document.body.style.overflow = 'hidden'
-    window.addEventListener('keydown', handleKeyDown)
-    closeLightboxRef.current?.focus()
-
-    return () => {
-      document.body.style.overflow = previousOverflow
-      window.removeEventListener('keydown', handleKeyDown)
-      lastImageTriggerRef.current?.focus()
-    }
-  }, [galleryLength, lightboxOpen])
 
   if (!detail || detail.category !== categorySlug || !cover) {
     return (
@@ -102,7 +71,7 @@ function SingleProjectPage() {
             titleClassName={detail.title.length > 18 ? 'is-long' : ''}
             leadClassName="single-project-hero-location"
             eyebrow={<>PROJECT / {category.name}</>}
-            title={detail.title}
+            title={<EditorialTitle lines={[detail.title]} />}
             lead={detail.location}
           />
           <div className="single-project-hero-foot">
@@ -110,6 +79,19 @@ function SingleProjectPage() {
             <a href="#project-gallery">SCROLL TO VIEW PROJECT</a>
           </div>
         </Container>
+      </Container>
+
+      <Container as="section" className="single-project-intro section-pad" aria-labelledby="single-project-intro-title">
+        <div>
+          <p className="single-project-intro-eyebrow">PROJECT / {category.name}</p>
+          <h2 id="single-project-intro-title">{detail.title}</h2>
+          <p>{projectDescription(detail.title, categorySlug)}</p>
+        </div>
+        <dl>
+          <div><dt>LOCATION</dt><dd>{shortLocation(detail.location)}</dd></div>
+          <div><dt>SPACE</dt><dd>PROJECT SPECIFIC</dd></div>
+          <div><dt>SCOPE OF WORK</dt><dd>{scopeForCategory(categorySlug)}</dd></div>
+        </dl>
       </Container>
 
       <Container as="main" className="single-project-main">
@@ -134,56 +116,40 @@ function SingleProjectPage() {
           <Container as="section" className="single-project-visuals" aria-label={`${detail.title} gallery`}>
             <div className="single-project-gallery">
               {detail.gallery.map((image, index) => (
-                <button
-                  type="button"
-                  data-reveal
-                  key={`${image.src}-${index}`}
-                  aria-label={`Open ${detail.title} image ${index + 1}`}
-                  onClick={(event) => {
-                    lastImageTriggerRef.current = event.currentTarget
-                    setActiveImageIndex(index)
-                  }}
-                >
+                <figure data-reveal key={`${image.src}-${index}`}>
                   <img src={image.src} alt={`${detail.title} project view ${index + 1}`} width={image.width} height={image.height} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
-                </button>
+                </figure>
               ))}
             </div>
           </Container>
         </div>
       </Container>
 
-      {activeImageIndex !== null && detail.gallery[activeImageIndex] ? (
-        <div className="single-project-lightbox" role="dialog" aria-modal="true" aria-label={`${detail.title} image viewer`}>
-          <button className="single-project-lightbox-close" type="button" ref={closeLightboxRef} onClick={() => setActiveImageIndex(null)}>
-            CLOSE
-          </button>
-          <div className="single-project-lightbox-frame">
-            <img
-              src={detail.gallery[activeImageIndex].src}
-              alt={`${detail.title} project view ${activeImageIndex + 1}`}
-              width={detail.gallery[activeImageIndex].width}
-              height={detail.gallery[activeImageIndex].height}
-            />
-          </div>
-          <div className="single-project-lightbox-controls">
-            <button
-              type="button"
-              onClick={() => setActiveImageIndex((current) => current === null ? null : (current - 1 + galleryLength) % galleryLength)}
-              aria-label="Previous project image"
-            >
-              PREVIOUS
-            </button>
-            <span aria-live="polite">{String(activeImageIndex + 1).padStart(2, '0')} / {String(galleryLength).padStart(2, '0')}</span>
-            <button
-              type="button"
-              onClick={() => setActiveImageIndex((current) => current === null ? null : (current + 1) % galleryLength)}
-              aria-label="Next project image"
-            >
-              NEXT
-            </button>
-          </div>
-        </div>
-      ) : null}
     </div>
   )
+}
+
+function shortLocation(location: string) {
+  return location.split(/[|,]/)[0]?.trim() || 'CAIRO'
+}
+
+function scopeForCategory(category: string) {
+  if (category === 'architecture') return 'ARCHITECTURE & DESIGN DEVELOPMENT'
+  if (category === 'food-and-beverage') return 'INTERIOR DESIGN & F&B EXPERIENCE'
+  if (category === 'corporate') return 'WORKPLACE INTERIOR DESIGN'
+  if (category === 'residential') return 'RESIDENTIAL INTERIOR DESIGN'
+  if (category === 'hospitality') return 'HOSPITALITY INTERIOR DESIGN'
+  return 'INTERIOR DESIGN & PROJECT DELIVERY'
+}
+
+function projectDescription(title: string, category: string) {
+  const sectorCopy: Record<string, string> = {
+    architecture: 'A CONTEXT-LED ARCHITECTURAL RESPONSE THAT BALANCES A CLEAR FORMAL IDENTITY WITH EVERYDAY FUNCTION, CLIMATE AND LONG-TERM USE.',
+    corporate: 'A CONTEMPORARY WORKPLACE DESIGNED TO SUPPORT FOCUS, COLLABORATION AND A DISTINCTIVE ORGANIZATIONAL IDENTITY.',
+    residential: 'A REFINED HOME SHAPED AROUND COMFORT, MATERIAL WARMTH AND THE RHYTHMS OF DAILY LIFE.',
+    'food-and-beverage': 'A LAYERED DINING ENVIRONMENT WHERE LIGHT, MATERIAL AND SPATIAL RHYTHM CREATE A MEMORABLE GUEST EXPERIENCE.',
+    'retail-and-commercial': 'A CLEAR COMMERCIAL ENVIRONMENT THAT UNITES BRAND EXPRESSION, PRODUCT PRESENTATION AND AN INTUITIVE CUSTOMER JOURNEY.',
+    hospitality: 'A CALM, WELCOMING DESTINATION DESIGNED AROUND COMFORT, ATMOSPHERE AND A SEAMLESS STAY EXPERIENCE.',
+  }
+  return `${title} IS ${sectorCopy[category]?.replace(/^A /, 'A ') ?? 'A PURPOSEFUL ENVIRONMENT CREATED WITH CARE, PRECISION AND A STRONG SENSE OF PLACE.'}`
 }

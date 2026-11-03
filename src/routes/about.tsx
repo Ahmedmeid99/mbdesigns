@@ -3,7 +3,7 @@ import type { CSSProperties } from 'react'
 import { useEffect, useRef, useState } from 'react'
 import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
-import { PageHeroCopy } from '../components/PageHeroCopy'
+import { EditorialTitle, PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 
 export const Route = createFileRoute('/about')({
@@ -79,7 +79,7 @@ function AboutPage() {
             eyebrowClassName="about-v2-eyebrow"
             leadClassName="about-v2-hero-lead"
             eyebrow="MB DESIGNS · ESTABLISHED 1995"
-            title={<>A PRACTICE BUILT<br />ON VISION.</>}
+            title={<EditorialTitle lines={['A PRACTICE BUILT', 'ON VISION.']} />}
             lead="Led by founder Mohamed Badr, MB Designs brings creativity, technical knowledge and human experience together to shape purposeful, enduring spaces."
           />
           <figure className="about-v2-founder">
@@ -109,7 +109,7 @@ function AboutPage() {
             <SectionHeading
               id="about-v2-story-title"
               eyebrow="01 / OUR STORY"
-              title={<>THREE DECADES<br />OF DESIGN<br />EVOLUTION</>}
+              title={<>THREE DECADES<br />OF DESIGN<br /><em>EVOLUTION</em></>}
               description="A multidisciplinary practice built through collaboration, precision and a commitment to architectural excellence."
               align="start"
             />
@@ -117,10 +117,10 @@ function AboutPage() {
           <div className="about-v2-story-grid">
             <div className="about-v2-story-image" data-reveal>
               <img
-                src="/assets/images/about-wide.webp"
-                alt="MB Designs architecture in warm evening light"
-                width="1360"
-                height="768"
+                src="/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp"
+                alt="Chess Field architecture project by MB Designs"
+                width="1920"
+                height="1080"
                 loading="eager"
                 decoding="async"
               />
@@ -157,10 +157,10 @@ function AboutPage() {
         <Container as="section" className="about-v2-philosophy" fluid aria-labelledby="about-v2-philosophy-title">
           <div className="about-v2-philosophy-image" data-reveal>
             <img
-              src="/assets/images/about-tall.webp"
-              alt="Contemporary courtyard designed by MB Designs"
-              width="1266"
-              height="1280"
+              src="/assets/images/projects/beb217_4847774af8744bcfb64c1a7a803f5152.webp"
+              alt="KMK Residence interior by MB Designs"
+              width="1600"
+              height="1600"
               loading="lazy"
               decoding="async"
             />
@@ -189,7 +189,7 @@ function AboutPage() {
           <SectionHeading
             id="about-v2-direction-title"
             eyebrow="03 / PURPOSE & DIRECTION"
-            title="WHAT GUIDES THE PRACTICE"
+            title={<>WHAT GUIDES THE <em>PRACTICE</em></>}
             description="A clear mission for today and an ambitious vision for the future of the built environment."
             align="start"
           />

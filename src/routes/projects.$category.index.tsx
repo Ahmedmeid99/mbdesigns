@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from '@tanstack/react-router'
 import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
-import { PageHeroCopy } from '../components/PageHeroCopy'
+import { EditorialTitle, PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 import { getCategory, getCategoryProjects } from '../portfolio-data'
 
@@ -56,7 +56,7 @@ function ProjectCategoryPage() {
               eyebrowClassName="project-detail-hero-eyebrow"
               leadClassName="project-detail-hero-lead"
               eyebrow={<>PROJECTS / {category.name}</>}
-              title={<>{detail.heroLines[0]}<br />{detail.heroLines[1]}</>}
+              title={<EditorialTitle lines={detail.heroLines} />}
               lead={detail.subtitle}
             />
             <div className="project-detail-hero-foot">

@@ -28,7 +28,7 @@ export const Route = createRootRoute({
       { rel: 'preload', as: 'image', href: '/assets/branding/mb-designs-logo-white-hq.png' },
       { rel: 'stylesheet', href: stylesHref },
       { rel: 'stylesheet', href: designSystemHref },
-      { rel: 'preload', as: 'image', href: '/assets/images/hero.webp' },
+      { rel: 'preload', as: 'image', href: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp' },
     ],
   }),
   component: RootComponent,

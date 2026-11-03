@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
 import { PageHeroCopy } from '../components/PageHeroCopy'
 
-const heroImage = '/assets/images/team/hero.webp'
+const heroImage = '/assets/images/events/beb217_1ff9aeb4eb4d480db0d0562c470db3a0.webp'
 
 const portrait = (source: string, _extension: 'jpg' | 'png', _focalPoint = '0.50_0.50') => `/assets/images/team/${source}.webp`
 //  
@@ -28,12 +28,10 @@ const teamGroups = [
     { name: 'GHADA YOUSSEF', role: 'OFFICE MANAGER & HR SPECIALIST', image: portrait('beb217_673aa22389e6474f8db5688f33486883', 'png', '0.51_0.30') },
     { name: 'MOHAMED GREISHA', role: 'ACCOUNTING MANAGER', image: portrait('beb217_0674141c74fb47fdbc40039292cd986d', 'png') },
   ] },
-  { name: 'SITE TEAM', members: [
+  { name: 'SITE & DOCUMENTATION TEAM', members: [
     { name: 'AHMED SAMIR', role: 'PROJECT MANAGER', image: portrait('beb217_3c68b41008a4482f98d6c70dad116d3a', 'png', '0.54_0.24') },
-    { name: 'MOHAMED SAYED', role: 'SITE TEAM', image: portrait('beb217_d0c7a134dc3e49dda3106599a1ec7977', 'jpg') },
-  ] },
-  { name: 'DOCUMENTS TEAM', members: [
-    { name: 'AHMED METWALLY', role: 'DOCUMENT CONTROLLER', image: portrait('beb217_66039c4cb57d43b9b272203be05c81e9', 'png', '0.53_0.22') },
+    { name: 'MOHAMED SAYED', role: 'SITE SUPERVISOR', image: portrait('beb217_d0c7a134dc3e49dda3106599a1ec7977', 'jpg') },
+    { name: 'AHMED METWALLY', role: 'SITE SUPERVISOR', image: portrait('beb217_66039c4cb57d43b9b272203be05c81e9', 'png', '0.53_0.22') },
     { name: 'IBRAHIM HOSNY', role: 'DOCUMENT CONTROLLER', image: portrait('beb217_e3483e462607491db7b67490a5ac2fe3', 'png') },
   ] },
 ] as const
@@ -78,12 +76,19 @@ function TeamPage() {
     <div ref={pageRef} className={ready ? 'team-site is-ready' : 'team-site'}>
       <main id="top">
         <Container as="section" className="team-hero site-page-hero" aria-labelledby="team-hero-title" fluid>
-          <img src={heroImage} alt="MB Designs team in motion" width="2400" height="1200" fetchPriority="high" />
+          <img src={heroImage} alt="Sculptural faces representing the multidisciplinary MB Designs team" width="1800" height="1200" fetchPriority="high" />
           <PageHeroCopy
             id="team-hero-title"
             className="team-hero-copy"
             eyebrow="STUDIO / THE PEOPLE BEHIND THE WORK"
-            title={<>BEHIND EVERY<br />DETAIL IS A DEDICATED TEAM</>}
+            title={
+              <>
+                <span className="site-page-hero__title-line">BEHIND EVERY</span>
+                <span className="site-page-hero__title-line">DETAIL IS A</span>
+                <span className="site-page-hero__title-line">DEDICATED <em>TEAM</em></span>
+              </>
+            }
+            titleClassName="site-page-hero__title--compact-mobile"
             lead="A multidisciplinary team united by curiosity, precision and a shared commitment to purposeful design."
           />
         </Container>

@@ -145,6 +145,7 @@ h4 { text-wrap: balance; }
 .section-heading {
   width: min(1120px, 100%);
   margin-inline: auto;
+  margin: 0;
   padding-bottom: var(--space-8);
   display: grid;
   gap: var(--space-3);

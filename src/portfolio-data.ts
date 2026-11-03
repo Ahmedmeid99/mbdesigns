@@ -36,34 +36,34 @@ export const architectureProjects = [
 
 export const projectCategories = [
   {
-    slug: 'architecture', name: 'ARCHITECTURE', image: '/assets/images/projects-architecture.webp',
+    slug: 'architecture', name: 'ARCHITECTURE', image: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp',
     detail: {
-      hero: '/assets/images/architecture-hero.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
+      hero: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
       subtitle: 'VISION, FUNCTION, AND TIMELESS DESIGN', layout: 'three-standard',
       projects: architectureProjects,
     },
   },
   {
-    slug: 'corporate', name: 'CORPORATE', image: '/assets/images/projects-corporate.webp',
+    slug: 'corporate', name: 'CORPORATE', image: '/assets/images/projects/beb217_1bf6fd72a4b24e378c3335b33fdd9078.webp',
     detail: {
-      hero: '/assets/images/projects-corporate.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
+      hero: '/assets/images/projects/beb217_1bf6fd72a4b24e378c3335b33fdd9078.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
       subtitle: 'PRODUCTIVITY, COLLABORATION, AND INNOVATION', layout: 'three-standard',
       projects: [
-        card('HALWANI GROUP', '/assets/images/corporate-01.webp', 'portrait'),
-        card('ARCADE', '/assets/images/corporate-02.webp', 'wide'),
-        card('GTE', '/assets/images/corporate-03.webp'),
-        card('MORI INTERNATIONAL', '/assets/images/corporate-04.webp', 'portrait'),
-        card('TALY', '/assets/images/corporate-05.webp', 'wide'),
+        card('PROPERTY FINDER', '/assets/images/corporate-08.webp', 'wide'),
         card('ECOLAB', '/assets/images/corporate-06.webp'),
         card('ALSHAYA GROUP', '/assets/images/corporate-07.webp', 'portrait'),
-        card('PROPERTY FINDER', '/assets/images/corporate-08.webp', 'wide'),
+        card('MORI INTERNATIONAL', '/assets/images/corporate-04.webp', 'portrait'),
+        card('GTE', '/assets/images/corporate-03.webp'),
+        card('HALWANI GROUP', '/assets/images/corporate-01.webp', 'portrait'),
+        card('ARCADE', '/assets/images/corporate-02.webp', 'wide'),
+        card('TALY', '/assets/images/corporate-05.webp', 'wide'),
       ],
     },
   },
   {
-    slug: 'residential', name: 'RESIDENTIAL', image: '/assets/images/projects-residential.webp',
+    slug: 'residential', name: 'RESIDENTIAL', image: '/assets/images/projects/beb217_7d345590eeb748c6999ce9316fc990d4.webp',
     detail: {
-      hero: '/assets/images/residential-hero.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
+      hero: '/assets/images/projects/beb217_7d345590eeb748c6999ce9316fc990d4.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
       subtitle: 'COMFORT, ELEGANCE, AND LASTING MEMORIES', layout: 'three-compact',
       projects: [
         card('VILLA – ALLEGRIA', '/assets/images/residential-01.webp', 'portrait'),
@@ -84,26 +84,26 @@ export const projectCategories = [
     },
   },
   {
-    slug: 'food-and-beverage', name: 'FOOD & BEVERAGE', image: '/assets/images/projects-fnb.webp',
+    slug: 'food-and-beverage', name: 'FOOD & BEVERAGE', image: '/assets/images/projects/beb217_ca2a957cb36947be9b6957560eaf6406.webp',
     detail: {
-      hero: '/assets/images/projects-fnb.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
+      hero: '/assets/images/projects/beb217_ca2a957cb36947be9b6957560eaf6406.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
       subtitle: 'THAT ELEVATE EVERY CULINARY EXPERIENCE', layout: 'three-compact',
       projects: [
-        card('AL DAHAN', '/assets/images/fnb-01.webp', 'portrait'),
         card('TEDS', '/assets/images/fnb-04.webp', 'wide'),
+        card('CARLOS', '/assets/images/fnb-06.webp', 'wide'),
+        card('MORI SUSHI', '/assets/images/fnb-03.webp', 'portrait'),
+        card('ONE OAK', '/assets/images/fnb-05.webp', 'wide'),
+        card('NUWA', '/assets/images/fnb-08.webp'),
+        card('AL DAHAN', '/assets/images/fnb-01.webp', 'portrait'),
         card('OZEL', '/assets/images/fnb-07.webp'),
         card('NISANTASI', '/assets/images/fnb-02.webp', 'portrait'),
-        card('NUWA', '/assets/images/fnb-05.webp', 'wide'),
-        card('ONE OAK', '/assets/images/fnb-08.webp'),
-        card('CARLOS', '/assets/images/fnb-03.webp', 'portrait'),
-        card('MORI SUSHI', '/assets/images/fnb-06.webp', 'wide'),
       ],
     },
   },
   {
-    slug: 'retail-and-commercial', name: 'RETAIL & COMMERCIAL', image: '/assets/images/projects-retail.webp',
+    slug: 'retail-and-commercial', name: 'RETAIL & COMMERCIAL', image: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp',
     detail: {
-      hero: '/assets/images/retail-hero.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
+      hero: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
       subtitle: 'BRANDS AND CONNECT WITH CUSTOMERS', layout: 'two-tall',
       projects: [
         card('RAVIN', '/assets/images/retail-01.webp', 'portrait'),
@@ -118,10 +118,10 @@ export const projectCategories = [
     },
   },
   {
-    slug: 'hospitality', name: 'HOSPITALITY', image: '/assets/images/projects-hospitality.webp',
+    slug: 'hospitality', name: 'HOSPITALITY', image: '/assets/images/projects/beb217_33eb17df6b8f4e08b9af72983e332a73.webp',
     detail: {
-      hero: '/assets/images/hospitality-hero.webp', heroLines: ['CREATING', 'WELCOMING DESTINATIONS'],
-      subtitle: 'WHERE EVERY DETAIL ENHANCES THE GUEST EXPERIENCE.', layout: 'two-tall',
+      hero: '/assets/images/projects/beb217_33eb17df6b8f4e08b9af72983e332a73.webp', heroLines: ['RESTFUL STAYS', 'SHAPED BY COMFORT'],
+      subtitle: 'CALM, WELCOMING SPACES DESIGNED AROUND THE GUEST EXPERIENCE.', layout: 'two-tall',
       projects: [
         card('JAZZY', '/assets/images/hospitality-01.webp', 'portrait'),
         card('COURTYARD BY MARRIOTT', '/assets/images/hospitality-02.webp', 'wide'),

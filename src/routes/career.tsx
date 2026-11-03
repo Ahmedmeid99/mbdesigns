@@ -5,13 +5,23 @@ import { Container } from '../components/Container'
 import { PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
 
-const localCareerImage = (id: string) => `/assets/images/career/${id}.webp`
-
-const heroImage = localCareerImage('beb217_eb9741a51a4847268ed2c29d1b15a25c')
+const heroImage = '/assets/images/career/beb217_eb9741a51a4847268ed2c29d1b15a25c.webp'
 const careersEmail = 'info@mbdesigns.design'
 
-const careerEmailHref = (jobTitle: string) =>
-  `mailto:${careersEmail}?subject=${encodeURIComponent(jobTitle)}`
+const careerEmailHref = (jobTitle: string, requirements: readonly string[]) => {
+  const body = [
+    'HELLO MB DESIGNS TEAM,',
+    '',
+    `I AM APPLYING FOR: ${jobTitle}`,
+    '',
+    'REQUIRED WITH THIS EMAIL:',
+    ...requirements.map((item) => `- ${item}`),
+    '',
+    'PLEASE FIND THE REQUESTED LINKS AND ATTACHMENTS WITH THIS MESSAGE.',
+  ].join('\n')
+
+  return `mailto:${careersEmail}?subject=${encodeURIComponent(jobTitle)}&body=${encodeURIComponent(body)}`
+}
 
 export const Route = createFileRoute('/career')({
   head: () => ({
@@ -54,7 +64,14 @@ function CareerPage() {
             id="career-hero-title"
             className="career-hero-copy"
             eyebrow="CAREERS · CAIRO + DUBAI"
-            title={<>THE FUTURE IS DESIGNED<br />BY THOSE WHO DARE TO CREATE.</>}
+            title={
+              <>
+                <span className="site-page-hero__title-line">THE FUTURE IS</span>
+                <span className="site-page-hero__title-line">DESIGNED BY THOSE</span>
+                <span className="site-page-hero__title-line">WHO DARE TO <em>CREATE.</em></span>
+              </>
+            }
+            titleClassName="site-page-hero__title--compact-mobile"
             lead="AT MB DESIGNS, BOLD IDEAS BECOME PURPOSEFUL SPACES AND LASTING IMPACT."
           />
           <a className="career-hero-scroll" href="#opportunities">
@@ -68,7 +85,7 @@ function CareerPage() {
             <SectionHeading
               id="career-statement-title"
               eyebrow="01 / BUILD WITH US"
-              title={<>READY TO SHAPE<br />WHAT COMES NEXT?</>}
+              title={<>READY TO SHAPE<br />WHAT COMES <em>NEXT?</em></>}
               description="Join a multidisciplinary practice where curiosity, precision and collaboration turn ambitious ideas into enduring places."
               align="start"
             />
@@ -96,22 +113,25 @@ function CareerPage() {
               copy="Interested in joining our multidisciplinary team? Email your CV, portfolio link and the role or discipline you are interested in."
               action="APPLY BY EMAIL"
               emailSubject="CAREER APPLICATION"
+              requirements={['PORTFOLIO LINK', 'CV ATTACHMENT']}
             />
             <Opportunity
               index="02"
               title="SUPPLIERS"
               subtitle="WORK WITH MB DESIGNS"
-              copy="Interested in joining our trusted supplier network? Email your company profile, catalogue and relevant project or product photography."
+              copy="Interested in joining our trusted supplier network? Email your company profile, portfolio or catalogue link and relevant project or product photography."
               action="SEND YOUR PROFILE"
               emailSubject="SUPPLIERS"
+              requirements={['COMPANY PORTFOLIO OR CATALOGUE LINK', 'COMPANY PROFILE ATTACHMENT']}
             />
             <Opportunity
               index="03"
               title="INTERNSHIP"
-              subtitle="START YOUR JOURNEY WITH MB DESIGNS"
+              subtitle="START YOUR INTERNSHIP WITH MB DESIGNS"
               copy="Interested in gaining hands-on experience with MB Designs? Email your CV, portfolio link and a short introduction for our team to review."
               action="APPLY BY EMAIL"
               emailSubject="INTERNSHIP APPLICATION"
+              requirements={['PORTFOLIO LINK', 'CV ATTACHMENT']}
             />
           </div>
         </Container>
@@ -120,12 +140,18 @@ function CareerPage() {
   )
 }
 
-function Opportunity({ index, title, subtitle, copy, action, emailSubject }: { index: string; title: string; subtitle: string; copy: string; action: string; emailSubject: string }) {
+function Opportunity({ index, title, subtitle, copy, action, emailSubject, requirements }: { index: string; title: string; subtitle: string; copy: string; action: string; emailSubject: string; requirements: readonly string[] }) {
   return (
     <article className="career-opportunity" data-reveal>
       <div className="career-opportunity-label"><span>{index}</span><h3>{title}</h3></div>
-      <div className="career-opportunity-copy"><h4>{subtitle}</h4><p>{copy}</p></div>
-      <a className="career-opportunity-action" href={careerEmailHref(emailSubject)} aria-label={`${action} for ${emailSubject}`}>
+      <div className="career-opportunity-copy">
+        <h4>{subtitle}</h4>
+        <p>{copy}</p>
+        <ul className="career-opportunity-requirements" aria-label="Required application materials">
+          {requirements.map((requirement) => <li key={requirement}>{requirement} <strong>REQUIRED</strong></li>)}
+        </ul>
+      </div>
+      <a className="career-opportunity-action" href={careerEmailHref(emailSubject, requirements)} aria-label={`${action} for ${emailSubject}`}>
         <span>{action}</span>
         <ArrowIcon />
       </a>

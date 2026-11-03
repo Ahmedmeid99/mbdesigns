@@ -110,7 +110,7 @@ export function SiteFooter() {
               <address>
                 <small>01 / EGYPT OFFICE</small>
                 <strong>CAIRO</strong>
-                <p>9 Salah Eldin Fadel Street<br />Heliopolis, Cairo, Egypt</p>
+                <p>9 Salah ElDeen Fadel Street<br />Heliopolis, Cairo, Egypt</p>
                 <a href="tel:+201003003797">+20 100 300 3797</a>
                 <a href="tel:+20221811013">+20 2 2181 1013</a>
                 <a className="site-footer-map-link" href={cairoMapUrl} target="_blank" rel="noopener noreferrer">
