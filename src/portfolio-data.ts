@@ -38,7 +38,7 @@ export const projectCategories = [
   {
     slug: 'architecture', name: 'ARCHITECTURE', image: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp',
     detail: {
-      hero: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
+      hero: '/assets/images/projects-hero.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
       subtitle: 'VISION, FUNCTION, AND TIMELESS DESIGN', layout: 'three-standard',
       projects: architectureProjects,
     },
@@ -46,7 +46,7 @@ export const projectCategories = [
   {
     slug: 'corporate', name: 'CORPORATE', image: '/assets/images/projects/beb217_1bf6fd72a4b24e378c3335b33fdd9078.webp',
     detail: {
-      hero: '/assets/images/projects/beb217_1bf6fd72a4b24e378c3335b33fdd9078.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
+      hero: '/assets/images/projects-hero.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
       subtitle: 'PRODUCTIVITY, COLLABORATION, AND INNOVATION', layout: 'three-standard',
       projects: [
         card('PROPERTY FINDER', '/assets/images/corporate-08.webp', 'wide'),
@@ -63,7 +63,7 @@ export const projectCategories = [
   {
     slug: 'residential', name: 'RESIDENTIAL', image: '/assets/images/projects/beb217_7d345590eeb748c6999ce9316fc990d4.webp',
     detail: {
-      hero: '/assets/images/projects/beb217_7d345590eeb748c6999ce9316fc990d4.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
+      hero: '/assets/images/projects-hero.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
       subtitle: 'COMFORT, ELEGANCE, AND LASTING MEMORIES', layout: 'three-compact',
       projects: [
         card('VILLA – ALLEGRIA', '/assets/images/residential-01.webp', 'portrait'),
@@ -86,7 +86,7 @@ export const projectCategories = [
   {
     slug: 'food-and-beverage', name: 'FOOD & BEVERAGE', image: '/assets/images/projects/beb217_ca2a957cb36947be9b6957560eaf6406.webp',
     detail: {
-      hero: '/assets/images/projects/beb217_ca2a957cb36947be9b6957560eaf6406.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
+      hero: '/assets/images/projects-hero.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
       subtitle: 'THAT ELEVATE EVERY CULINARY EXPERIENCE', layout: 'three-compact',
       projects: [
         card('TEDS', '/assets/images/fnb-04.webp', 'wide'),
@@ -103,7 +103,7 @@ export const projectCategories = [
   {
     slug: 'retail-and-commercial', name: 'RETAIL & COMMERCIAL', image: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp',
     detail: {
-      hero: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
+      hero: '/assets/images/projects-hero.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
       subtitle: 'BRANDS AND CONNECT WITH CUSTOMERS', layout: 'two-tall',
       projects: [
         card('RAVIN', '/assets/images/retail-01.webp', 'portrait'),
@@ -120,7 +120,7 @@ export const projectCategories = [
   {
     slug: 'hospitality', name: 'HOSPITALITY', image: '/assets/images/projects/beb217_33eb17df6b8f4e08b9af72983e332a73.webp',
     detail: {
-      hero: '/assets/images/projects/beb217_33eb17df6b8f4e08b9af72983e332a73.webp', heroLines: ['RESTFUL STAYS', 'SHAPED BY COMFORT'],
+      hero: '/assets/images/projects-hero.webp', heroLines: ['RESTFUL STAYS', 'SHAPED BY COMFORT'],
       subtitle: 'CALM, WELCOMING SPACES DESIGNED AROUND THE GUEST EXPERIENCE.', layout: 'two-tall',
       projects: [
         card('JAZZY', '/assets/images/hospitality-01.webp', 'portrait'),

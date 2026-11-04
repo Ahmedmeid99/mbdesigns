@@ -64,9 +64,9 @@ const luxuryEntries = [
     number: '02',
     name: 'BEST LUXURY INTERIOR DESIGN STUDIO IN EGYPT',
     category: '',
-    image: '/assets/images/award-studio.webp',
-    width: 1653,
-    height: 1617,
+    image: '/assets/images/award-studio-landscape.webp',
+    width: 1536,
+    height: 1024,
     copy: [
       'IN 2022, MB DESIGNS WAS RECOGNIZED AS THE BEST LUXURY INTERIOR DESIGN STUDIO IN EGYPT BY THE LUXURY LIFESTYLE AWARDS.',
       "THIS ACHIEVEMENT CELEBRATES THE FIRM'S CONTINUED EXCELLENCE IN DELIVERING INNOVATIVE ARCHITECTURAL AND INTERIOR DESIGN SOLUTIONS ACROSS RESIDENTIAL, HOSPITALITY, RETAIL, AND CORPORATE SECTORS.",
@@ -317,7 +317,7 @@ function AwardsPage() {
             <SectionHeading
               id="featured-awards-title"
               eyebrow="BEST LUXURY INTERIOR DESIGN STUDIO AWARDS"
-              title={<>FOUR PROJECTS.<br />ONE STANDARD OF <em>EXCELLENCE.</em></>}
+              title={<>BEST LUXURY<br />INTERIORS<br /><em>PROJECTS</em></>}
               description="A closer look at four projects that represent the range, clarity and craft behind our international studio recognition."
               align="start"
             />

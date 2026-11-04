@@ -161,18 +161,6 @@ function HomePage() {
               </div>
             </div>
 
-            <div className="home-market-summary">
-              <p className="home-market-summary__eyebrow">LOCATION.</p>
-              <h3>CONNECTED ACROSS REGIONS</h3>
-              <p className="home-market-summary__lead">Studios in Cairo and Dubai, with project experience extending across Egypt, the UAE, Saudi Arabia and Greece.</p>
-              <div className="home-market-detail" aria-live="polite">
-                <span>{String(activeMarket + 1).padStart(2, '0')} / ACTIVE LOCATION</span>
-                <h4>{markets[activeMarket].city}, {markets[activeMarket].name}</h4>
-                <small>{markets[activeMarket].type}</small>
-                <p>{markets[activeMarket].copy}</p>
-              </div>
-            </div>
-
             <div className="home-market-tabs" role="tablist" aria-label="MB Designs markets">
               {markets.map((market, index) => (
                 <button key={market.name} type="button" role="tab" aria-selected={activeMarket === index} onClick={() => setActiveMarket(index)}>
@@ -201,10 +189,10 @@ function HomePage() {
           </div>
           <div className="home-studio-visual" data-reveal>
             <img
-              src="/assets/images/projects/beb217_4847774af8744bcfb64c1a7a803f5152.webp"
-              alt="Refined residential interior detailing by MB Designs"
-              width="1600"
-              height="1600"
+              src="/assets/images/home-philosophy-interior.webp"
+              alt="Warm contemporary workspace with natural materials and generous daylight"
+              width="1536"
+              height="1024"
               loading="eager"
               decoding="async"
             />
@@ -243,10 +231,10 @@ function HomePage() {
           </div>
           <Link className="home-project-feature" to="/projects" data-reveal aria-label="Explore all MB Designs projects">
             <img
-              src="/assets/images/fnb-05.webp"
-              alt="One Oak Restaurant interior by MB Designs"
-              width="1400"
-              height="900"
+              src="/assets/images/home-selected-architecture.webp"
+              alt="Contemporary stone and glass architecture in warm evening light"
+              width="1536"
+              height="1024"
               loading="lazy"
               decoding="async"
             />
@@ -352,10 +340,10 @@ function HomePage() {
         <Container as="section" className="home-recognition section-pad" aria-labelledby="home-recognition-title">
           <div className="home-recognition-image" data-reveal>
             <img
-              src="/assets/images/award-studio.webp"
-              alt="Luxury Lifestyle Awards recognition across four MB Designs projects"
-              width="1653"
-              height="1617"
+              src="/assets/images/home-recognition-architecture.webp"
+              alt="Contemporary architecture with sculpted stone volumes and glass façades"
+              width="1127"
+              height="1396"
               loading="lazy"
               decoding="async"
             />

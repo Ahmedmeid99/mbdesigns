@@ -11,7 +11,7 @@ export const Route = createFileRoute('/projects/')({
       { title: 'Projects | MB Designs' },
       { name: 'description', content: 'Explore MB Designs architecture and interior design projects.' },
     ],
-    links: [{ rel: 'preload', as: 'image', href: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp' }],
+    links: [{ rel: 'preload', as: 'image', href: '/assets/images/projects-hero.webp' }],
   }),
   component: ProjectsPage,
 })
@@ -40,7 +40,7 @@ function ProjectsPage() {
     <div ref={pageRef} className={ready ? 'projects-site is-ready' : 'projects-site'}>
       <main>
         <Container as="section" id="top" className="projects-hero site-page-hero" fluid aria-labelledby="projects-hero-title">
-          <img src="/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp" alt="Chess Field architecture project by MB Designs" width="1920" height="1080" fetchPriority="high" />
+          <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
           <div className="projects-hero-shade" />
           <Container className="projects-hero-inner site-page-hero__inner">
             <PageHeroCopy

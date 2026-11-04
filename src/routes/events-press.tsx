@@ -12,7 +12,7 @@ type HubView = 'events' | 'press'
 const eventImage = (id: string) => `/assets/images/events/${id}.webp`
 const image = ([id]: ImageSource) => eventImage(id)
 
-const heroImage = eventImage('beb217_1a9efd3b9bfb4b77a43c8f619c9bd968')
+const heroImage = eventImage('beb217_a1ad0c8b264f477b9b0456fc974ad4bf')
 const pressHero = '/assets/images/events/press-feature-clean.webp'
 
 const design2026 = [
@@ -173,7 +173,7 @@ function EventsPressPage() {
     <div ref={pageRef} className={ready ? 'events-site events-hub-site is-ready' : 'events-site events-hub-site'}>
       <main id="top">
         <Container as="section" className="events-hero site-page-hero" fluid aria-labelledby="events-hero-title">
-          <img src={heroImage} alt="MB Designs speaker presenting at a design event" width="1800" height="1200" fetchPriority="high" />
+          <img src={heroImage} alt="MB Designs event gathering" width="720" height="320" fetchPriority="high" />
           <div className="events-hero-shade" />
           <Container className="events-hub-hero-inner site-page-hero__inner">
             <PageHeroCopy

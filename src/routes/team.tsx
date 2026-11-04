@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Container } from '../components/Container'
 import { PageHeroCopy } from '../components/PageHeroCopy'
 
-const heroImage = '/assets/images/events/beb217_1ff9aeb4eb4d480db0d0562c470db3a0.webp'
+const heroImage = '/assets/images/team/hero.webp'
 
 const portrait = (source: string, _extension: 'jpg' | 'png', _focalPoint = '0.50_0.50') => `/assets/images/team/${source}.webp`
 //  
@@ -76,7 +76,7 @@ function TeamPage() {
     <div ref={pageRef} className={ready ? 'team-site is-ready' : 'team-site'}>
       <main id="top">
         <Container as="section" className="team-hero site-page-hero" aria-labelledby="team-hero-title" fluid>
-          <img src={heroImage} alt="Sculptural faces representing the multidisciplinary MB Designs team" width="1800" height="1200" fetchPriority="high" />
+          <img src={heroImage} alt="MB Designs team in motion" width="1200" height="600" fetchPriority="high" />
           <PageHeroCopy
             id="team-hero-title"
             className="team-hero-copy"

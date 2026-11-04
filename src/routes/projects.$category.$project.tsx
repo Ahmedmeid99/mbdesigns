@@ -8,13 +8,12 @@ import { getProjectDetail } from '../project-details.generated'
 export const Route = createFileRoute('/projects/$category/$project')({
   head: ({ params }) => {
     const detail = getProjectDetail(params.project)
-    const cover = getCategoryProjects(params.category).find((project) => project.slug === params.project)
     return {
       meta: [
         { title: `${detail?.title ?? 'Project'} | MB Designs` },
         { name: 'description', content: `${detail?.title ?? 'Project'} by MB Designs.` },
       ],
-      links: cover ? [{ rel: 'preload', as: 'image', href: cover.image }] : [],
+      links: [{ rel: 'preload', as: 'image', href: '/assets/images/projects-hero.webp' }],
     }
   },
   component: SingleProjectPage,
@@ -61,7 +60,7 @@ function SingleProjectPage() {
   return (
     <div ref={pageRef} className={ready ? 'single-project-site is-ready' : 'single-project-site'}>
       <Container as="section" id="top" className="single-project-hero site-page-hero" fluid aria-labelledby="single-project-title">
-        <img src={cover.image} alt={`${detail.title} by MB Designs`} width="1920" height="1080" fetchPriority="high" />
+        <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
         <div className="single-project-hero-shade" />
         <Container className="single-project-hero-inner site-page-hero__inner">
           <PageHeroCopy

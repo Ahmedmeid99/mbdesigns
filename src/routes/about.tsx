@@ -117,10 +117,10 @@ function AboutPage() {
           <div className="about-v2-story-grid">
             <div className="about-v2-story-image" data-reveal>
               <img
-                src="/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp"
-                alt="Chess Field architecture project by MB Designs"
-                width="1920"
-                height="1080"
+                src="/assets/images/about-story-architecture.webp"
+                alt="Contemporary architecture with layered stone volumes and expansive glazing"
+                width="1536"
+                height="1024"
                 loading="eager"
                 decoding="async"
               />
@@ -157,10 +157,10 @@ function AboutPage() {
         <Container as="section" className="about-v2-philosophy" fluid aria-labelledby="about-v2-philosophy-title">
           <div className="about-v2-philosophy-image" data-reveal>
             <img
-              src="/assets/images/projects/beb217_4847774af8744bcfb64c1a7a803f5152.webp"
-              alt="KMK Residence interior by MB Designs"
-              width="1600"
-              height="1600"
+              src="/assets/images/about-philosophy-workspace.webp"
+              alt="Daylit contemporary workspace with warm materials and integrated planting"
+              width="1536"
+              height="1024"
               loading="lazy"
               decoding="async"
             />
