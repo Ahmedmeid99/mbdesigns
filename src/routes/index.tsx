@@ -354,7 +354,7 @@ function HomePage() {
             <img
               src="/assets/images/award-studio.webp"
               alt="Luxury Lifestyle Awards recognition across four MB Designs projects"
-              width="1709"
+              width="1653"
               height="1617"
               loading="lazy"
               decoding="async"

@@ -7607,7 +7607,7 @@ video {
 .featured-award-collage img { width: 100%; height: 100%; object-fit: cover; outline: 1px solid oklch(1 0 0 / .24); outline-offset: -1px; }
 .featured-award-project--reverse header { grid-column: 2; grid-row: 1; }
 .featured-award-project--reverse .featured-award-collage { grid-column: 1; grid-row: 1; }
-.editorial-award > .award-focus-trigger img { object-fit: contain; background: #f4f4f2; }
+.editorial-award > .award-focus-trigger img { object-fit: contain;  }
 
 .team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); column-gap: clamp(.9rem, 1.5vw, 1.5rem); }
 .team-group--leadership .team-grid { grid-template-columns: repeat(5, minmax(0, 1fr)); }

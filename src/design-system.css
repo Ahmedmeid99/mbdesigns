@@ -354,7 +354,7 @@ select {
   .event-browser-card button,
   .event-dialog-gallery figure
 ) img {
-  outline: 1px solid var(--color-image-outline);
+  /* outline: 1px solid var(--color-image-outline); */
   outline-offset: -1px;
 }
 
