@@ -1126,6 +1126,7 @@ video {
   .footer-grid { grid-template-columns: 1fr; gap: 36px; }
   .footer-site { justify-self: start; }
   .footer-bottom { gap: 20px; }
+  .site-footer-directory span{margin-bottom: 12px !important;}
 }
 
 /* Career page */
@@ -3479,14 +3480,14 @@ video {
 
   .team-card h4 {
     margin-top: 12px;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 
   .team-card p {
     min-height: 0;
     margin-top: 6px;
     padding: 0;
-    font-size: .95rem;
+    font-size: .7rem;
   }
 }
 
@@ -4632,7 +4633,7 @@ video {
   .events-year-filter::-webkit-scrollbar { display: none; }
   .event-card-grid { grid-template-columns: 1fr; gap: 10px; }
   .event-browser-card button { aspect-ratio: .9; }
-  .event-card-content strong { font-size: 2.5rem; }
+  .event-card-content strong { font-size: 2rem; }
   .press-browser-feature { min-height: 72svh; }
   .press-browser-feature > div { inset: auto 24px 34px; }
   .press-browser-copy { grid-template-columns: 1fr; gap: 18px; padding-block: 60px 45px; }
@@ -4947,7 +4948,6 @@ video {
   .site-footer-directory > *:first-child { border-top: 0; }
   .site-footer-directory small { margin-bottom: 22px; }
   .site-footer-directory a { min-height: 44px; }
-  .site-footer-directory address > a[href^="tel:"] { min-height: 40px; }
   .site-footer-social { padding-top: var(--space-4); }
   .site-footer-links { display: grid; grid-template-columns: 1fr 1fr; gap: 0; padding: 0; }
   .site-footer-links a { padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.12); }
@@ -5230,7 +5230,7 @@ video {
   isolation: isolate;
   min-height: max(44rem, 100svh);
   color: var(--color-inverse);
-  background: #30353a url('/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp') center / cover no-repeat;
+  background: #30353a;
   overflow: hidden;
 }
 
@@ -7614,7 +7614,7 @@ video {
 .team-group--leadership .team-card { grid-column: 1 / 3; }
 .team-portrait { border-radius: 0; }
 
-.career-opportunity-requirements { display: flex; flex-wrap: wrap; gap: .55rem; margin: var(--space-4) 0 0; padding: 0; list-style: none; }
+.career-opportunity-requirements { display: flex;  gap: .55rem; margin: var(--space-4) 0 0; padding: 0; list-style: none; }
 .career-opportunity-requirements li { padding: .55rem .7rem; border: var(--border-hairline); font-size: .64rem; font-weight: 700; letter-spacing: .05em; }
 .career-opportunity-requirements strong { color: var(--color-accent); margin-left: .25rem; }
 
