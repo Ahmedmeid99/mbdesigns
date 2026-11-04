@@ -187,7 +187,6 @@ const awardLightboxImages = [
 function AwardsPage() {
   const [ready, setReady] = useState(false)
   const [activeImageIndex, setActiveImageIndex] = useState<number | null>(null)
-  const [imageZoomed, setImageZoomed] = useState(false)
   const pageRef = useRef<HTMLDivElement>(null)
   const closeLightboxRef = useRef<HTMLButtonElement>(null)
   const lastImageTriggerRef = useRef<HTMLButtonElement | null>(null)
@@ -246,7 +245,6 @@ function AwardsPage() {
 
   const openImage = (index: number, trigger: HTMLButtonElement) => {
     lastImageTriggerRef.current = trigger
-    setImageZoomed(false)
     setActiveImageIndex(index)
   }
 
@@ -351,7 +349,7 @@ function AwardsPage() {
       </main>
 
       {activeImageIndex !== null && activeImage ? (
-        <div className={`single-project-lightbox award-lightbox${imageZoomed ? ' is-zoomed' : ''}`} role="dialog" aria-modal="true" aria-label="Awards image viewer">
+        <div className="single-project-lightbox award-lightbox" role="dialog" aria-modal="true" aria-label="Awards image viewer">
           <button className="single-project-lightbox-close" type="button" ref={closeLightboxRef} onClick={() => setActiveImageIndex(null)}>
             CLOSE
           </button>
@@ -362,7 +360,6 @@ function AwardsPage() {
             <button
               type="button"
               onClick={() => {
-                setImageZoomed(false)
                 setActiveImageIndex((current) => current === null ? null : (current - 1 + awardLightboxImages.length) % awardLightboxImages.length)
               }}
               aria-label="Previous award image"
@@ -370,13 +367,9 @@ function AwardsPage() {
               PREVIOUS
             </button>
             <span>{String(activeImageIndex + 1).padStart(2, '0')} / {String(awardLightboxImages.length).padStart(2, '0')}</span>
-            <button type="button" onClick={() => setImageZoomed((current) => !current)} aria-pressed={imageZoomed}>
-              {imageZoomed ? 'FIT IMAGE' : 'READ TEXT'}
-            </button>
             <button
               type="button"
               onClick={() => {
-                setImageZoomed(false)
                 setActiveImageIndex((current) => current === null ? null : (current + 1) % awardLightboxImages.length)
               }}
               aria-label="Next award image"
