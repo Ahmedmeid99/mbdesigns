@@ -134,10 +134,10 @@ function HomePage() {
             <div className="home-market-map" data-reveal>
               <img
                 className="home-market-image"
-                src="/assets/images/world-map-neutral.png"
+                src="/assets/images/world-map.svg"
                 alt="World map showing MB Designs locations in Cairo, Dubai, Riyadh and Athens"
-                width="1792"
-                height="921"
+                width="748"
+                height="377"
                 loading="lazy"
                 decoding="async"
               />
