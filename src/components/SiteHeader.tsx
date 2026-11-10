@@ -38,7 +38,7 @@ export function SiteHeader() {
       frame = window.requestAnimationFrame(() => {
         const probeY = Math.min(42, window.innerHeight / 2)
         const darkSurfaces = document.querySelectorAll<HTMLElement>(
-          '.site-page-hero, .home-hero, .site-footer, .awards-purpose, .home-awards-hero',
+          '.site-page-hero, .home-hero, .site-footer, .awards-purpose, .home-awards-hero, .home-network',
         )
         const isOverDark = Array.from(darkSurfaces).some((surface) => {
           const bounds = surface.getBoundingClientRect()

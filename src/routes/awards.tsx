@@ -62,7 +62,7 @@ const luxuryEntries = [
   },
   {
     number: '02',
-    name: 'BEST LUXURY INTERIOR DESIGN STUDIO IN EGYPT',
+    name: 'LUXURY INTERIOR DESIGN STUDIO IN EGYPT',
     category: '',
     image: '/assets/images/award-studio-landscape.webp',
     width: 1536,
@@ -97,7 +97,7 @@ const featuredStudioProjects = [
     name: 'KMK RESIDENCE, DUBAI',
     sector: 'RESIDENTIAL',
     copy: 'KMK Residence in Dubai presents a refined contemporary residential language built around warm timber, dark architectural elements and carefully controlled lighting. The interiors combine sculptural details with comfortable furnishings to create a calm, sophisticated and highly curated home.',
-    slug: 'kmk-residence',
+    slug: 'kmk-residence-dubai',
   },
 ] as const
 
@@ -115,16 +115,16 @@ const certificateSets: ReadonlyArray<{ label: string; year: string; variant?: 'p
     variant: 'portrait',
     images: [
       {
-        src: '/assets/images/award-african-nuwa-2021.webp',
-        alt: 'African Property Awards 2020–2021 certificate for Nüwa, Capital Business Park',
-        width: 1488,
-        height: 2105,
+        src: '/assets/images/award-african-eastown-2021.jpg',
+        alt: 'African Property Awards 2020–2021 certificate – Residential Interior Private Residence Egypt, Eastown Duplex',
+        width: 724,
+        height: 1024,
       },
       {
-        src: '/assets/images/award-african-eastown-2021.webp',
-        alt: 'African Property Awards 2020–2021 certificate for Eastown Duplex',
-        width: 1488,
-        height: 2105,
+        src: '/assets/images/award-african-nuwa-2021.jpg',
+        alt: 'African Property Awards 2020–2021 certificate – Leisure Interior Egypt, Nüwa Capital Business Park',
+        width: 724,
+        height: 1024,
       },
     ],
   },

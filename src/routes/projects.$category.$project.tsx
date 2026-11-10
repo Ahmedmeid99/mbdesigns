@@ -114,7 +114,10 @@ function SingleProjectPage() {
 
           <Container as="section" className="single-project-visuals" aria-label={`${detail.title} gallery`}>
             <div className="single-project-gallery">
-              {detail.gallery.map((image, index) => (
+              <figure className="single-project-cover" data-reveal key={cover.image}>
+                <img src={cover.image} alt={`${detail.title} project cover`} loading="eager" decoding="async" />
+              </figure>
+              {detail.gallery.filter((image) => image.src !== cover.image).map((image, index) => (
                 <figure data-reveal key={`${image.src}-${index}`}>
                   <img src={image.src} alt={`${detail.title} project view ${index + 1}`} width={image.width} height={image.height} loading={index < 2 ? 'eager' : 'lazy'} decoding="async" />
                 </figure>

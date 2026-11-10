@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
 import { SectionHeading } from '../components/SectionHeading'
+import { LocationsMap, locationCountryCount } from '../components/LocationsMap'
+import { HomeNetwork } from '../components/HomeNetwork'
 
 export const Route = createFileRoute('/')({
   head: () => ({
@@ -18,13 +20,6 @@ export const Route = createFileRoute('/')({
   component: HomePage,
 })
 
-const markets = [
-  { name: 'EGYPT', city: 'CAIRO', type: 'FOUNDING STUDIO', x: 53.8, y: 40, copy: 'OUR FOUNDING STUDIO AND THE CENTRE OF OUR ARCHITECTURE AND INTERIOR DESIGN PRACTICE.' },
-  { name: 'SAUDI ARABIA', city: 'RIYADH', type: 'PROJECT MARKET', x: 59.8, y: 42.5, copy: 'A KEY PROJECT MARKET WITH DESIGN WORK SHAPED AROUND A FAST-EVOLVING BUILT ENVIRONMENT.' },
-  { name: 'UNITED ARAB EMIRATES', city: 'DUBAI', type: 'REGIONAL OFFICE', x: 63, y: 42.4, copy: 'OUR UAE OFFICE SUPPORTING CORPORATE, RESIDENTIAL, RETAIL AND HOSPITALITY WORK.' },
-  { name: 'GREECE', city: 'ATHENS', type: 'PROJECT MARKET', x: 52.5, y: 31.8, copy: 'A MEDITERRANEAN PROJECT CONTEXT CONNECTING PLACE, MATERIAL, HOSPITALITY AND CONTEMPORARY LIFESTYLE.' },
-] as const
-
 const sectors = [
   { name: 'ARCHITECTURE', copy: 'ENDURING BUILDINGS SHAPED BY CONTEXT, CLIMATE AND HUMAN EXPERIENCE.' },
   { name: 'CORPORATE', copy: 'HIGH-PERFORMING WORKPLACES THAT SUPPORT CULTURE, FOCUS AND COLLABORATION.' },
@@ -34,11 +29,67 @@ const sectors = [
   { name: 'HOSPITALITY', copy: 'CALM, WELCOMING DESTINATIONS DESIGNED AROUND COMFORT AND THE GUEST EXPERIENCE.' },
 ] as const
 
-// 49 unique logo crops from the reference site's “Our Valued Partners” section.
-// The source repeats one crop exactly, so it is intentionally stored only once here.
-const clientLogos = Array.from({ length: 49 }, (_, index) => [
-  `our-valued-partners-normalized/partner-${String(index + 1).padStart(2, '0')}`,
-  '',
+// 49 unique logo crops from the reference site's “Our Valued Partners” section,
+// reordered to feature leading real estate developers and international hospitality & luxury brands first.
+const partnerOrder = [
+  // Real Estate Developers
+  ['partner-01', 'Mountain View'],
+  ['partner-04', 'Palm Hills Developments'],
+  ['partner-03', 'SODIC'],
+  ['partner-05', 'Al Jazi Developments'],
+  ['partner-02', 'Starlight Developments'],
+  ['partner-06', 'Al Ahly Sabbour Developments'],
+  // International Hospitality & Luxury Brands
+  ['partner-29', 'Courtyard by Marriott'],
+  ['partner-27', 'ALL - Accor Live Limitless'],
+  ['partner-28', 'Novotel Hotels & Resorts'],
+  ['partner-23', 'Hugo Boss'],
+  ['partner-16', 'Emporio Armani'],
+  ['partner-09', 'Armani Exchange'],
+  ['partner-07', 'Billionaire'],
+  ['partner-10', 'DSquared2'],
+  ['partner-12', 'Pinko'],
+  ['partner-13', 'Twinset Milano'],
+  ['partner-25', 'Elisabetta Franchi'],
+  ['partner-24', 'Subaru'],
+  ['partner-32', "Casper & Gambini's"],
+  ['partner-18', 'Asfour Crystal'],
+  // Premium Retail, Fitness & Corporate Brands
+  ['partner-11', 'd store'],
+  ['partner-26', 'EGO Your Fashion Destination'],
+  ['partner-15', 'BeFit 360'],
+  ['partner-14', 'The Science Gym'],
+  ['partner-08', "Ravin'"],
+  ['partner-20', 'Fourteen'],
+  ['partner-21', 'Shoeroom'],
+  ['partner-17', 'Golden N'],
+  ['partner-22', 'Samir & Aly'],
+  ['partner-19', 'The Grocer'],
+  // Destination F&B & Dining
+  ['partner-47', 'Crimson Bar and Grill'],
+  ['partner-48', 'Nüwa'],
+  ['partner-35', "Carlo's"],
+  ['partner-34', 'One Oak'],
+  ['partner-30', "Ted's"],
+  ['partner-33', 'Fuego Sushi'],
+  ['partner-31', 'Garnell'],
+  ['partner-36', 'Tamara Elna'],
+  ['partner-41', 'Beit Wared'],
+  ['partner-46', 'Nişantaşı'],
+  ['partner-45', 'Ozel'],
+  ['partner-40', 'Abou Shakra'],
+  ['partner-38', 'El Dahan'],
+  ['partner-37', 'Coppermelt'],
+  ['partner-43', 'Tortina'],
+  ['partner-39', 'Cake Cafe'],
+  ['partner-44', 'The Four Fat Ladies'],
+  ['partner-42', 'Oh Betty!'],
+  ['partner-49', 'Mince'],
+] as const
+
+const clientLogos = partnerOrder.map(([id, name]) => [
+  `our-valued-partners-normalized/${id}`,
+  name,
 ] as const)
 
 const clientLogoRows = [
@@ -48,7 +99,6 @@ const clientLogoRows = [
 
 function HomePage() {
   const [ready, setReady] = useState(false)
-  const [activeMarket, setActiveMarket] = useState(0)
   const [activeSector, setActiveSector] = useState(0)
   const pageRef = useRef<HTMLDivElement>(null)
   const heroVideoRef = useViewportVideo()
@@ -116,60 +166,43 @@ function HomePage() {
           </div>
           <div className="home-hero-foot">
             <span>OVER THREE DECADES</span>
-            <a href="#studio">SCROLL TO DISCOVER <ArrowIcon direction="down" /></a>
+            <a href="#selected-work">SCROLL TO DISCOVER <ArrowIcon direction="down" /></a>
           </div>
         </Container>
 
-        <Container as="section" id="markets" className="home-markets" fluid aria-labelledby="home-markets-title">
-          <Container className="home-markets-shell section-pad">
-            <div className="home-markets-heading">
+        <Container as="section" id="selected-work" className="home-work" fluid aria-labelledby="home-work-title">
+          <Container className="section-pad">
+            <div className="home-work-heading">
               <SectionHeading
-                id="home-markets-title"
-                eyebrow="01 / GET IN TOUCH"
-                title={<>WE'D LOVE TO<br />HEAR FROM YOU</>}
+                id="home-work-title"
+                eyebrow="01 / SELECTED WORK"
+                title={<>PLACES WITH <em>PRESENCE</em></>}
+                description="A cross-section of architecture and interiors designed for living, working, gathering and belonging."
                 align="start"
               />
+              <div className="home-work-actions">
+                <Link className="home-text-link" to="/projects">
+                  <span>VIEW ALL PROJECTS</span>
+                  <ArrowIcon />
+                </Link>
+              </div>
             </div>
-
-            <div className="home-market-map" data-reveal>
+            <Link className="home-project-feature" to="/projects" data-reveal aria-label="Explore all MB Designs projects">
               <img
-                className="home-market-image"
-                src="/assets/images/world-map.svg"
-                alt="World map showing MB Designs locations in Cairo, Dubai, Riyadh and Athens"
-                width="748"
-                height="377"
+                src="/assets/images/home-work-architecture.webp"
+                alt="Contemporary architecture with layered stone volumes and glazed façades"
+                width="1536"
+                height="1024"
                 loading="lazy"
                 decoding="async"
               />
-              <span className="home-market-map-label">MB DESIGNS / CAIRO + DUBAI + RIYADH + ATHENS</span>
-              <div className="home-market-pins" role="tablist" aria-label="Select a project location on the world map">
-                {markets.map((market, index) => (
-                  <button
-                    key={market.name}
-                    type="button"
-                    role="tab"
-                    aria-label={`${market.city}, ${market.name}`}
-                    aria-selected={activeMarket === index}
-                    className={activeMarket === index ? 'is-active' : ''}
-                    onClick={() => setActiveMarket(index)}
-                    style={{ '--market-x': `${market.x}%`, '--market-y': `${market.y}%` } as CSSProperties}
-                  >
-                    <span aria-hidden="true" />
-                    <small>{market.city}</small>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            <div className="home-market-tabs" role="tablist" aria-label="MB Designs markets">
-              {markets.map((market, index) => (
-                <button key={market.name} type="button" role="tab" aria-selected={activeMarket === index} onClick={() => setActiveMarket(index)}>
-                  <span>{String(index + 1).padStart(2, '0')}</span>
-                  <strong>{market.city}</strong>
-                  <small>{market.name}</small>
-                </button>
-              ))}
-            </div>
+              <span className="home-project-feature__shade" />
+              <span className="home-project-feature__caption">
+                <small>ARCHITECTURE · INTERIORS · CAIRO · DUBAI</small>
+                <strong>EXPLORE THE PORTFOLIO</strong>
+                <ArrowIcon />
+              </span>
+            </Link>
           </Container>
         </Container>
 
@@ -189,10 +222,10 @@ function HomePage() {
           </div>
           <div className="home-studio-visual" data-reveal>
             <img
-              src="/assets/images/home-philosophy-interior.webp"
-              alt="Warm contemporary workspace with natural materials and generous daylight"
-              width="1536"
-              height="1024"
+              src="/assets/images/home-studio-residential-empty.webp"
+              alt="Residential living room with warm timber, sculptural furnishings and natural light"
+              width="1674"
+              height="939"
               loading="eager"
               decoding="async"
             />
@@ -213,40 +246,6 @@ function HomePage() {
           </dl>
         </Container>
 
-        <Container as="section" id="selected-work" className="home-work section-pad" aria-labelledby="home-work-title">
-          <div className="home-work-heading">
-            <SectionHeading
-              id="home-work-title"
-              eyebrow="03 / SELECTED WORK"
-              title={<>PLACES WITH <em>PRESENCE</em></>}
-              description="A cross-section of architecture and interiors designed for living, working, gathering and belonging."
-              align="start"
-            />
-            <div className="home-work-actions">
-              <Link className="home-text-link" to="/projects">
-                <span>VIEW ALL PROJECTS</span>
-                <ArrowIcon />
-              </Link>
-            </div>
-          </div>
-          <Link className="home-project-feature" to="/projects" data-reveal aria-label="Explore all MB Designs projects">
-            <img
-              src="/assets/images/home-selected-architecture.webp"
-              alt="Contemporary stone and glass architecture in warm evening light"
-              width="1536"
-              height="1024"
-              loading="lazy"
-              decoding="async"
-            />
-            <span className="home-project-feature__shade" />
-            <span className="home-project-feature__caption">
-              <small>ARCHITECTURE · INTERIORS · CAIRO · DUBAI</small>
-              <strong>EXPLORE THE PORTFOLIO</strong>
-              <ArrowIcon />
-            </span>
-          </Link>
-        </Container>
-
         <Container as="section" className="home-practice" fluid aria-labelledby="home-practice-title">
           <div className="home-practice-media">
             <video
@@ -265,7 +264,7 @@ function HomePage() {
           <div className="home-practice-copy section-pad">
             <SectionHeading
               id="home-practice-title"
-              eyebrow="04 / OUR SECTORS"
+              eyebrow="03 / OUR SECTORS"
               title={<>DESIGN ACROSS <em>SCALES</em></>}
               description="Select a sector to explore how our integrated approach responds to different people, places and ambitions."
               align="start"
@@ -277,6 +276,8 @@ function HomePage() {
                     type="button"
                     role="tab"
                     aria-selected={activeSector === index}
+                    onMouseEnter={() => setActiveSector(index)}
+                    onFocus={() => setActiveSector(index)}
                     onClick={() => setActiveSector(index)}
                     style={{ '--delay': `${index * 55}ms` } as CSSProperties}
                     key={sector.name}
@@ -296,11 +297,47 @@ function HomePage() {
           </div>
         </Container>
 
+        <Container as="section" className="home-recognition section-pad" aria-labelledby="home-recognition-title">
+          <div className="home-recognition-image" data-reveal>
+            <img
+              src="/assets/images/home-recognition-dining.webp"
+              alt="Dining interior with layered lighting, warm timber and refined lounge seating"
+              width="1254"
+              height="1254"
+              loading="lazy"
+              decoding="async"
+            />
+          </div>
+          <div className="home-recognition-copy">
+            <SectionHeading
+              id="home-recognition-title"
+              eyebrow="04 / RECOGNITION"
+              title={<>RECOGNIZED <em>INTERNATIONALLY</em></>}
+              description="Awarded for residential, leisure and studio excellence—while remaining focused on the people and purpose behind every project."
+              align="start"
+            />
+            <div className="home-award-summary" data-reveal>
+              <div>
+                <span>2020–2021</span>
+                <strong>ARABIAN-AFRICAN<br />PROPERTY AWARDS</strong>
+              </div>
+              <div>
+                <span>2021–2022</span>
+                <strong>LUXURY LIFESTYLE<br />AWARDS</strong>
+              </div>
+            </div>
+            <Link className="home-text-link" to="/awards">
+              <span>EXPLORE OUR AWARDS</span>
+              <ArrowIcon />
+            </Link>
+          </div>
+        </Container>
+        <HomeNetwork partnerCount={partnerOrder.length} countryCount={locationCountryCount} />
         <Container as="section" id="selected-clients" className="home-clients" fluid aria-labelledby="home-clients-title">
           <Container className="home-clients-heading section-pad">
             <SectionHeading
               id="home-clients-title"
-              eyebrow="05 / SELECTED CLIENTS"
+              eyebrow="06 / SELECTED CLIENTS"
               title={<>DESIGNING FOR LEADING <em>BRANDS</em></>}
               description="Long-term collaborations across real estate, hospitality, retail and commercial development."
               align="start"
@@ -337,41 +374,7 @@ function HomePage() {
           </div>
         </Container>
 
-        <Container as="section" className="home-recognition section-pad" aria-labelledby="home-recognition-title">
-          <div className="home-recognition-image" data-reveal>
-            <img
-              src="/assets/images/home-recognition-architecture.webp"
-              alt="Contemporary architecture with sculpted stone volumes and glass façades"
-              width="1127"
-              height="1396"
-              loading="lazy"
-              decoding="async"
-            />
-          </div>
-          <div className="home-recognition-copy">
-            <SectionHeading
-              id="home-recognition-title"
-              eyebrow="06 / RECOGNITION"
-              title={<>RECOGNIZED <em>INTERNATIONALLY</em></>}
-              description="Awarded for residential, leisure and studio excellence—while remaining focused on the people and purpose behind every project."
-              align="start"
-            />
-            <div className="home-award-summary" data-reveal>
-              <div>
-                <span>2020–2021</span>
-                <strong>ARABIAN-AFRICAN<br />PROPERTY AWARDS</strong>
-              </div>
-              <div>
-                <span>2021–2022</span>
-                <strong>LUXURY LIFESTYLE<br />AWARDS</strong>
-              </div>
-            </div>
-            <Link className="home-text-link" to="/awards">
-              <span>EXPLORE OUR AWARDS</span>
-              <ArrowIcon />
-            </Link>
-          </div>
-        </Container>
+        <LocationsMap />
       </main>
     </div>
   )

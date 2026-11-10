@@ -1,0 +1,132 @@
+{
+  "egypt": {
+    "title": "Giza pyramid complex",
+    "latitude": 29.97611111,
+    "longitude": 31.13277778,
+    "image": "/assets/images/landmarks/egypt.webp",
+    "width": 960,
+    "height": 400,
+    "source": "https://commons.wikimedia.org/wiki/File:Pyramids_of_the_Giza_Necropolis.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/wiki/User:KennyOMG\" class=\"mw-redirect\" title=\"User:KennyOMG\">KennyOMG</a>",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "united-arab-emirates": {
+    "title": "Burj Khalifa",
+    "latitude": 25.1972,
+    "longitude": 55.2742,
+    "image": "/assets/images/landmarks/united-arab-emirates.webp",
+    "width": 960,
+    "height": 641,
+    "source": "https://commons.wikimedia.org/wiki/File:Burj_Khalifa_(worlds_tallest_building)_and_the_Dubai_skyline_(25781049892).jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/138133176@N07\">imran shahabuddin</a>",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "saudi-arabia": {
+    "title": "Kingdom Centre",
+    "latitude": 24.7113,
+    "longitude": 46.6744,
+    "image": "/assets/images/landmarks/saudi-arabia.webp",
+    "width": 960,
+    "height": 1298,
+    "source": "https://commons.wikimedia.org/wiki/File:Kingdom_Centre_Riyadh_2024.jpeg",
+    "artist": "<a href=\"https://en.wikipedia.org/wiki/User:Hamza_A._Durrani\" class=\"extiw\" title=\"w:User:Hamza A. Durrani\">Hamza A. Durrani</a>",
+    "license": "CC BY-SA 4.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0"
+  },
+  "greece": {
+    "title": "Parthenon",
+    "latitude": 37.9715,
+    "longitude": 23.7266,
+    "image": "/assets/images/landmarks/greece.webp",
+    "width": 960,
+    "height": 675,
+    "source": "https://commons.wikimedia.org/wiki/File:The_Parthenon_in_Athens.jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/photos/68686051@N00\">Steve Swayne</a>",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "oman": {
+    "title": "Sultan Qaboos Grand Mosque",
+    "latitude": 23.58388889,
+    "longitude": 58.38916667,
+    "image": "/assets/images/landmarks/oman.webp",
+    "width": 960,
+    "height": 513,
+    "source": "https://en.wikipedia.org/wiki/File:Sultan_Qaboos_Grand_Mosque_RB.jpg",
+    "artist": "<p><a href=\"//en.wikipedia.org/wiki/User:Richard_Bartz\" title=\"User:Richard Bartz\">Richard Bartz</a>\n</p>",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "bahrain": {
+    "title": "Bahrain World Trade Center",
+    "latitude": 26.23916667,
+    "longitude": 50.58138889,
+    "image": "/assets/images/landmarks/bahrain.webp",
+    "width": 960,
+    "height": 1280,
+    "source": "https://en.wikipedia.org/wiki/File:Bahrain_WTC.JPG",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "qatar": {
+    "title": "Museum of Islamic Art, Doha",
+    "latitude": 25.2950187,
+    "longitude": 51.53926545,
+    "image": "/assets/images/landmarks/qatar.webp",
+    "width": 960,
+    "height": 636,
+    "source": "https://en.wikipedia.org/wiki/File:Museum_of_Islamic_Art_in_Doha,_Qatar_(32673171432).jpg",
+    "artist": "<p><a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/145472109@N04\">Ralf Steinberger</a> from Milan, Berlin + Munich, Italy + Germany\n</p>",
+    "license": "CC-BY-2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0/"
+  },
+  "kuwait": {
+    "title": "Kuwait Towers",
+    "latitude": 29.39,
+    "longitude": 48.00305556,
+    "image": "/assets/images/landmarks/kuwait.webp",
+    "width": 960,
+    "height": 1415,
+    "source": "https://en.wikipedia.org/wiki/File:Kuwait_Towers_RB.jpg",
+    "artist": "<p><a href=\"//en.wikipedia.org/wiki/User:Richard_Bartz\" title=\"User:Richard Bartz\">Richard Bartz</a>\n</p>",
+    "license": "CC-BY-SA-3.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/"
+  },
+  "mauritius": {
+    "title": "Le Morne Brabant",
+    "latitude": -20.45194444,
+    "longitude": 57.32833333,
+    "image": "/assets/images/landmarks/mauritius.webp",
+    "width": 960,
+    "height": 640,
+    "source": "https://commons.wikimedia.org/wiki/File:Le_Morne_Peninsula_in_Mauritius_(53697779236).jpg",
+    "artist": "<a rel=\"nofollow\" class=\"external text\" href=\"https://www.flickr.com/people/200610822@N07\">\"dronepicr\"</a>",
+    "license": "CC BY 2.0",
+    "licenseUrl": "https://creativecommons.org/licenses/by/2.0"
+  },
+  "seychelles": {
+    "title": "Horloge de Victoria",
+    "latitude": -4.623214,
+    "longitude": 55.452292,
+    "image": "/assets/images/landmarks/seychelles.webp",
+    "width": 960,
+    "height": 1440,
+    "source": "https://commons.wikimedia.org/wiki/File:Victoria_Clock_Tower_asv2024-09_img2.jpg",
+    "artist": "<b><span class=\"plainlinks\"><a class=\"external text\" href=\"https://commons.wikimedia.org/wiki/User:A.Savin\">A.Savin</a></span></b>",
+    "license": "FAL",
+    "licenseUrl": "http://artlibre.org/licence/lal/en"
+  },
+  "cabo-verde": {
+    "title": "Forte Real de São Filipe",
+    "latitude": 14.916,
+    "longitude": -23.6019,
+    "image": "/assets/images/landmarks/cabo-verde.webp",
+    "width": 960,
+    "height": 720,
+    "source": "https://commons.wikimedia.org/wiki/File:Forte_Real_de_S%C3%A3o_Filipe,_Cidade_Velha,_Cape_Verde.jpg",
+    "artist": "<a href=\"//commons.wikimedia.org/w/index.php?title=User:Xandu&amp;action=edit&amp;redlink=1\" class=\"new\" title=\"User:Xandu (page does not exist)\">Xandu</a>",
+    "license": "Public domain"
+  }
+}
