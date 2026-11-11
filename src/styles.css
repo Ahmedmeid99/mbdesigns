@@ -7692,3 +7692,10 @@ video {
   .team-group--leadership .team-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem .8rem; }
   .team-group--leadership .team-card { grid-column: auto; width: 100%; }
 }
+.home-site { --home-section-space: clamp(3rem, 6vw, 6rem); }
+.home-site .home-work,
+.home-site .home-studio,
+.home-site .home-recognition,
+.home-site .home-clients { padding-block: var(--home-section-space); }
+.home-site .home-work + .home-studio { padding-top: var(--home-section-space); }
+.home-site .home-clients + .locations-section > .layout-container { padding-top: 0; }
