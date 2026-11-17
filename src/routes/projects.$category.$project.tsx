@@ -84,13 +84,12 @@ function SingleProjectPage() {
         <div>
           <p className="single-project-intro-eyebrow">PROJECT / {category.name}</p>
           <h2 id="single-project-intro-title">{detail.title}</h2>
-          <p>{projectDescription(detail.title, categorySlug)}</p>
+          <p className="single-project-facts">
+            <span className="single-project-facts-row"><span className="single-project-facts-label">Location: </span><span className="single-project-facts-value">{detail.location}.</span></span>
+            <span className="single-project-facts-row"><span className="single-project-facts-label">Space: </span><span className="single-project-facts-value">Project specific.</span></span>
+            <span className="single-project-facts-row"><span className="single-project-facts-label">Scope of work: </span><span className="single-project-facts-value">{scopeForCategory(categorySlug)}.</span></span>
+          </p>
         </div>
-        <dl>
-          <div><dt>LOCATION</dt><dd>{shortLocation(detail.location)}</dd></div>
-          <div><dt>SPACE</dt><dd>PROJECT SPECIFIC</dd></div>
-          <div><dt>SCOPE OF WORK</dt><dd>{scopeForCategory(categorySlug)}</dd></div>
-        </dl>
       </Container>
 
       <Container as="main" className="single-project-main">
@@ -131,9 +130,6 @@ function SingleProjectPage() {
   )
 }
 
-function shortLocation(location: string) {
-  return location.split(/[|,]/)[0]?.trim() || 'CAIRO'
-}
 
 function scopeForCategory(category: string) {
   if (category === 'architecture') return 'ARCHITECTURE & DESIGN DEVELOPMENT'
@@ -142,16 +138,4 @@ function scopeForCategory(category: string) {
   if (category === 'residential') return 'RESIDENTIAL INTERIOR DESIGN'
   if (category === 'hospitality') return 'HOSPITALITY INTERIOR DESIGN'
   return 'INTERIOR DESIGN & PROJECT DELIVERY'
-}
-
-function projectDescription(title: string, category: string) {
-  const sectorCopy: Record<string, string> = {
-    architecture: 'A CONTEXT-LED ARCHITECTURAL RESPONSE THAT BALANCES A CLEAR FORMAL IDENTITY WITH EVERYDAY FUNCTION, CLIMATE AND LONG-TERM USE.',
-    corporate: 'A CONTEMPORARY WORKPLACE DESIGNED TO SUPPORT FOCUS, COLLABORATION AND A DISTINCTIVE ORGANIZATIONAL IDENTITY.',
-    residential: 'A REFINED HOME SHAPED AROUND COMFORT, MATERIAL WARMTH AND THE RHYTHMS OF DAILY LIFE.',
-    'food-and-beverage': 'A LAYERED DINING ENVIRONMENT WHERE LIGHT, MATERIAL AND SPATIAL RHYTHM CREATE A MEMORABLE GUEST EXPERIENCE.',
-    'retail-and-commercial': 'A CLEAR COMMERCIAL ENVIRONMENT THAT UNITES BRAND EXPRESSION, PRODUCT PRESENTATION AND AN INTUITIVE CUSTOMER JOURNEY.',
-    hospitality: 'A CALM, WELCOMING DESTINATION DESIGNED AROUND COMFORT, ATMOSPHERE AND A SEAMLESS STAY EXPERIENCE.',
-  }
-  return `${title} IS ${sectorCopy[category]?.replace(/^A /, 'A ') ?? 'A PURPOSEFUL ENVIRONMENT CREATED WITH CARE, PRECISION AND A STRONG SENSE OF PLACE.'}`
 }

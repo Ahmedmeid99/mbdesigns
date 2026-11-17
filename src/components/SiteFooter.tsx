@@ -19,7 +19,7 @@ const socialLinks = [
   { label: 'LINKEDIN', href: 'https://www.linkedin.com/company/mbdesignseg/home/', network: 'linkedin' },
 ] as const
 
-const cairoMapUrl = 'https://www.bing.com/maps/search?q=30.109478694184%2C+31.34949233624&cp=30.109478%7E31.349493&lvl=16&style=r'
+const cairoMapUrl = 'https://www.bing.com/maps?cp=30.109478~31.349493&lvl=16&sp=point.30.109478_31.349493_9%20Salah%20El%20Deen%20Fadel%2C%20Al%20Nozha%20Qesm%2C%20Cairo%2C%2011713%2C%20Egypt'
 const dubaiMapUrl = 'https://www.bing.com/maps/search?q=IFZA%20Business%20Park%2C%20DDP%20Building%20A1%2C%20Dubai%20Silicon%20Oasis%2C%20UAE'
 
 type SocialNetwork = (typeof socialLinks)[number]['network']
@@ -110,7 +110,7 @@ export function SiteFooter() {
               <address>
                 <small>01 / EGYPT OFFICE</small>
                 <strong>CAIRO</strong>
-                <p>9 Salah ElDeen Fadel Street<br />Heliopolis, Cairo, Egypt</p>
+                <p>9 Salah El Deen Fadel<br />Al Nozha Qesm, Cairo, 11713, Egypt</p>
                 <a href="tel:+201003003797">+20 100 300 3797</a>
                 <a href="tel:+20221811013">+20 2 2181 1013</a>
                 <a className="site-footer-map-link" href={cairoMapUrl} target="_blank" rel="noopener noreferrer">

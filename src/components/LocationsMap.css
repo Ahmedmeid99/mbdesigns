@@ -30,9 +30,9 @@
 .locations-landmark a { display: flex; gap: .5rem; align-items: center; justify-content: center; min-height: 32px; margin-top: .3rem; font-size: .55rem; color: var(--color-accent); text-decoration: none; }
 .locations-countries { display: grid; grid-template-columns: 2.9fr 1.3fr .3fr; gap: 1rem; padding-top: 2rem; }
 .locations-region { min-width: 0; }
-.locations-region h3 { margin: 0 0 .65rem; font-size: .85rem; letter-spacing: .1em; color: #222; }
-.locations-region > div { display: flex; flex-wrap: wrap; gap: .25rem .65rem; }
-.locations-region button { min-height: 44px; padding: .65rem .85rem; border: 1px solid transparent; background: transparent; color: #111; font-family: inherit; font-size: 1rem; white-space: nowrap; flex: 0 0 auto; text-align: left; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
+.locations-region h3 { margin: 0 0 .65rem; font-size: .85rem; font-weight: 700; letter-spacing: .1em; color: #222; }
+.locations-region > div { display: flex; flex-wrap: wrap; gap: .1rem .25rem; }
+.locations-region button { min-height: 44px; padding: .4rem .5rem; border: 1px solid transparent; background: transparent; color: #111; font-family: inherit; font-size: .85rem; font-weight: 400; white-space: nowrap; flex: 0 0 auto; text-align: left; cursor: pointer; transition: background-color 180ms ease, border-color 180ms ease, color 180ms ease; }
 .locations-region button:hover, .locations-region button[aria-pressed='true'] { background: #e8e8e8; border-color: #d1d1d1; color: #111; }
 .locations-section :is(button, a):focus-visible { outline: 2px solid var(--color-accent); outline-offset: 4px; }
 @keyframes landmark-appear { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
@@ -53,7 +53,7 @@
   .locations-landmark .locations-eyebrow { display: none; }
   .locations-landmark h3 { font-size: .8rem; }
   .locations-landmark a { min-height: 44px; }
-  .locations-region button { font-size: .95rem; }
+  .locations-region button { font-size: .8rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   .locations-section *, .locations-section *::before { animation: none !important; transition: none !important; }

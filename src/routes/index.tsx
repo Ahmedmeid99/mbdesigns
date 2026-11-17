@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react'
 import { ArrowIcon } from '../components/Icon'
 import { Container } from '../components/Container'
 import { SectionHeading } from '../components/SectionHeading'
-import { LocationsMap, locationCountryCount } from '../components/LocationsMap'
+import { LocationsMap } from '../components/LocationsMap'
 import { HomeNetwork } from '../components/HomeNetwork'
 
 export const Route = createFileRoute('/')({
@@ -105,6 +105,23 @@ function HomePage() {
   const practiceVideoRef = useViewportVideo({ preloadAhead: true })
 
   useEffect(() => {
+    const tabs = pageRef.current?.querySelector<HTMLElement>('.home-sector-tabs')
+    if (!tabs) return
+    let disposed = false
+    const measure = () => {
+      if (disposed) return
+      const descriptions = tabs.querySelectorAll<HTMLElement>('.home-sector-tab-copy > span')
+      const height = Math.max(...Array.from(descriptions, item => item.scrollHeight))
+      tabs.style.setProperty('--sector-copy-height', `${height}px`)
+    }
+    const observer = new ResizeObserver(measure)
+    observer.observe(tabs)
+    void document.fonts.ready.then(measure)
+    measure()
+    return () => { disposed = true; observer.disconnect() }
+  }, [])
+
+  useEffect(() => {
     const timer = window.setTimeout(() => setReady(true), 80)
     const root = pageRef.current
     if (!root) return () => window.clearTimeout(timer)
@@ -140,15 +157,13 @@ function HomePage() {
             preload="auto"
             aria-label="MB Designs architectural project film"
           >
-            <source src="/assets/video/hero.mp4" type="video/mp4" />
+            <source src="/assets/video/home-hero-2026-mobile.mp4" type="video/mp4" media="(max-width: 767px)" />
+            <source src="/assets/video/home-hero-2026.mp4" type="video/mp4" />
           </video>
           <div className="home-hero-shade" />
           <div className="home-hero-content">
-            <p className="home-hero-eyebrow">ARCHITECTURE · INTERIORS · CAIRO · DUBAI</p>
             <h1 id="home-hero-title" className="display-title">
               ARCHITECTURE &<br /> INTERIOR DESIGN<br /> THAT <em>INSPIRES</em>
-
-
             </h1>
             <p className="home-hero-lead">
               Award-winning environments shaped by context, precision and more than three decades of design practice.
@@ -189,10 +204,10 @@ function HomePage() {
             </div>
             <Link className="home-project-feature" to="/projects" data-reveal aria-label="Explore all MB Designs projects">
               <img
-                src="/assets/images/home-work-architecture.webp"
-                alt="Contemporary architecture with layered stone volumes and glazed façades"
-                width="1536"
-                height="1024"
+                src="/assets/images/home-studio-residential-empty.webp"
+                alt="Residential living room with warm timber, sculptural furnishings and natural light"
+                width="1674"
+                height="939"
                 loading="lazy"
                 decoding="async"
               />
@@ -222,10 +237,10 @@ function HomePage() {
           </div>
           <div className="home-studio-visual" data-reveal>
             <img
-              src="/assets/images/home-studio-residential-empty.webp"
-              alt="Residential living room with warm timber, sculptural furnishings and natural light"
-              width="1674"
-              height="939"
+              src="/assets/images/home-work-architecture.webp"
+              alt="Contemporary architecture with layered stone volumes and glazed façades"
+              width="1536"
+              height="1024"
               loading="eager"
               decoding="async"
             />
@@ -332,7 +347,7 @@ function HomePage() {
             </Link>
           </div>
         </Container>
-        <HomeNetwork partnerCount={partnerOrder.length} countryCount={locationCountryCount} />
+        <HomeNetwork />
         <Container as="section" id="selected-clients" className="home-clients" fluid aria-labelledby="home-clients-title">
           <Container className="home-clients-heading section-pad">
             <SectionHeading

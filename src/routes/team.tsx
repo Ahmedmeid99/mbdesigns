@@ -95,25 +95,15 @@ function TeamPage() {
 
         <Container as="section" className="team-roster" aria-labelledby="team-roster-title">
           <h2 id="team-roster-title" data-reveal>MEET THE TEAM</h2>
-          <div className="team-groups">
-            {teamGroups.map((group, groupIndex) => (
-              <section className={`team-group team-group--${group.name.toLowerCase().replace(/\s+/g, '-')}`} aria-labelledby={`team-group-${groupIndex}`} key={group.name}>
-                <header className="team-group-heading" data-reveal>
-                  <span>{String(groupIndex + 1).padStart(2, '0')}</span>
-                  <h3 id={`team-group-${groupIndex}`}>{group.name}</h3>
-                </header>
-                <div className="team-grid">
-                  {group.members.map((member, memberIndex) => (
-                    <article className="team-card" key={member.name} data-reveal style={{ '--delay': `${(memberIndex % 4) * 75}ms` } as React.CSSProperties}>
-                      <div className="team-portrait">
-                        <img src={member.image} alt={member.name} width="900" height="1040" loading={groupIndex === 0 ? 'eager' : 'lazy'} decoding="async" />
-                      </div>
-                      <h4>{member.name}</h4>
-                      <p>{member.role}</p>
-                    </article>
-                  ))}
+          <div className="team-grid">
+            {teamGroups.flatMap<{ name: string; role: string; image: string }>(group => group.members).map((member, memberIndex) => (
+              <article className="team-card" key={member.name} data-reveal style={{ '--delay': `${(memberIndex % 5) * 75}ms` } as React.CSSProperties}>
+                <div className="team-portrait">
+                  <img src={member.image} alt={member.name} width="900" height="1040" loading={memberIndex < 5 ? 'eager' : 'lazy'} decoding="async" />
                 </div>
-              </section>
+                <h3>{member.name}</h3>
+                <p>{member.role}</p>
+              </article>
             ))}
           </div>
         </Container>

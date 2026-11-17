@@ -20,6 +20,16 @@ export const Route = createFileRoute('/awards')({
   component: AwardsPage,
 })
 
+const awardProjectLocations: Record<string, string> = {
+  'east-town-duplex': 'New Cairo, Egypt',
+  nuwa: 'Capital Promenade, Zayed, Egypt',
+  'grand-residence': 'New Cairo, Egypt',
+  'd-store': 'CFC, Cairo, Egypt',
+  'property-finder': 'District 5, Marakez',
+  ozel: 'Garden 8',
+  'kmk-residence-dubai': 'Dubai, UAE',
+}
+
 const awardEntries = [
   {
     number: '01',
@@ -88,10 +98,10 @@ const featuredStudioProjects = [
     slug: 'property-finder',
   },
   {
-    name: 'ONE OAK RESTAURANT',
+    name: 'OZEL',
     sector: 'FOOD & BEVERAGE',
-    copy: 'One Oak Restaurant uses layered lighting, warm timber, dark finishes and expressive artwork to create an energetic dining atmosphere. The design balances intimate seating with a strong central visual identity, giving the restaurant a distinctive and memorable F&B experience.',
-    slug: 'one-oak',
+    copy: 'Ozel at Garden 8 brings together warm timber, textured materials and layered lighting in a welcoming dining environment. Open kitchen views, crafted details and carefully arranged seating create an engaging restaurant experience with a distinctive identity.',
+    slug: 'ozel',
   },
   {
     name: 'KMK RESIDENCE, DUBAI',
@@ -326,13 +336,16 @@ function AwardsPage() {
                 <header>
                   <span>{String(projectIndex + 1).padStart(2, '0')} / {project.sector}</span>
                   <h3>{project.name}</h3>
+                  <p className="award-project-location">{awardProjectLocations[project.slug]}</p>
                   <p>{project.copy}</p>
                 </header>
                 <figure className="featured-award-collage" role="img" aria-label={`${project.name} project collage showing four views`}>
-                  {[1, 2, 3, 4].map((imageIndex) => (
+                  {(project.slug === 'kmk-residence-dubai' ? [1, 4, 2, 3] : [1, 2, 3, 4]).map((imageIndex) => (
                     <img
                       key={imageIndex}
-                      src={`/assets/images/awards-featured/${project.slug}-${String(imageIndex).padStart(2, '0')}.webp`}
+                      src={project.slug === 'kmk-residence-dubai' && imageIndex === 3
+                        ? '/assets/images/awards-featured/kmk-residence-dubai-living.webp'
+                        : `/assets/images/awards-featured/${project.slug}-${String(imageIndex).padStart(2, '0')}.webp`}
                       alt=""
                       width="900"
                       height="600"
@@ -463,6 +476,8 @@ function AwardFamilyHeader({
 }
 
 function EditorialAward({ entry, reverse = false, onOpen }: { entry: AwardEntry; reverse?: boolean; onOpen: (trigger: HTMLButtonElement) => void }) {
+  const locationSlug = ({ 'EASTOWN DUPLEX': 'east-town-duplex', 'NUWA BY MORI CO': 'nuwa', 'GRAND RESIDENCE VILLA': 'grand-residence' } as Record<string, string>)[entry.name]
+  const projectLocation = locationSlug ? awardProjectLocations[locationSlug] : null
   const headingId = `award-${entry.name.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '')}`
 
   return (
@@ -470,6 +485,7 @@ function EditorialAward({ entry, reverse = false, onOpen }: { entry: AwardEntry;
       <div className="editorial-copy">
         <div className="editorial-title"><span>{entry.number}</span><h3 id={headingId}>{entry.name}</h3></div>
         {entry.category && <h4>{entry.category}</h4>}
+        {projectLocation && <p className="award-project-location">{projectLocation}</p>}
         {entry.copy.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
       </div>
       <button className="award-focus-trigger award-focus-trigger--editorial" type="button" aria-label={`Open ${entry.name} award image`} onClick={(event) => onOpen(event.currentTarget)}>

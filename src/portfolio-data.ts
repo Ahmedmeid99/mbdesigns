@@ -38,7 +38,7 @@ export const projectCategories = [
   {
     slug: 'architecture', name: 'ARCHITECTURE', image: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp',
     detail: {
-      hero: '/assets/images/projects-hero.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
+      hero: '/assets/images/projects/beb217_466180a7bf63450abb43b2388160a908.webp', heroLines: ['ARCHITECTURE', 'THAT BALANCES'],
       subtitle: 'VISION, FUNCTION, AND TIMELESS DESIGN', layout: 'three-standard',
       projects: architectureProjects,
     },
@@ -46,7 +46,7 @@ export const projectCategories = [
   {
     slug: 'corporate', name: 'CORPORATE', image: '/assets/images/projects/beb217_1bf6fd72a4b24e378c3335b33fdd9078.webp',
     detail: {
-      hero: '/assets/images/projects-hero.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
+      hero: '/assets/images/projects/beb217_1bf6fd72a4b24e378c3335b33fdd9078.webp', heroLines: ['WORK ENVIRONMENTS', 'DESIGNED TO INSPIRE'],
       subtitle: 'PRODUCTIVITY, COLLABORATION, AND INNOVATION', layout: 'three-standard',
       projects: [
         card('PROPERTY FINDER', '/assets/images/corporate-08.webp', 'wide'),
@@ -61,9 +61,55 @@ export const projectCategories = [
     },
   },
   {
+    slug: 'retail-and-commercial', name: 'RETAIL & COMMERCIAL', image: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp',
+    detail: {
+      hero: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
+      subtitle: 'BRANDS AND CONNECT WITH CUSTOMERS', layout: 'two-tall',
+      projects: [
+        card('RAVIN', '/assets/images/retail-01.webp', 'portrait'),
+        card('IQOS', '/assets/images/retail-05.webp', 'wide'),
+        card('EGO', '/assets/images/retail-02.webp', 'portrait'),
+        card('D STORE', '/assets/images/retail-06.webp', 'wide'),
+        card('TWINSET', '/assets/images/retail-03.webp', 'portrait'),
+        card('BILLIONAIRE', '/assets/images/retail-07.webp', 'wide'),
+        card('PINKO', '/assets/images/retail-04.webp', 'portrait'),
+        card('ELIZABETTA FRANCHI', '/assets/images/retail-08.webp', 'wide'),
+      ],
+    },
+  },
+  {
+    slug: 'food-and-beverage', name: 'FOOD & BEVERAGE', image: '/assets/images/projects/beb217_70911a3f90ec47c3ab5a0d8d810f6c5f.webp',
+    detail: {
+      hero: '/assets/images/projects/beb217_70911a3f90ec47c3ab5a0d8d810f6c5f.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
+      subtitle: 'THAT ELEVATE EVERY CULINARY EXPERIENCE', layout: 'three-compact',
+      projects: [
+        card('TEDS', '/assets/images/fnb-04.webp', 'wide'),
+        card('CARLOS', '/assets/images/fnb-06.webp', 'wide'),
+        card('MORI SUSHI', '/assets/images/fnb-03.webp', 'portrait'),
+        card('ONE OAK', '/assets/images/fnb-05.webp', 'wide'),
+        card('NUWA', '/assets/images/fnb-08.webp'),
+        card('AL DAHAN', '/assets/images/fnb-01.webp', 'portrait'),
+        card('OZEL', '/assets/images/fnb-07.webp'),
+        card('NISANTASI', '/assets/images/fnb-02.webp', 'portrait'),
+      ],
+    },
+  },
+  {
+    slug: 'hospitality', name: 'HOSPITALITY', image: '/assets/images/projects/beb217_33eb17df6b8f4e08b9af72983e332a73.webp',
+    detail: {
+      hero: '/assets/images/projects/beb217_5f1b618637b545019c004fc1231e101f.webp', heroLines: ['RESTFUL STAYS', 'SHAPED BY COMFORT'],
+      subtitle: 'CALM, WELCOMING SPACES DESIGNED AROUND THE GUEST EXPERIENCE.', layout: 'two-tall',
+      projects: [
+        card('JAZZY', '/assets/images/hospitality-01.webp', 'portrait'),
+        card('COURTYARD BY MARRIOTT', '/assets/images/hospitality-02.webp', 'wide'),
+      ],
+    },
+  },
+
+  {
     slug: 'residential', name: 'RESIDENTIAL', image: '/assets/images/projects/beb217_7d345590eeb748c6999ce9316fc990d4.webp',
     detail: {
-      hero: '/assets/images/projects-hero.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
+      hero: '/assets/images/residential-04.webp', heroLines: ['HOMES', 'DESIGNED TO INSPIRE'],
       subtitle: 'COMFORT, ELEGANCE, AND LASTING MEMORIES', layout: 'three-compact',
       projects: [
         card('VILLA – ALLEGRIA', '/assets/images/residential-01.webp', 'portrait'),
@@ -82,53 +128,7 @@ export const projectCategories = [
         card('EAST TOWN DUPLEX', '/assets/images/residential-10.webp', 'wide'),
       ],
     },
-  },
-  {
-    slug: 'food-and-beverage', name: 'FOOD & BEVERAGE', image: '/assets/images/projects/beb217_ca2a957cb36947be9b6957560eaf6406.webp',
-    detail: {
-      hero: '/assets/images/projects-hero.webp', heroLines: ['THOUGHTFULLY', 'CRAFTED INTERIORS'],
-      subtitle: 'THAT ELEVATE EVERY CULINARY EXPERIENCE', layout: 'three-compact',
-      projects: [
-        card('TEDS', '/assets/images/fnb-04.webp', 'wide'),
-        card('CARLOS', '/assets/images/fnb-06.webp', 'wide'),
-        card('MORI SUSHI', '/assets/images/fnb-03.webp', 'portrait'),
-        card('ONE OAK', '/assets/images/fnb-05.webp', 'wide'),
-        card('NUWA', '/assets/images/fnb-08.webp'),
-        card('AL DAHAN', '/assets/images/fnb-01.webp', 'portrait'),
-        card('OZEL', '/assets/images/fnb-07.webp'),
-        card('NISANTASI', '/assets/images/fnb-02.webp', 'portrait'),
-      ],
-    },
-  },
-  {
-    slug: 'retail-and-commercial', name: 'RETAIL & COMMERCIAL', image: '/assets/images/projects/beb217_5fd7691487da48c0bb9d096fe4ddf38b.webp',
-    detail: {
-      hero: '/assets/images/projects-hero.webp', heroLines: ['COMMERCIAL', 'SPACES THAT STRENGTHEN'],
-      subtitle: 'BRANDS AND CONNECT WITH CUSTOMERS', layout: 'two-tall',
-      projects: [
-        card('RAVIN', '/assets/images/retail-01.webp', 'portrait'),
-        card('IQOS', '/assets/images/retail-05.webp', 'wide'),
-        card('EGO', '/assets/images/retail-02.webp', 'portrait'),
-        card('D STORE', '/assets/images/retail-06.webp', 'wide'),
-        card('TWINSET', '/assets/images/retail-03.webp', 'portrait'),
-        card('BILLIONAIRE', '/assets/images/retail-07.webp', 'wide'),
-        card('PINKO', '/assets/images/retail-04.webp', 'portrait'),
-        card('ELIZABETTA FRANCHI', '/assets/images/retail-08.webp', 'wide'),
-      ],
-    },
-  },
-  {
-    slug: 'hospitality', name: 'HOSPITALITY', image: '/assets/images/projects/beb217_33eb17df6b8f4e08b9af72983e332a73.webp',
-    detail: {
-      hero: '/assets/images/projects-hero.webp', heroLines: ['RESTFUL STAYS', 'SHAPED BY COMFORT'],
-      subtitle: 'CALM, WELCOMING SPACES DESIGNED AROUND THE GUEST EXPERIENCE.', layout: 'two-tall',
-      projects: [
-        card('JAZZY', '/assets/images/hospitality-01.webp', 'portrait'),
-        card('COURTYARD BY MARRIOTT', '/assets/images/hospitality-02.webp', 'wide'),
-      ],
-    },
-  },
-] as const satisfies ReadonlyArray<{ slug: string; name: string; image: string; detail: CategoryDetail }>
+  },] as const satisfies ReadonlyArray<{ slug: string; name: string; image: string; detail: CategoryDetail }>
 
 export function getCategory(slug: string) {
   return projectCategories.find((category) => category.slug === slug) ?? projectCategories[0]

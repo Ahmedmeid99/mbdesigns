@@ -8,7 +8,7 @@ type LandmarkPhoto = { latitude: number; longitude: number; image: string; width
 const photos: Record<string, LandmarkPhoto> = photoCredits
 
 const locations = [
-  { country: 'Egypt', city: 'Cairo', region: 'Middle East', landmark: 'Pyramids of Giza' },
+  { country: 'Egypt', city: 'Cairo', region: 'Africa', landmark: 'Pyramids of Giza' },
   { country: 'United Arab Emirates', city: 'Dubai', region: 'Middle East', landmark: 'Burj Khalifa' },
   { country: 'Saudi Arabia', city: 'Riyadh', region: 'Middle East', landmark: 'Kingdom Centre' },
   { country: 'Greece', city: 'Athens', region: 'Europe', landmark: 'The Parthenon' },

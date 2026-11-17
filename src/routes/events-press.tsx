@@ -4,6 +4,7 @@ import { Container } from '../components/Container'
 import { ArrowIcon } from '../components/Icon'
 import { EditorialTitle, PageHeroCopy } from '../components/PageHeroCopy'
 import { SectionHeading } from '../components/SectionHeading'
+import { pressPublications } from '../press-publications'
 
 type ImageSource = readonly [string, 'jpg' | 'jpeg' | 'png']
 type EventYear = '2026' | '2025' | '2023' | '2019' | '2018'
@@ -201,7 +202,7 @@ function EventsPressPage() {
               EVENTS <span>{String(events.length).padStart(2, '0')}</span>
             </button>
             <button type="button" role="tab" aria-selected={view === 'press'} className={view === 'press' ? 'is-active' : ''} onClick={() => changeView('press')}>
-              PRESS <span>{String(pressLogos.length).padStart(2, '0')}</span>
+              PRESS <span>{String(pressPublications.length).padStart(2, '0')}</span>
             </button>
           </div>
 
@@ -238,8 +239,19 @@ function EventsPressPage() {
                 <div><p>IN THE NEWS</p><h2>WHERE OUR WORK<br />MAKES HEADLINES</h2></div>
               </div>
               <div className="press-browser-copy" data-reveal>
-                <h3>PRESS RELEASES</h3>
-                <p>Explore announcements, milestones, collaborations and achievements from MB Designs through the publications that share our story.</p>
+                <h3>IN PRINT</h3>
+                <p>Explore magazine features, interviews and cover stories about MB Designs. Open a publication to read the full PDF.</p>
+              </div>
+              <div className="press-publications" aria-label="Press publications">
+                {pressPublications.map((publication) => (
+                  <a className="press-publication" href={`/assets/press/${publication.slug}.pdf`} key={publication.slug} target="_blank" rel="noopener noreferrer" aria-label={`Read ${publication.title}, PDF, ${publication.size}, opens in a new tab`}>
+                    <div className="press-publication__cover">
+                      <img src={`/assets/press/${publication.slug}-cover.webp`} alt={`${publication.title} first page`} width="750" height="1000" loading="lazy" decoding="async" />
+                    </div>
+                    <span className="press-publication__edition">{publication.edition}</span>
+                    <h3>{publication.title}</h3>
+                  </a>
+                ))}
               </div>
               <div className="press-browser-grid">
                 {pressLogos.map((logo, index) => (

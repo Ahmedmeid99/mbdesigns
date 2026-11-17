@@ -157,10 +157,10 @@ function AboutPage() {
         <Container as="section" className="about-v2-philosophy" fluid aria-labelledby="about-v2-philosophy-title">
           <div className="about-v2-philosophy-image" data-reveal>
             <img
-              src="/assets/images/about-philosophy-workspace.webp"
-              alt="Daylit contemporary workspace with warm materials and integrated planting"
-              width="1536"
-              height="1024"
+              src="/assets/images/about-philosophy-architecture-v2.webp"
+              alt="Contemporary stone and glass architecture with layered terraces"
+              width="1127"
+              height="1396"
               loading="lazy"
               decoding="async"
             />

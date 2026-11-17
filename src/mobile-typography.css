@@ -1,0 +1,65 @@
+/* Shared mobile typography: loaded after the page and design-system styles. */
+@media (max-width: 640px) {
+  .site-page-hero .site-page-hero__copy .site-page-hero__title,
+  .site-page-hero .site-page-hero__copy .site-page-hero__title.is-long,
+  .site-page-hero .site-page-hero__copy .site-page-hero__title--compact-mobile,
+  .home-hero .display-title { font-size: var(--font-size-mobile-hero); line-height: 1.04; letter-spacing: -.025em; overflow-wrap: anywhere; }
+  .site-page-hero__title--compact-mobile .site-page-hero__title-line { white-space: normal; }
+  .site-page-hero .site-page-hero__copy .site-page-hero__lead,
+  .home-hero-lead { font-size: var(--font-size-small); line-height: 1.55; margin-top: .85rem; }
+  .site-page-hero .site-page-hero__eyebrow,
+  .home-hero-eyebrow, .section-heading__eyebrow,
+  .locations-section .locations-eyebrow, .home-network .home-network__eyebrow { font-size: var(--font-size-label); line-height: 1.5; letter-spacing: .065em; }
+  .section-heading .display-title,
+  .locations-section .locations-heading h2,
+  .home-network h2,
+  .single-project-intro h2,
+  .press-browser-feature h2 { font-size: var(--font-size-mobile-section); line-height: 1.08; overflow-wrap: anywhere; }
+  .section-heading .section-heading__description,
+  .home-network .home-network__intro p,
+  .locations-section .locations-heading > p,
+  .about-v2-story p:not(.section-heading__eyebrow),
+  .about-v2-philosophy-copy > p,
+  .about-v2-direction-grid p,
+  .career-v2 .career-statement-side p,
+  .career-opportunity p,
+  .awards-site .editorial-copy p:not(.award-project-location),
+  .awards-site .featured-award-project p:not(.award-project-location),
+  .press-browser-copy p,
+  .event-card-content p { font-size: var(--font-size-small); line-height: 1.6; letter-spacing: .015em; }
+  .home-sector-tabs strong { font-size: 1rem; line-height: 1.3; min-height: 2.6em; }
+  .home-sector-tab-copy { font-size: var(--font-size-small); line-height: 1.55; letter-spacing: .015em; }
+  .home-sector-tabs button { grid-template-columns: 2rem minmax(0, 1fr); }
+  .locations-section .locations-region button,
+  .locations-section .locations-region h3,
+  .single-project-intro > div > .single-project-facts,
+  .awards-site .award-project-location { font-size: .875rem; line-height: 1.6; }
+  .locations-section .locations-hint,
+  .locations-section .locations-landmark p { font-size: .75rem; line-height: 1.5; }
+  .locations-section .locations-landmark h3 { font-size: .9375rem; line-height: 1.25; }
+  .team-site .team-card h3 { font-size: 1rem; line-height: 1.2; overflow-wrap: anywhere; }
+  .team-site .team-card p { font-size: .8125rem; line-height: 1.45; font-weight: 400; }
+  .featured-award-project h3,
+  .editorial-title h3,
+  .career-opportunity h3,
+  .event-card-content h3 { font-size: var(--font-size-mobile-feature); line-height: 1.15; overflow-wrap: anywhere; }
+  .project-category h3,
+  .detail-project h3 { font-size: .9375rem; line-height: 1.3; white-space: normal; overflow-wrap: anywhere; }
+  .press-publication h3 { font-size: 1.125rem; line-height: 1.25; }
+  .press-publications { grid-template-columns: minmax(0, 1fr); }
+  .press-publication__edition,
+  .career-opportunity-requirements li { font-size: .75rem; line-height: 1.5; }
+  .career-opportunity-requirements { flex-wrap: wrap; }
+  .home-action, .home-text-link,
+  .home-network .home-network__intro a,
+  .press-publication .press-publication__link,
+  .career-opportunity a,
+  .events-filter button,
+  .site-footer-map-link,
+  .site-footer-links a { font-size: .8125rem; line-height: 1.4; }
+  .site-footer-directory p,
+  .site-footer-directory a:not(.site-footer-social a) { font-size: .875rem; line-height: 1.5; overflow-wrap: anywhere; }
+  .site-footer-bottom { font-size: .75rem; line-height: 1.5; }
+  .home-hero-foot, .site-page-hero a[href^='#'],
+  .single-project-hero-foot a, .project-detail-hero-foot a { font-size: .75rem; line-height: 1.5; }
+}
