@@ -138,20 +138,6 @@ function AboutPage() {
               </Link>
             </div>
           </div>
-          <dl className="about-v2-facts" data-reveal>
-            <div>
-              <dt>1995</dt>
-              <dd>THE PRACTICE WAS FOUNDED</dd>
-            </div>
-            <div>
-              <dt>02</dt>
-              <dd>STUDIOS · CAIRO + DUBAI</dd>
-            </div>
-            <div>
-              <dt>06</dt>
-              <dd>INTEGRATED DISCIPLINES</dd>
-            </div>
-          </dl>
         </Container>
 
         <Container as="section" className="about-v2-philosophy" fluid aria-labelledby="about-v2-philosophy-title">

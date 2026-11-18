@@ -5617,6 +5617,7 @@ video {
   overflow: hidden;
 }
 
+.home-practice-media img,
 .home-practice-media video,
 .home-practice-media > div {
   position: absolute;
@@ -5625,6 +5626,7 @@ video {
   height: 100%;
 }
 
+.home-practice-media img,
 .home-practice-media video {
   object-fit: cover;
 }
@@ -7746,4 +7748,11 @@ body :is(.about-v2-story, .about-v2-direction, .certificate-section, .award-edit
   .locations-region h3 { margin-bottom: .35rem; }
   .locations-region > div { gap: .15rem .35rem; }
   .locations-region button { max-width: 100%; font-size: .8rem; padding-inline: .5rem; }
+}
+.single-project-site .site-page-hero__copy .single-project-hero-facts { max-width: 85ch; font-size: .8rem; line-height: 1.65; color: #fff; }
+.single-project-hero-facts .single-project-facts-label { color: inherit; }
+.single-project-hero-facts .single-project-facts-value { color: inherit; font-weight: 300; }
+.single-project-site .single-project-main { padding-top: var(--section-space); }
+@media (max-width: 640px) {
+  .single-project-site .site-page-hero__copy .single-project-hero-facts { font-size: .75rem; line-height: 1.65; }
 }

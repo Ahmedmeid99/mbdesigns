@@ -8,7 +8,6 @@ export function HomeNetwork() {
       <img className="home-network__image" src="/assets/images/home-network-background.webp" alt="" width="1669" height="942" loading="lazy" decoding="async" />
       <div className="home-network__shade" />
       <Container className="home-network__content section-pad">
-        <p className="home-network__eyebrow">05 / PEOPLE, PARTNERS & PLACES</p>
         <h2 id="home-network-title">
           <span>VALUED PARTNERS</span>
         </h2>

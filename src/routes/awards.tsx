@@ -340,7 +340,7 @@ function AwardsPage() {
                   <p>{project.copy}</p>
                 </header>
                 <figure className="featured-award-collage" role="img" aria-label={`${project.name} project collage showing four views`}>
-                  {(project.slug === 'kmk-residence-dubai' ? [1, 4, 2, 3] : [1, 2, 3, 4]).map((imageIndex) => (
+                  {(project.slug === 'kmk-residence-dubai' ? [4, 1, 2, 3] : [1, 2, 3, 4]).map((imageIndex) => (
                     <img
                       key={imageIndex}
                       src={project.slug === 'kmk-residence-dubai' && imageIndex === 3

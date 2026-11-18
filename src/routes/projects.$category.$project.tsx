@@ -13,7 +13,7 @@ export const Route = createFileRoute('/projects/$category/$project')({
         { title: `${detail?.title ?? 'Project'} | MB Designs` },
         { name: 'description', content: `${detail?.title ?? 'Project'} by MB Designs.` },
       ],
-      links: [{ rel: 'preload', as: 'image', href: '/assets/images/projects-hero.webp' }],
+      links: detail ? [{ rel: 'preload', as: 'image', href: projectHeroImage(detail).src }] : [],
     }
   },
   component: SingleProjectPage,
@@ -57,10 +57,12 @@ function SingleProjectPage() {
     )
   }
 
+  const hero = projectHeroImage(detail)
+
   return (
     <div ref={pageRef} className={ready ? 'single-project-site is-ready' : 'single-project-site'}>
       <Container as="section" id="top" className="single-project-hero site-page-hero" fluid aria-labelledby="single-project-title">
-        <img src="/assets/images/projects-hero.webp" alt="Contemporary MB Designs development at sunset" width="1920" height="1116" fetchPriority="high" />
+        <img src={hero.src} alt={`${detail.title} project`} width={hero.width} height={hero.height} fetchPriority="high" />
         <div className="single-project-hero-shade" />
         <Container className="single-project-hero-inner site-page-hero__inner">
           <PageHeroCopy
@@ -68,28 +70,20 @@ function SingleProjectPage() {
             className="single-project-hero-copy"
             eyebrowClassName="single-project-hero-eyebrow"
             titleClassName={detail.title.length > 18 ? 'is-long' : ''}
-            leadClassName="single-project-hero-location"
+            leadClassName="single-project-hero-location single-project-hero-facts"
             eyebrow={<>PROJECT / {category.name}</>}
             title={<EditorialTitle lines={[detail.title]} />}
-            lead={detail.location}
+            lead={<>
+              <span className="single-project-facts-label">Location: </span><span className="single-project-facts-value">{detail.location.replace(/[.,\s]+$/, '')}</span>{', '}
+              <span className="single-project-facts-label">Space: </span><span className="single-project-facts-value">Project specific</span>{', '}
+              <span className="single-project-facts-label">Scope of work: </span><span className="single-project-facts-value">{scopeForCategory(categorySlug)}</span>
+            </>}
           />
           <div className="single-project-hero-foot">
             <Link to="/projects/$category" params={{ category: categorySlug }}>BACK TO {category.name}</Link>
             <a href="#project-gallery">SCROLL TO VIEW PROJECT</a>
           </div>
         </Container>
-      </Container>
-
-      <Container as="section" className="single-project-intro section-pad" aria-labelledby="single-project-intro-title">
-        <div>
-          <p className="single-project-intro-eyebrow">PROJECT / {category.name}</p>
-          <h2 id="single-project-intro-title">{detail.title}</h2>
-          <p className="single-project-facts">
-            <span className="single-project-facts-row"><span className="single-project-facts-label">Location: </span><span className="single-project-facts-value">{detail.location}.</span></span>
-            <span className="single-project-facts-row"><span className="single-project-facts-label">Space: </span><span className="single-project-facts-value">Project specific.</span></span>
-            <span className="single-project-facts-row"><span className="single-project-facts-label">Scope of work: </span><span className="single-project-facts-value">{scopeForCategory(categorySlug)}.</span></span>
-          </p>
-        </div>
       </Container>
 
       <Container as="main" className="single-project-main">
@@ -138,4 +132,8 @@ function scopeForCategory(category: string) {
   if (category === 'residential') return 'RESIDENTIAL INTERIOR DESIGN'
   if (category === 'hospitality') return 'HOSPITALITY INTERIOR DESIGN'
   return 'INTERIOR DESIGN & PROJECT DELIVERY'
+}
+
+function projectHeroImage(detail: NonNullable<ReturnType<typeof getProjectDetail>>) {
+  return detail.gallery.find(image => image.width / image.height >= 1.3) ?? detail.gallery[0]
 }

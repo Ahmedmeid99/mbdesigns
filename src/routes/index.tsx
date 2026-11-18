@@ -102,7 +102,6 @@ function HomePage() {
   const [activeSector, setActiveSector] = useState(0)
   const pageRef = useRef<HTMLDivElement>(null)
   const heroVideoRef = useViewportVideo()
-  const practiceVideoRef = useViewportVideo({ preloadAhead: true })
 
   useEffect(() => {
     const tabs = pageRef.current?.querySelector<HTMLElement>('.home-sector-tabs')
@@ -246,33 +245,15 @@ function HomePage() {
             />
           </div>
           <dl className="home-studio-facts" data-reveal>
-            <div>
-              <dt>30+</dt>
-              <dd>YEARS OF DESIGN PRACTICE</dd>
-            </div>
-            <div>
-              <dt>02</dt>
-              <dd>STUDIOS · CAIRO + DUBAI</dd>
-            </div>
-            <div>
-              <dt>06</dt>
-              <dd>INTEGRATED DISCIPLINES</dd>
-            </div>
+            <div><dt>30+</dt><dd>YEARS OF DESIGN PRACTICE</dd></div>
+            <div><dt>02</dt><dd>STUDIOS · CAIRO + DUBAI</dd></div>
+            <div><dt>06</dt><dd>INTEGRATED DISCIPLINES</dd></div>
           </dl>
         </Container>
 
         <Container as="section" className="home-practice" fluid aria-labelledby="home-practice-title">
           <div className="home-practice-media">
-            <video
-              ref={practiceVideoRef}
-              muted
-              loop
-              playsInline
-              preload="metadata"
-              aria-label="MB Designs project environments"
-            >
-              <source src="/assets/video/manifesto.mp4" type="video/mp4" />
-            </video>
+            <img src="/assets/images/home-sectors-overview.webp" alt="Contemporary mixed-use architecture with landscaped terraces and public spaces" width="1254" height="1254" loading="lazy" decoding="async" />
             <div />
             <p>FROM FIRST LINE<br />TO FINAL DETAIL.</p>
           </div>
